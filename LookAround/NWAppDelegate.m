@@ -7,12 +7,16 @@
 //
 
 #import "NWAppDelegate.h"
-
+#import "Defines.h"
 @implementation NWAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+
+    [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreNamed:@"Model.sqlite"];
+    [NWHelper startUpdateLocation];
     return YES;
 }
 							
@@ -40,6 +44,7 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
+    [MagicalRecord cleanUp];
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
