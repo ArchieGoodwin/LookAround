@@ -58,7 +58,6 @@
 		DC4B24F916C6855F00976283 /* STImageAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC4B24F316C6855E00976283 /* STImageAnnotationView.m */; };
 		DC4B24FA16C6855F00976283 /* MapAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = DC4B24F516C6855E00976283 /* MapAnnotation.m */; };
 		DC4B24FB16C6855F00976283 /* NWViewLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC4B24F716C6855E00976283 /* NWViewLocationController.m */; };
-		DC4B24FC16C6855F00976283 /* NWViewLocationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC4B24F816C6855F00976283 /* NWViewLocationController.xib */; };
 		DC4B24FE16C687FD00976283 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC4B24FD16C687FC00976283 /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -159,7 +158,6 @@
 		DC4B24F516C6855E00976283 /* MapAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapAnnotation.m; sourceTree = "<group>"; };
 		DC4B24F616C6855E00976283 /* NWViewLocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWViewLocationController.h; sourceTree = "<group>"; };
 		DC4B24F716C6855E00976283 /* NWViewLocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWViewLocationController.m; sourceTree = "<group>"; };
-		DC4B24F816C6855F00976283 /* NWViewLocationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NWViewLocationController.xib; sourceTree = "<group>"; };
 		DC4B24FD16C687FC00976283 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -219,7 +217,6 @@
 				DC4B24F516C6855E00976283 /* MapAnnotation.m */,
 				DC4B24F616C6855E00976283 /* NWViewLocationController.h */,
 				DC4B24F716C6855E00976283 /* NWViewLocationController.m */,
-				DC4B24F816C6855F00976283 /* NWViewLocationController.xib */,
 				DC4B247B16C4DAE100976283 /* Model */,
 				DC4B247716C4DA3F00976283 /* Helpers */,
 				DC4B247216C4D9AF00976283 /* SearchViewController.h */,
@@ -437,7 +434,6 @@
 				DC4B246416C4D27500976283 /* Default@2x.png in Resources */,
 				DC4B246616C4D27500976283 /* Default-568h@2x.png in Resources */,
 				DC4B246916C4D27500976283 /* MainStoryboard.storyboard in Resources */,
-				DC4B24FC16C6855F00976283 /* NWViewLocationController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

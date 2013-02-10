@@ -19,4 +19,5 @@
     IBOutlet UILabel *lblTitle;
 }
 @property (nonatomic, retain) NSDictionary *location;
+-(void)startAll;
 @end

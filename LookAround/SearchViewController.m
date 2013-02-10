@@ -14,13 +14,14 @@
 #import <CoreLocation/CoreLocation.h>
 #import "IconDownloader.h"
 #import "Searches.h"
+#import "NWViewLocationController.h"
 @interface SearchViewController ()
 {
     NSMutableArray *searchResult;
     CLPlacemark *placemark;
     double latitude;
     double longitude;
-
+    NSDictionary *currentLocation;
 }
 @end
 
@@ -199,6 +200,24 @@
     //}
 }
 
+
+#pragma mark - Seque
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"ViewLocation"])
+    {
+        NWViewLocationController *controller = (NWViewLocationController *)segue.destinationViewController;
+     
+        
+        UITableViewCell *cell = (UITableViewCell *)sender;
+        NWItem *item = [searchResult objectAtIndex:cell.tag];
+        NSDictionary *dict = [NWHelper createDict:item.itemName lat:item.itemLat lng:item.itemLng];
+        
+        controller.location = dict;
+        [controller startAll];
+    }
+}
 
 
 #pragma mark - Table view data source
@@ -386,7 +405,7 @@
                             [cell.contentView addSubview:iv];
                         }
                     }
-                    
+                cell.tag = indexPath.row;
                 return cell;
 
                 
@@ -561,7 +580,25 @@
         }
         else
         {
-            NWItem *item = [searchResult objectAtIndex:indexPath.row];
+            //NWItem *item = [searchResult objectAtIndex:indexPath.row];
+            
+            //currentLocation = [NWHelper createDict:item.itemName lat:item.itemLat lng:item.itemLng];
+            
+            //[self performSegueWithIdentifier:@"MySegue" sender:[NWHelper createDict:item.itemName lat:item.itemLat lng:item.itemLng]];
+
+            
+            //[self performSegueWithIdentifier:@"ViewLocation" sender:nil];
+        }
+    }
+    else
+    {
+        NSArray *array = [Searches findAllSortedBy:@"dateSearhed" ascending:NO];
+        if(array.count > 0)
+        {
+            Searches *search = [array objectAtIndex:indexPath.row];
+            _currentPageType = SearchPageBy4square;
+            _searchBar.text = search.searchStr;
+            [self searchByString:search.searchStr];
             
         }
     }

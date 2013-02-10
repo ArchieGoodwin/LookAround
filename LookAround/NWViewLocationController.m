@@ -32,19 +32,29 @@
 
 
 
-    NSDictionary *dict = [NWHelper createDict:@"Apple" lat:37.3323314100 lng:-122.0312186000];
-    self.location = dict;
-    
-    
-    lblTitle.text = [location objectForKey:@"name"];
+       
 
-
-    [self addAnnotationsToMap];
-
-    [self checkStreetView];
     [super viewDidLoad];
 }
 
+-(void)startAll
+{
+    lblTitle.text = [location objectForKey:@"name"];
+    
+    
+
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self addAnnotationsToMap];
+    
+    [self checkStreetView];
+    
+    [super viewWillAppear:animated];
+    
+    [self centerMap2];
+}
 
 -(void)checkStreetView
 {
