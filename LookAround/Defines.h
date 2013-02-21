@@ -25,7 +25,9 @@ typedef enum
 {
     SearchPageBy4square,
     
-    SearchPagePastSearches
+    SearchPagePastSearches,
+    
+    SearchNewType
     
     
 } SearchPageListType;

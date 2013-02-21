@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DC3E265916D4D43B004483D5 /* NWFoursquare.m in Sources */ = {isa = PBXBuildFile; fileRef = DC3E265816D4D43B004483D5 /* NWFoursquare.m */; };
+		DC3E265B16D4E327004483D5 /* TwitterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC3E265A16D4E327004483D5 /* TwitterCell.xib */; };
+		DC3E265D16D6022B004483D5 /* pin.png in Resources */ = {isa = PBXBuildFile; fileRef = DC3E265C16D6022B004483D5 /* pin.png */; };
+		DC3E266416D623BE004483D5 /* InstagramCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC3E266316D623BE004483D5 /* InstagramCollectionViewController.m */; };
+		DC3E266C16D623F3004483D5 /* StackedGridLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = DC3E266616D623F3004483D5 /* StackedGridLayout.m */; };
+		DC3E266D16D623F3004483D5 /* StackedGridLayoutSection.m in Sources */ = {isa = PBXBuildFile; fileRef = DC3E266816D623F3004483D5 /* StackedGridLayoutSection.m */; };
+		DC3E266E16D623F3004483D5 /* InstagramCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DC3E266A16D623F3004483D5 /* InstagramCell.m */; };
+		DC3E266F16D623F3004483D5 /* InstagramCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC3E266B16D623F3004483D5 /* InstagramCell.xib */; };
+		DC3E267316D6240C004483D5 /* FlickrPhotoHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC3E267116D6240C004483D5 /* FlickrPhotoHeaderView.m */; };
+		DC3E267416D6240C004483D5 /* FlickrPhotoHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC3E267216D6240C004483D5 /* FlickrPhotoHeaderView.xib */; };
 		DC4B245016C4D27500976283 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC4B244F16C4D27500976283 /* UIKit.framework */; };
 		DC4B245216C4D27500976283 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC4B245116C4D27500976283 /* Foundation.framework */; };
 		DC4B245416C4D27500976283 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC4B245316C4D27500976283 /* CoreGraphics.framework */; };
@@ -54,14 +64,45 @@
 		DC4B24E816C5067500976283 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC4B24E716C5067500976283 /* CoreData.framework */; };
 		DC4B24EB16C506BE00976283 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DC4B24E916C506BE00976283 /* Model.xcdatamodeld */; };
 		DC4B24EE16C5075400976283 /* Searches.m in Sources */ = {isa = PBXBuildFile; fileRef = DC4B24ED16C5075400976283 /* Searches.m */; };
-		DC4B24F116C50C3000976283 /* NWуууViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC4B24F016C50C2F00976283 /* NWуууViewController.m */; };
 		DC4B24F916C6855F00976283 /* STImageAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC4B24F316C6855E00976283 /* STImageAnnotationView.m */; };
 		DC4B24FA16C6855F00976283 /* MapAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = DC4B24F516C6855E00976283 /* MapAnnotation.m */; };
-		DC4B24FB16C6855F00976283 /* NWViewLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC4B24F716C6855E00976283 /* NWViewLocationController.m */; };
 		DC4B24FE16C687FD00976283 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC4B24FD16C687FC00976283 /* MapKit.framework */; };
+		DC98307E16C8C1CC004CB060 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC98307D16C8C1CC004CB060 /* Social.framework */; };
+		DC98308016C8C25A004CB060 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC98307F16C8C25A004CB060 /* Accounts.framework */; };
+		DC98308316C90BB0004CB060 /* NWtwitter.m in Sources */ = {isa = PBXBuildFile; fileRef = DC98308216C90BB0004CB060 /* NWtwitter.m */; };
+		DC98308716CA4A18004CB060 /* 209-twitter.png in Resources */ = {isa = PBXBuildFile; fileRef = DC98308516CA4A18004CB060 /* 209-twitter.png */; };
+		DC98308816CA4A18004CB060 /* 209-twitter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC98308616CA4A18004CB060 /* 209-twitter@2x.png */; };
+		DC98308B16CA664F004CB060 /* NWTwitterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC98308A16CA664E004CB060 /* NWTwitterViewController.m */; };
+		DC98308E16CA6BB8004CB060 /* NWTwitterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DC98308D16CA6BB8004CB060 /* NWTwitterCell.m */; };
+		DC9A487F16D237E500E3CAEF /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9A486D16D237E500E3CAEF /* AFHTTPClient.m */; };
+		DC9A488016D237E500E3CAEF /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9A486F16D237E500E3CAEF /* AFHTTPRequestOperation.m */; };
+		DC9A488116D237E500E3CAEF /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9A487116D237E500E3CAEF /* AFImageRequestOperation.m */; };
+		DC9A488216D237E500E3CAEF /* AFJSONRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9A487316D237E500E3CAEF /* AFJSONRequestOperation.m */; };
+		DC9A488316D237E500E3CAEF /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9A487516D237E500E3CAEF /* AFNetworkActivityIndicatorManager.m */; };
+		DC9A488416D237E500E3CAEF /* AFPropertyListRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9A487816D237E500E3CAEF /* AFPropertyListRequestOperation.m */; };
+		DC9A488516D237E500E3CAEF /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9A487A16D237E500E3CAEF /* AFURLConnectionOperation.m */; };
+		DC9A488616D237E500E3CAEF /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9A487C16D237E500E3CAEF /* AFXMLRequestOperation.m */; };
+		DC9A488716D237E500E3CAEF /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9A487E16D237E500E3CAEF /* UIImageView+AFNetworking.m */; };
+		DC9A488A16D2423500E3CAEF /* NWLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9A488916D2423400E3CAEF /* NWLocationViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DC3E265716D4D43B004483D5 /* NWFoursquare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWFoursquare.h; sourceTree = "<group>"; };
+		DC3E265816D4D43B004483D5 /* NWFoursquare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWFoursquare.m; sourceTree = "<group>"; };
+		DC3E265A16D4E327004483D5 /* TwitterCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TwitterCell.xib; sourceTree = "<group>"; };
+		DC3E265C16D6022B004483D5 /* pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pin.png; sourceTree = "<group>"; };
+		DC3E266216D623BE004483D5 /* InstagramCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstagramCollectionViewController.h; sourceTree = "<group>"; };
+		DC3E266316D623BE004483D5 /* InstagramCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstagramCollectionViewController.m; sourceTree = "<group>"; };
+		DC3E266516D623F3004483D5 /* StackedGridLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StackedGridLayout.h; sourceTree = "<group>"; };
+		DC3E266616D623F3004483D5 /* StackedGridLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StackedGridLayout.m; sourceTree = "<group>"; };
+		DC3E266716D623F3004483D5 /* StackedGridLayoutSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StackedGridLayoutSection.h; sourceTree = "<group>"; };
+		DC3E266816D623F3004483D5 /* StackedGridLayoutSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StackedGridLayoutSection.m; sourceTree = "<group>"; };
+		DC3E266916D623F3004483D5 /* InstagramCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstagramCell.h; sourceTree = "<group>"; };
+		DC3E266A16D623F3004483D5 /* InstagramCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstagramCell.m; sourceTree = "<group>"; };
+		DC3E266B16D623F3004483D5 /* InstagramCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InstagramCell.xib; sourceTree = "<group>"; };
+		DC3E267016D6240C004483D5 /* FlickrPhotoHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickrPhotoHeaderView.h; sourceTree = "<group>"; };
+		DC3E267116D6240C004483D5 /* FlickrPhotoHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrPhotoHeaderView.m; sourceTree = "<group>"; };
+		DC3E267216D6240C004483D5 /* FlickrPhotoHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FlickrPhotoHeaderView.xib; sourceTree = "<group>"; };
 		DC4B244C16C4D27500976283 /* LookAround.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LookAround.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC4B244F16C4D27500976283 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DC4B245116C4D27500976283 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -150,15 +191,42 @@
 		DC4B24EA16C506BE00976283 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		DC4B24EC16C5075400976283 /* Searches.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Searches.h; sourceTree = "<group>"; };
 		DC4B24ED16C5075400976283 /* Searches.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Searches.m; sourceTree = "<group>"; };
-		DC4B24EF16C50C2E00976283 /* NWуууViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NWуууViewController.h"; sourceTree = "<group>"; };
-		DC4B24F016C50C2F00976283 /* NWуууViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NWуууViewController.m"; sourceTree = "<group>"; };
 		DC4B24F216C6855E00976283 /* STImageAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STImageAnnotationView.h; sourceTree = "<group>"; };
 		DC4B24F316C6855E00976283 /* STImageAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STImageAnnotationView.m; sourceTree = "<group>"; };
 		DC4B24F416C6855E00976283 /* MapAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapAnnotation.h; sourceTree = "<group>"; };
 		DC4B24F516C6855E00976283 /* MapAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapAnnotation.m; sourceTree = "<group>"; };
-		DC4B24F616C6855E00976283 /* NWViewLocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWViewLocationController.h; sourceTree = "<group>"; };
-		DC4B24F716C6855E00976283 /* NWViewLocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWViewLocationController.m; sourceTree = "<group>"; };
 		DC4B24FD16C687FC00976283 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		DC98307D16C8C1CC004CB060 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		DC98307F16C8C25A004CB060 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		DC98308116C90BB0004CB060 /* NWtwitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWtwitter.h; sourceTree = "<group>"; };
+		DC98308216C90BB0004CB060 /* NWtwitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWtwitter.m; sourceTree = "<group>"; };
+		DC98308516CA4A18004CB060 /* 209-twitter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "209-twitter.png"; sourceTree = "<group>"; };
+		DC98308616CA4A18004CB060 /* 209-twitter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "209-twitter@2x.png"; sourceTree = "<group>"; };
+		DC98308916CA664E004CB060 /* NWTwitterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWTwitterViewController.h; sourceTree = "<group>"; };
+		DC98308A16CA664E004CB060 /* NWTwitterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWTwitterViewController.m; sourceTree = "<group>"; };
+		DC98308C16CA6BB8004CB060 /* NWTwitterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWTwitterCell.h; sourceTree = "<group>"; };
+		DC98308D16CA6BB8004CB060 /* NWTwitterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWTwitterCell.m; sourceTree = "<group>"; };
+		DC9A486C16D237E500E3CAEF /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
+		DC9A486D16D237E500E3CAEF /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
+		DC9A486E16D237E500E3CAEF /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
+		DC9A486F16D237E500E3CAEF /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
+		DC9A487016D237E500E3CAEF /* AFImageRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFImageRequestOperation.h; sourceTree = "<group>"; };
+		DC9A487116D237E500E3CAEF /* AFImageRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFImageRequestOperation.m; sourceTree = "<group>"; };
+		DC9A487216D237E500E3CAEF /* AFJSONRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFJSONRequestOperation.h; sourceTree = "<group>"; };
+		DC9A487316D237E500E3CAEF /* AFJSONRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFJSONRequestOperation.m; sourceTree = "<group>"; };
+		DC9A487416D237E500E3CAEF /* AFNetworkActivityIndicatorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkActivityIndicatorManager.h; sourceTree = "<group>"; };
+		DC9A487516D237E500E3CAEF /* AFNetworkActivityIndicatorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkActivityIndicatorManager.m; sourceTree = "<group>"; };
+		DC9A487616D237E500E3CAEF /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
+		DC9A487716D237E500E3CAEF /* AFPropertyListRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFPropertyListRequestOperation.h; sourceTree = "<group>"; };
+		DC9A487816D237E500E3CAEF /* AFPropertyListRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFPropertyListRequestOperation.m; sourceTree = "<group>"; };
+		DC9A487916D237E500E3CAEF /* AFURLConnectionOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLConnectionOperation.h; sourceTree = "<group>"; };
+		DC9A487A16D237E500E3CAEF /* AFURLConnectionOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLConnectionOperation.m; sourceTree = "<group>"; };
+		DC9A487B16D237E500E3CAEF /* AFXMLRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFXMLRequestOperation.h; sourceTree = "<group>"; };
+		DC9A487C16D237E500E3CAEF /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRequestOperation.m; sourceTree = "<group>"; };
+		DC9A487D16D237E500E3CAEF /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
+		DC9A487E16D237E500E3CAEF /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
+		DC9A488816D2423400E3CAEF /* NWLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWLocationViewController.h; sourceTree = "<group>"; };
+		DC9A488916D2423400E3CAEF /* NWLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWLocationViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +234,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC98308016C8C25A004CB060 /* Accounts.framework in Frameworks */,
+				DC98307E16C8C1CC004CB060 /* Social.framework in Frameworks */,
 				DC4B24FE16C687FD00976283 /* MapKit.framework in Frameworks */,
 				DC4B24E816C5067500976283 /* CoreData.framework in Frameworks */,
 				DC4B248716C501D200976283 /* CoreLocation.framework in Frameworks */,
@@ -178,6 +248,59 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DC3E265E16D622CC004483D5 /* FirstView */ = {
+			isa = PBXGroup;
+			children = (
+				DC4B247216C4D9AF00976283 /* SearchViewController.h */,
+				DC4B247316C4D9AF00976283 /* SearchViewController.m */,
+			);
+			name = FirstView;
+			sourceTree = "<group>";
+		};
+		DC3E265F16D622DC004483D5 /* LocationView */ = {
+			isa = PBXGroup;
+			children = (
+				DC9A488816D2423400E3CAEF /* NWLocationViewController.h */,
+				DC9A488916D2423400E3CAEF /* NWLocationViewController.m */,
+				DC4B24F216C6855E00976283 /* STImageAnnotationView.h */,
+				DC4B24F316C6855E00976283 /* STImageAnnotationView.m */,
+				DC4B24F416C6855E00976283 /* MapAnnotation.h */,
+				DC4B24F516C6855E00976283 /* MapAnnotation.m */,
+			);
+			name = LocationView;
+			sourceTree = "<group>";
+		};
+		DC3E266016D62321004483D5 /* TwitterView */ = {
+			isa = PBXGroup;
+			children = (
+				DC98308C16CA6BB8004CB060 /* NWTwitterCell.h */,
+				DC98308D16CA6BB8004CB060 /* NWTwitterCell.m */,
+				DC3E265A16D4E327004483D5 /* TwitterCell.xib */,
+				DC98308916CA664E004CB060 /* NWTwitterViewController.h */,
+				DC98308A16CA664E004CB060 /* NWTwitterViewController.m */,
+			);
+			name = TwitterView;
+			sourceTree = "<group>";
+		};
+		DC3E266116D62349004483D5 /* InstagramView */ = {
+			isa = PBXGroup;
+			children = (
+				DC3E267016D6240C004483D5 /* FlickrPhotoHeaderView.h */,
+				DC3E267116D6240C004483D5 /* FlickrPhotoHeaderView.m */,
+				DC3E267216D6240C004483D5 /* FlickrPhotoHeaderView.xib */,
+				DC3E266516D623F3004483D5 /* StackedGridLayout.h */,
+				DC3E266616D623F3004483D5 /* StackedGridLayout.m */,
+				DC3E266716D623F3004483D5 /* StackedGridLayoutSection.h */,
+				DC3E266816D623F3004483D5 /* StackedGridLayoutSection.m */,
+				DC3E266916D623F3004483D5 /* InstagramCell.h */,
+				DC3E266A16D623F3004483D5 /* InstagramCell.m */,
+				DC3E266B16D623F3004483D5 /* InstagramCell.xib */,
+				DC3E266216D623BE004483D5 /* InstagramCollectionViewController.h */,
+				DC3E266316D623BE004483D5 /* InstagramCollectionViewController.m */,
+			);
+			name = InstagramView;
+			sourceTree = "<group>";
+		};
 		DC4B244316C4D27500976283 = {
 			isa = PBXGroup;
 			children = (
@@ -198,6 +321,8 @@
 		DC4B244E16C4D27500976283 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DC98307F16C8C25A004CB060 /* Accounts.framework */,
+				DC98307D16C8C1CC004CB060 /* Social.framework */,
 				DC4B24FD16C687FC00976283 /* MapKit.framework */,
 				DC4B24E716C5067500976283 /* CoreData.framework */,
 				DC4B248616C501D200976283 /* CoreLocation.framework */,
@@ -211,22 +336,16 @@
 		DC4B245516C4D27500976283 /* LookAround */ = {
 			isa = PBXGroup;
 			children = (
-				DC4B24F216C6855E00976283 /* STImageAnnotationView.h */,
-				DC4B24F316C6855E00976283 /* STImageAnnotationView.m */,
-				DC4B24F416C6855E00976283 /* MapAnnotation.h */,
-				DC4B24F516C6855E00976283 /* MapAnnotation.m */,
-				DC4B24F616C6855E00976283 /* NWViewLocationController.h */,
-				DC4B24F716C6855E00976283 /* NWViewLocationController.m */,
+				DC3E266116D62349004483D5 /* InstagramView */,
+				DC3E266016D62321004483D5 /* TwitterView */,
+				DC3E265F16D622DC004483D5 /* LocationView */,
+				DC3E265E16D622CC004483D5 /* FirstView */,
 				DC4B247B16C4DAE100976283 /* Model */,
 				DC4B247716C4DA3F00976283 /* Helpers */,
-				DC4B247216C4D9AF00976283 /* SearchViewController.h */,
-				DC4B247316C4D9AF00976283 /* SearchViewController.m */,
 				DC4B245E16C4D27500976283 /* NWAppDelegate.h */,
 				DC4B245F16C4D27500976283 /* NWAppDelegate.m */,
 				DC4B246716C4D27500976283 /* MainStoryboard.storyboard */,
 				DC4B245616C4D27500976283 /* Supporting Files */,
-				DC4B24EF16C50C2E00976283 /* NWуууViewController.h */,
-				DC4B24F016C50C2F00976283 /* NWуууViewController.m */,
 			);
 			path = LookAround;
 			sourceTree = "<group>";
@@ -234,6 +353,7 @@
 		DC4B245616C4D27500976283 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				DC98308416CA4A0E004CB060 /* images */,
 				DC4B245716C4D27500976283 /* LookAround-Info.plist */,
 				DC4B245816C4D27500976283 /* InfoPlist.strings */,
 				DC4B245B16C4D27500976283 /* main.m */,
@@ -249,6 +369,7 @@
 		DC4B247716C4DA3F00976283 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				DC9A486B16D237E500E3CAEF /* AFNetworking */,
 				DC4B249116C5065B00976283 /* MagicalRecord */,
 				DC4B248B16C5037400976283 /* PendingOperations.h */,
 				DC4B248C16C5037500976283 /* PendingOperations.m */,
@@ -272,6 +393,10 @@
 				DC4B24ED16C5075400976283 /* Searches.m */,
 				DC4B247E16C4DAF600976283 /* NWItem.h */,
 				DC4B247F16C4DAF600976283 /* NWItem.m */,
+				DC98308116C90BB0004CB060 /* NWtwitter.h */,
+				DC98308216C90BB0004CB060 /* NWtwitter.m */,
+				DC3E265716D4D43B004483D5 /* NWFoursquare.h */,
+				DC3E265816D4D43B004483D5 /* NWFoursquare.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -377,6 +502,42 @@
 			path = Core;
 			sourceTree = "<group>";
 		};
+		DC98308416CA4A0E004CB060 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				DC3E265C16D6022B004483D5 /* pin.png */,
+				DC98308516CA4A18004CB060 /* 209-twitter.png */,
+				DC98308616CA4A18004CB060 /* 209-twitter@2x.png */,
+			);
+			name = images;
+			sourceTree = "<group>";
+		};
+		DC9A486B16D237E500E3CAEF /* AFNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				DC9A486C16D237E500E3CAEF /* AFHTTPClient.h */,
+				DC9A486D16D237E500E3CAEF /* AFHTTPClient.m */,
+				DC9A486E16D237E500E3CAEF /* AFHTTPRequestOperation.h */,
+				DC9A486F16D237E500E3CAEF /* AFHTTPRequestOperation.m */,
+				DC9A487016D237E500E3CAEF /* AFImageRequestOperation.h */,
+				DC9A487116D237E500E3CAEF /* AFImageRequestOperation.m */,
+				DC9A487216D237E500E3CAEF /* AFJSONRequestOperation.h */,
+				DC9A487316D237E500E3CAEF /* AFJSONRequestOperation.m */,
+				DC9A487416D237E500E3CAEF /* AFNetworkActivityIndicatorManager.h */,
+				DC9A487516D237E500E3CAEF /* AFNetworkActivityIndicatorManager.m */,
+				DC9A487616D237E500E3CAEF /* AFNetworking.h */,
+				DC9A487716D237E500E3CAEF /* AFPropertyListRequestOperation.h */,
+				DC9A487816D237E500E3CAEF /* AFPropertyListRequestOperation.m */,
+				DC9A487916D237E500E3CAEF /* AFURLConnectionOperation.h */,
+				DC9A487A16D237E500E3CAEF /* AFURLConnectionOperation.m */,
+				DC9A487B16D237E500E3CAEF /* AFXMLRequestOperation.h */,
+				DC9A487C16D237E500E3CAEF /* AFXMLRequestOperation.m */,
+				DC9A487D16D237E500E3CAEF /* UIImageView+AFNetworking.h */,
+				DC9A487E16D237E500E3CAEF /* UIImageView+AFNetworking.m */,
+			);
+			path = AFNetworking;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -434,6 +595,12 @@
 				DC4B246416C4D27500976283 /* Default@2x.png in Resources */,
 				DC4B246616C4D27500976283 /* Default-568h@2x.png in Resources */,
 				DC4B246916C4D27500976283 /* MainStoryboard.storyboard in Resources */,
+				DC98308716CA4A18004CB060 /* 209-twitter.png in Resources */,
+				DC98308816CA4A18004CB060 /* 209-twitter@2x.png in Resources */,
+				DC3E265B16D4E327004483D5 /* TwitterCell.xib in Resources */,
+				DC3E265D16D6022B004483D5 /* pin.png in Resources */,
+				DC3E266F16D623F3004483D5 /* InstagramCell.xib in Resources */,
+				DC3E267416D6240C004483D5 /* FlickrPhotoHeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -481,10 +648,27 @@
 				DC4B24E616C5065C00976283 /* MagicalRecord.m in Sources */,
 				DC4B24EB16C506BE00976283 /* Model.xcdatamodeld in Sources */,
 				DC4B24EE16C5075400976283 /* Searches.m in Sources */,
-				DC4B24F116C50C3000976283 /* NWуууViewController.m in Sources */,
 				DC4B24F916C6855F00976283 /* STImageAnnotationView.m in Sources */,
 				DC4B24FA16C6855F00976283 /* MapAnnotation.m in Sources */,
-				DC4B24FB16C6855F00976283 /* NWViewLocationController.m in Sources */,
+				DC98308316C90BB0004CB060 /* NWtwitter.m in Sources */,
+				DC98308B16CA664F004CB060 /* NWTwitterViewController.m in Sources */,
+				DC98308E16CA6BB8004CB060 /* NWTwitterCell.m in Sources */,
+				DC9A487F16D237E500E3CAEF /* AFHTTPClient.m in Sources */,
+				DC9A488016D237E500E3CAEF /* AFHTTPRequestOperation.m in Sources */,
+				DC9A488116D237E500E3CAEF /* AFImageRequestOperation.m in Sources */,
+				DC9A488216D237E500E3CAEF /* AFJSONRequestOperation.m in Sources */,
+				DC9A488316D237E500E3CAEF /* AFNetworkActivityIndicatorManager.m in Sources */,
+				DC9A488416D237E500E3CAEF /* AFPropertyListRequestOperation.m in Sources */,
+				DC9A488516D237E500E3CAEF /* AFURLConnectionOperation.m in Sources */,
+				DC9A488616D237E500E3CAEF /* AFXMLRequestOperation.m in Sources */,
+				DC9A488716D237E500E3CAEF /* UIImageView+AFNetworking.m in Sources */,
+				DC9A488A16D2423500E3CAEF /* NWLocationViewController.m in Sources */,
+				DC3E265916D4D43B004483D5 /* NWFoursquare.m in Sources */,
+				DC3E266416D623BE004483D5 /* InstagramCollectionViewController.m in Sources */,
+				DC3E266C16D623F3004483D5 /* StackedGridLayout.m in Sources */,
+				DC3E266D16D623F3004483D5 /* StackedGridLayoutSection.m in Sources */,
+				DC3E266E16D623F3004483D5 /* InstagramCell.m in Sources */,
+				DC3E267316D6240C004483D5 /* FlickrPhotoHeaderView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -569,10 +753,14 @@
 		DC4B247016C4D27500976283 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Sergey Dikarev";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Sergey Dikarev";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LookAround/LookAround-Prefix.pch";
 				INFOPLIST_FILE = "LookAround/LookAround-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "5CEA96B7-40AA-460C-9400-653C80CFC356";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5CEA96B7-40AA-460C-9400-653C80CFC356";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -580,10 +768,14 @@
 		DC4B247116C4D27500976283 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Sergey Dikarev";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Sergey Dikarev";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LookAround/LookAround-Prefix.pch";
 				INFOPLIST_FILE = "LookAround/LookAround-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "5CEA96B7-40AA-460C-9400-653C80CFC356";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5CEA96B7-40AA-460C-9400-653C80CFC356";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -607,6 +799,7 @@
 				DC4B247116C4D27500976283 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

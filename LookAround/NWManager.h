@@ -13,6 +13,9 @@
 typedef void (^ChGetLocationsBySearchString)(NSArray *result, NSError *error);
 typedef void (^WPgetPOIsCompletionBlock)        (NSArray *result, NSError *error);
 typedef void (^NWisStreetViewCompletionBlock)        (NSString *panoIdOfPlace, NSError *error);
+typedef void (^NWgetTwitterAroundCompletionBlock)        (NSArray *result, NSError *error);
+typedef void (^NWgetInstagramAroundCompletionBlock)        (NSArray *result, NSError *error);
+
 
 @interface NWManager : NSObject <CLLocationManagerDelegate>
 
@@ -26,4 +29,9 @@ typedef void (^NWisStreetViewCompletionBlock)        (NSString *panoIdOfPlace, N
 -(void)startUpdateLocation;
 -(NSDictionary *)createDict:(NSString *)locName lat:(double)lat lng:(double)lng;
 -(void)isStreetViewAvailable:(CLLocationCoordinate2D)location completionBlock:(NWisStreetViewCompletionBlock)completionBlock;
+-(BOOL)isIphone5;
+- (void)getTwitterAround:(double)lat lng:(double)lng completionBlock:(NWgetTwitterAroundCompletionBlock)completionBlock;
+-(void)getInstagramAround:(double)lat lng:(double)lng completionBlock:(NWgetInstagramAroundCompletionBlock)completionBlock;
+-(UIButton *)createButtonWithImageAndText:(NSString *)imageName text:(NSString *)text action:(SEL)action tag:(NSInteger)tag frame:(CGRect)frame target:(id)target;
+- (UIImage *)radialGradientImage:(CGSize)size start:(float)start end:(float)end centre:(CGPoint)centre radius:(float)radius ;
 @end

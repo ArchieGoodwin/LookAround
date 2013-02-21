@@ -17,6 +17,18 @@
 
     [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreNamed:@"Model.sqlite"];
     [NWHelper startUpdateLocation];
+    
+    
+    if ([[UINavigationBar class] respondsToSelector:@selector(appearance)])
+    {
+        [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                              [UIColor whiteColor], UITextAttributeTextColor,
+                                                              [UIColor grayColor], UITextAttributeTextShadowColor,
+                                                              [NSValue valueWithUIOffset:UIOffsetMake(1, 1)], UITextAttributeTextShadowOffset,
+                                                              [UIFont fontWithName:@"HelveticaNeue" size:19], UITextAttributeFont,
+                                                              nil]];
+    }
+    
     return YES;
 }
 							

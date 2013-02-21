@@ -8,7 +8,7 @@
         <scene sceneID="nNd-u1-M0Y">
             <objects>
                 <tableViewController title="Look Around" id="Q9Y-FJ-cQC" customClass="SearchViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="XUF-4O-vPd">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="XUF-4O-vPd">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -30,7 +30,7 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <connections>
-                                    <segue destination="KER-sw-fS8" kind="push" identifier="ViewLocation" id="Ryd-ib-9dN"/>
+                                    <segue destination="Xae-mH-3dZ" kind="push" identifier="ViewLocation" id="EI9-FB-Dyb"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="PlaceStartCell" id="6CE-te-m7v">
@@ -41,6 +41,9 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <connections>
+                                    <segue destination="Xae-mH-3dZ" kind="push" identifier="ViewLocationAddress" id="Jqt-Qk-ySK"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="PlaceSearchCell" id="Jk0-FC-Hja">
                                 <rect key="frame" x="0.0" y="154" width="320" height="44"/>
@@ -58,76 +61,162 @@
                             <outlet property="delegate" destination="Q9Y-FJ-cQC" id="nss-ax-nI3"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Look Around" id="Bb0-lk-ZHK">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="b9o-tA-q7f"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="Bb0-lk-ZHK"/>
                     <connections>
                         <outlet property="searchBar" destination="u6I-ud-I3E" id="DOE-Ze-kSQ"/>
                         <outlet property="view" destination="XUF-4O-vPd" id="Bbo-S5-9y6"/>
+                        <segue destination="Xae-mH-3dZ" kind="push" identifier="LocView" id="Qrm-Gp-xIu"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uQ7-MG-EKi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="153" y="-202"/>
         </scene>
-        <!--View Location Controller-->
-        <scene sceneID="SO0-uW-MEq">
+        <!--Location View Controller-->
+        <scene sceneID="mGX-af-F1f">
             <objects>
-                <viewController id="KER-sw-fS8" customClass="NWViewLocationController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="HHv-Ts-2fN">
+                <viewController id="Xae-mH-3dZ" customClass="NWLocationViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="MLX-CV-mzq">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                        <autoresizingMask key="autoresizingMask"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" id="KnA-WT-zBr">
-                                <rect key="frame" x="0.0" y="82" width="320" height="373"/>
+                            <view contentMode="scaleToFill" id="7Mu-3R-54O">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="962"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            </webView>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="lvW-Ls-RqT">
-                                <rect key="frame" x="235" y="355" width="75" height="75"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="r2x-ZP-6rI">
-                                <rect key="frame" x="235" y="355" width="75" height="75"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="btnSwitchMap:" destination="KER-sw-fS8" eventType="touchUpInside" id="uaB-f4-4BA"/>
-                                </connections>
-                            </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="barlong.png" id="xpx-jN-Mfj">
-                                <rect key="frame" x="0.0" y="81" width="320" height="1"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Apple" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="44m-UC-GLg">
-                                <rect key="frame" x="40" y="50" width="240" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="17"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <subviews>
+                                    <view contentMode="scaleToFill" id="Pld-gI-cUW">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="456"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <webView contentMode="scaleToFill" id="KnA-WT-zBr">
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="456"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="Xae-mH-3dZ" id="Qyd-Mo-mqL"/>
+                                                </connections>
+                                            </webView>
+                                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="lvW-Ls-RqT">
+                                                <rect key="frame" x="225" y="354" width="75" height="75"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="Xae-mH-3dZ" id="gGt-Gg-gXb"/>
+                                                </connections>
+                                            </mapView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="r2x-ZP-6rI">
+                                                <rect key="frame" x="225" y="354" width="75" height="75"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="highlighted">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="btnSwitchMap:" destination="Xae-mH-3dZ" eventType="touchUpInside" id="wbp-1m-vPQ"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" id="hrl-tB-Bw3">
+                                        <rect key="frame" x="0.0" y="456" width="320" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" id="nKt-XY-tya">
+                                        <rect key="frame" x="0.0" y="506" width="320" height="456"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="kf9-q0-QZx"/>
+                    <navigationItem key="navigationItem" id="VdY-RW-m1d"/>
                     <connections>
-                        <outlet property="btnSwitch" destination="r2x-ZP-6rI" id="dlL-yv-Ohp"/>
-                        <outlet property="lblTitle" destination="44m-UC-GLg" id="b02-3k-y60"/>
-                        <outlet property="mapView" destination="lvW-Ls-RqT" id="iJk-ss-wX9"/>
-                        <outlet property="view" destination="HHv-Ts-2fN" id="fdW-eT-B7H"/>
-                        <outlet property="webView" destination="KnA-WT-zBr" id="pFT-Zn-Pjh"/>
+                        <outlet property="btnSwitch" destination="r2x-ZP-6rI" id="yHk-GW-ME2"/>
+                        <outlet property="containerView" destination="7Mu-3R-54O" id="JwC-Lh-zmv"/>
+                        <outlet property="downView" destination="nKt-XY-tya" id="4hT-OH-QAB"/>
+                        <outlet property="mapView" destination="lvW-Ls-RqT" id="Zt1-6w-GJl"/>
+                        <outlet property="statusView" destination="hrl-tB-Bw3" id="ut3-YM-e1J"/>
+                        <outlet property="upperView" destination="Pld-gI-cUW" id="rpc-hd-T25"/>
+                        <outlet property="view" destination="MLX-CV-mzq" id="q68-Jt-ogm"/>
+                        <outlet property="webView" destination="KnA-WT-zBr" id="lc7-V1-Czg"/>
+                        <segue destination="FUc-D7-5eP" kind="push" identifier="ViewTwitter" id="On8-3U-Dom"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Orq-4E-7iv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="T98-oC-Qc0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="591" y="-358"/>
+            <point key="canvasLocation" x="670" y="-268"/>
+        </scene>
+        <!--Twitter View Controller-->
+        <scene sceneID="c8V-wf-mI8">
+            <objects>
+                <tableViewController id="FUc-D7-5eP" customClass="NWTwitterViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="WjU-B8-Wth">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TweetMessage" rowHeight="65" id="nmg-2B-bqA" customClass="NWTwitterCell">
+                                <rect key="frame" x="0.0" y="22" width="320" height="65"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mm6-C0-hAx">
+                                            <rect key="frame" x="50" y="1" width="109" height="20"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="12"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pmk-48-ObG">
+                                            <rect key="frame" x="150" y="1" width="165" height="20"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="12"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="7" id="hV8-iS-6Sd">
+                                            <rect key="frame" x="50" y="15" width="265" height="49"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="kfU-WB-Tn8">
+                                            <rect key="frame" x="2" y="2" width="46" height="46"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <connections>
+                                    <outlet property="imgProfile" destination="kfU-WB-Tn8" id="0gO-dD-PD0"/>
+                                    <outlet property="lblAuthor" destination="pmk-48-ObG" id="Tih-c4-uMm"/>
+                                    <outlet property="lblDate" destination="mm6-C0-hAx" id="QOv-K4-8HW"/>
+                                    <outlet property="lblText" destination="hV8-iS-6Sd" id="1Ii-0i-HU1"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="FUc-D7-5eP" id="jZl-zD-k8w"/>
+                            <outlet property="delegate" destination="FUc-D7-5eP" id="9ko-Nu-Ype"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="df0-kP-Fw0"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KZi-Y6-V2B" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1097" y="-230"/>
         </scene>
         <!--Navigation Controller - Look Around-->
         <scene sceneID="Ils-Id-kB6">
@@ -145,18 +234,31 @@
             <point key="canvasLocation" x="-324" y="121"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="barlong.png" width="16" height="16"/>
-    </resources>
     <classes>
-        <class className="NWViewLocationController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NWViewLocationController.h"/>
+        <class className="NWLocationViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NWLocationViewController.h"/>
             <relationships>
+                <relationship kind="action" name="btnSwitchMap:"/>
                 <relationship kind="outlet" name="btnSwitch" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="lblTitle" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="containerView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="downView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
+                <relationship kind="outlet" name="statusView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="upperView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
             </relationships>
+        </class>
+        <class className="NWTwitterCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NWTwitterCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="imgProfile" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="lblAuthor" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lblDate" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lblText" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="NWTwitterViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NWTwitterViewController.h"/>
         </class>
         <class className="SearchViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchViewController.h"/>
@@ -170,4 +272,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="Jqt-Qk-ySK"/>
+    </inferredMetricsTieBreakers>
 </document>

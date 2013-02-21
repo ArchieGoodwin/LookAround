@@ -14,7 +14,8 @@
 #import <CoreLocation/CoreLocation.h>
 #import "IconDownloader.h"
 #import "Searches.h"
-#import "NWViewLocationController.h"
+#import "AFNetworking.h"
+#import "NWLocationViewController.h"
 @interface SearchViewController ()
 {
     NSMutableArray *searchResult;
@@ -53,11 +54,9 @@
         }
     }
     self.imageDownloadsInProgress = [NSMutableDictionary dictionary];
-    
+    self.navigationItem.title = @"Look Around";
     [super viewDidLoad];
 
-    
-    
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -77,7 +76,6 @@
             
             [self.tableView reloadData];
             
-            [self loadImagesForOnscreenRows];
             
             
         }
@@ -109,16 +107,22 @@
             
             [localSearch startWithCompletionHandler:^(MKLocalSearchResponse *response, NSError *error){
                 
+                NSLog(@"mapsearch results %i", searchResult.count);
+
                 [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                 
                 if(!error)
                 {
                     searchResult = [NSMutableArray arrayWithArray:response.mapItems];
                     NSLog(@"mapsearch results %i", searchResult.count);
-                    [self.table reloadData];
+                    _currentPageType = SearchNewType;
+                    [self.tableView reloadData];
                     
                 }
-                [appDelegate.mainViewController hideHUD];
+                else
+                {
+                    NSLog(@"error MKLocalSearch: %@", error.description);
+                }
             }];
         }
     }
@@ -137,7 +141,6 @@
                         
                         [self.tableView reloadData];
                         
-                        [self loadImagesForOnscreenRows];
                     }
                     
                 }];
@@ -201,13 +204,16 @@
 }
 
 
+
+
 #pragma mark - Seque
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    
     if([segue.identifier isEqualToString:@"ViewLocation"])
     {
-        NWViewLocationController *controller = (NWViewLocationController *)segue.destinationViewController;
+        NWLocationViewController *controller = (NWLocationViewController *)segue.destinationViewController;
      
         
         UITableViewCell *cell = (UITableViewCell *)sender;
@@ -215,7 +221,23 @@
         NSDictionary *dict = [NWHelper createDict:item.itemName lat:item.itemLat lng:item.itemLng];
         
         controller.location = dict;
-        [controller startAll];
+    }
+    if([segue.identifier isEqualToString:@"ViewLocationAddress"])
+    {
+        NWLocationViewController *controller = (NWLocationViewController *)segue.destinationViewController;
+        NSDictionary *dict = [NWHelper createDict:_searchBar.text lat:placemark.location.coordinate.latitude lng:placemark.location.coordinate.longitude];
+
+        
+        controller.location = dict;
+    }
+    
+    if([segue.identifier isEqualToString:@"LocView"])
+    {
+        //NWLocationViewController *controller = (NWLocationViewController *)segue.destinationViewController;
+        //NSDictionary *dict = [NWHelper createDict:_searchBar.text lat:placemark.location.coordinate.latitude lng:placemark.location.coordinate.longitude];
+        
+        
+        //controller.location = dict;
     }
 }
 
@@ -249,13 +271,18 @@
         return [[Searches numberOfEntities] integerValue];
     }
     
+    if(_currentPageType == SearchNewType)
+    {
+        return searchResult.count;
+    }
+    
     return 1;
     
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    /*if(_currentPageType == SearchPageByLocation || _currentPageType == SearchPageBy4square)
+    if(_currentPageType == SearchPageBy4square)
     {
 
             if(indexPath.section == 1)
@@ -287,9 +314,10 @@
 
         //}
     }
-    else
+    else if(_currentPageType == SearchPagePastSearches)
     {
-        NSArray *array = [Searches findAllSortedBy:@"dateSearched" ascending:NO];
+        
+        NSArray *array = [Searches findAllSortedBy:@"dateSearhed" ascending:NO];
         if(array.count > 0)
         {
             Searches *search = [array objectAtIndex:indexPath.row];
@@ -297,7 +325,11 @@
 
         }
         
-    }*/
+    }
+    else if(_currentPageType == SearchNewType)
+    {
+        return 49;
+    }
     return 60;
     
 
@@ -372,38 +404,18 @@
                         lblTitle.lineBreakMode = NSLineBreakByWordWrapping;
                         
                         [cell.contentView addSubview:lblTitle];
-                        
-                        
-                        if (!item.appIcon)
-                        {
-                            if (self.tableView.dragging == NO && self.tableView.decelerating == NO)
-                            {
-                                [self startIconDownload:item forIndexPath:indexPath];
-                            }
-                            // if a download is deferred or in progress, return a placeholder image
-                            UIImage* image = [UIImage imageNamed:@"Placeholder.png"];
-                            UIImageView * iv = [[UIImageView alloc] initWithImage:image];
-                            iv.frame = (CGRect){{10,10},{20,20}};
-                            iv.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin| UIViewAutoresizingFlexibleRightMargin;
-                            iv.contentMode = UIViewContentModeScaleAspectFit;
-                            iv.tag = 101;
-                            [cell.contentView addSubview:iv];
-                        }
-                        else
-                        {
-                            UIView *old = [cell.contentView viewWithTag:101];
-                            if(old)
-                            {
-                                [old removeFromSuperview];
-                            }
-                            UIImage* image = item.appIcon;
-                            UIImageView * iv = [[UIImageView alloc] initWithImage:image];
-                            iv.frame = (CGRect){{10,10},{20,20}};
-                            iv.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin| UIViewAutoresizingFlexibleRightMargin;
-                            iv.contentMode = UIViewContentModeScaleAspectFit;
-                            iv.tag = indexPath.row;
-                            [cell.contentView addSubview:iv];
-                        }
+                    
+                    
+                    UIImage* image = [UIImage imageNamed:@"Placeholder.png"];
+                    UIImageView * iv = [[UIImageView alloc] initWithImage:image];
+                    [iv setImageWithURL:[NSURL URLWithString:item.iconUrl] placeholderImage:[UIImage imageNamed:@"Placeholder.png"]];
+                    iv.frame = (CGRect){{10,10},{20,20}};
+                    iv.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin| UIViewAutoresizingFlexibleRightMargin;
+                    iv.contentMode = UIViewContentModeScaleAspectFit;
+                    iv.tag = 101;
+                    [cell.contentView addSubview:iv];
+                    
+
                     }
                 cell.tag = indexPath.row;
                 return cell;
@@ -414,7 +426,7 @@
         //}
         
     }
-    else
+    else if(_currentPageType == SearchPagePastSearches)
     {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PlaceSearchCell"];
         
@@ -434,6 +446,38 @@
         return cell;
 
     }
+    else if(_currentPageType == SearchNewType)
+    {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PlaceCell"];
+        
+        for(UIView *inside in cell.contentView.subviews)
+        {
+            [inside removeFromSuperview];
+        }
+        if(searchResult.count > 0)
+        {
+            
+            
+            MKMapItem *item = [searchResult objectAtIndex:indexPath.row];
+           // NSLog(@"MKMapItem: %@", item.);
+            
+            UILabel * lblTitle = [[UILabel alloc] initWithFrame:CGRectMake(35, 10, 280, [self getLabelSize:item.name fontSize:16])];
+            lblTitle.backgroundColor = [UIColor clearColor];
+            lblTitle.text = item.name;
+            lblTitle.textColor = [UIColor grayColor];
+            lblTitle.font = [UIFont fontWithName:@"HelveticaNeue" size:16];
+            lblTitle.numberOfLines = 0;
+            lblTitle.tag = 1010;
+            lblTitle.lineBreakMode = NSLineBreakByWordWrapping;
+            
+            [cell.contentView addSubview:lblTitle];
+            
+            
+            
+        }
+        cell.tag = indexPath.row;
+        return cell;
+    }
     
     
     return nil;
@@ -442,75 +486,6 @@
 }
 
 
-#pragma mark -
-#pragma mark Table cell image support
-
-- (void)startIconDownload:(NWItem *)appRecord forIndexPath:(NSIndexPath *)indexPath
-{
-    IconDownloader *iconDownloader = [_imageDownloadsInProgress objectForKey:indexPath];
-    if (iconDownloader == nil)
-    {
-        iconDownloader = [[IconDownloader alloc] init];
-        iconDownloader.appRecord = appRecord;
-        iconDownloader.indexPathInTableView = indexPath;
-        iconDownloader.delegate = self;
-        [_imageDownloadsInProgress setObject:iconDownloader forKey:indexPath];
-        [iconDownloader startDownload];
-    }
-}
-
-// this method is used in case the user scrolled into a set of cells that don't have their app icons yet
-- (void)loadImagesForOnscreenRows
-{
-    if ([searchResult count] > 0)
-    {
-        NSArray *visiblePaths = [self.tableView indexPathsForVisibleRows];
-        for (NSIndexPath *indexPath in visiblePaths)
-        {
-            if(indexPath.section == 1)
-            {
-                NWItem *appRecord = [searchResult objectAtIndex:indexPath.row];
-                
-                if (!appRecord.appIcon) // avoid the app icon download if the app already has an icon
-                {
-                    [self startIconDownload:appRecord forIndexPath:indexPath];
-                }
-            }
-            
-        }
-    }
-}
-
-// called by our ImageDownloader when an icon is ready to be displayed
-- (void)appImageDidLoad:(NSIndexPath *)indexPath
-{
-    IconDownloader *iconDownloader = [_imageDownloadsInProgress objectForKey:indexPath];
-    if (iconDownloader != nil)
-    {
-        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:iconDownloader.indexPathInTableView];
-        
-        // Display the newly loaded image
-        
-        
-        UIView *old = [cell.contentView viewWithTag:101];
-        if(old)
-        {
-            [old removeFromSuperview];
-        }
-        UIImage* image = iconDownloader.appRecord.appIcon;;
-        UIImageView * iv = [[UIImageView alloc] initWithImage:image];
-        iv.frame = (CGRect){{10,10},{20,20}};
-        iv.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin| UIViewAutoresizingFlexibleRightMargin;
-        iv.contentMode = UIViewContentModeScaleAspectFit;
-        iv.tag = 101;
-        [cell.contentView addSubview:iv];
-        
-    }
-    
-    // Remove the IconDownloader from the in progress list.
-    // This will result in it being deallocated.
-    [_imageDownloadsInProgress removeObjectForKey:indexPath];
-}
 
 
 
@@ -572,6 +547,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
+    
+    
+    //[self performSegueWithIdentifier:@"LocView" sender:nil];
+    
+    
     if(_currentPageType == SearchPageBy4square)
     {
         if(indexPath.section == 0)
@@ -596,7 +576,7 @@
         if(array.count > 0)
         {
             Searches *search = [array objectAtIndex:indexPath.row];
-            _currentPageType = SearchPageBy4square;
+            _currentPageType = [search.searchType integerValue];
             _searchBar.text = search.searchStr;
             [self searchByString:search.searchStr];
             
@@ -605,23 +585,6 @@
     
     
     
-}
-
-#pragma mark -
-#pragma mark Deferred image loading (UIScrollViewDelegate)
-
-// Load images for all onscreen rows when scrolling is finished
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-{
-    if (!decelerate)
-	{
-        [self loadImagesForOnscreenRows];
-    }
-}
-
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
-    [self loadImagesForOnscreenRows];
 }
 
 
