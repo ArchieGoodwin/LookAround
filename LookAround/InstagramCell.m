@@ -8,6 +8,8 @@
 
 #import "InstagramCell.h"
 #import "Defines.h"
+#import "AFNetworking.h"
+#import "NWinstagram.h"
 @implementation InstagramCell
 - (id)initWithFrame:(CGRect)frame
 {
@@ -35,6 +37,23 @@
     // Drawing code
 }
 */
+
+-(void) setInsta:(NWinstagram *)instaGram {
+    
+    
+    if(_insta != instaGram) {
+        _insta = instaGram;
+    }
+    
+    
+    UIImage* image = [UIImage imageNamed:@"Placeholder.png"];
+    [self.imageView setImageWithURL:[NSURL URLWithString:_insta.instaPhoto] placeholderImage:image];
+        
+    
+    
+    
+    
+}
 
 -(void)applyLayoutAttributes:(UICollectionViewLayoutAttributes *)layoutAttributes {
     // apply custom attributes...

@@ -17,6 +17,8 @@
 		DC3E266F16D623F3004483D5 /* InstagramCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC3E266B16D623F3004483D5 /* InstagramCell.xib */; };
 		DC3E267316D6240C004483D5 /* FlickrPhotoHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC3E267116D6240C004483D5 /* FlickrPhotoHeaderView.m */; };
 		DC3E267416D6240C004483D5 /* FlickrPhotoHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC3E267216D6240C004483D5 /* FlickrPhotoHeaderView.xib */; };
+		DC3E267716D73717004483D5 /* NWinstagram.m in Sources */ = {isa = PBXBuildFile; fileRef = DC3E267616D73717004483D5 /* NWinstagram.m */; };
+		DC3E267916D73CDB004483D5 /* Instagram_Icon_Small.png in Resources */ = {isa = PBXBuildFile; fileRef = DC3E267816D73CDB004483D5 /* Instagram_Icon_Small.png */; };
 		DC4B245016C4D27500976283 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC4B244F16C4D27500976283 /* UIKit.framework */; };
 		DC4B245216C4D27500976283 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC4B245116C4D27500976283 /* Foundation.framework */; };
 		DC4B245416C4D27500976283 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC4B245316C4D27500976283 /* CoreGraphics.framework */; };
@@ -103,6 +105,9 @@
 		DC3E267016D6240C004483D5 /* FlickrPhotoHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickrPhotoHeaderView.h; sourceTree = "<group>"; };
 		DC3E267116D6240C004483D5 /* FlickrPhotoHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrPhotoHeaderView.m; sourceTree = "<group>"; };
 		DC3E267216D6240C004483D5 /* FlickrPhotoHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FlickrPhotoHeaderView.xib; sourceTree = "<group>"; };
+		DC3E267516D73717004483D5 /* NWinstagram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWinstagram.h; sourceTree = "<group>"; };
+		DC3E267616D73717004483D5 /* NWinstagram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWinstagram.m; sourceTree = "<group>"; };
+		DC3E267816D73CDB004483D5 /* Instagram_Icon_Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Instagram_Icon_Small.png; sourceTree = "<group>"; };
 		DC4B244C16C4D27500976283 /* LookAround.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LookAround.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC4B244F16C4D27500976283 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DC4B245116C4D27500976283 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -397,6 +402,8 @@
 				DC98308216C90BB0004CB060 /* NWtwitter.m */,
 				DC3E265716D4D43B004483D5 /* NWFoursquare.h */,
 				DC3E265816D4D43B004483D5 /* NWFoursquare.m */,
+				DC3E267516D73717004483D5 /* NWinstagram.h */,
+				DC3E267616D73717004483D5 /* NWinstagram.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -505,6 +512,7 @@
 		DC98308416CA4A0E004CB060 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				DC3E267816D73CDB004483D5 /* Instagram_Icon_Small.png */,
 				DC3E265C16D6022B004483D5 /* pin.png */,
 				DC98308516CA4A18004CB060 /* 209-twitter.png */,
 				DC98308616CA4A18004CB060 /* 209-twitter@2x.png */,
@@ -601,6 +609,7 @@
 				DC3E265D16D6022B004483D5 /* pin.png in Resources */,
 				DC3E266F16D623F3004483D5 /* InstagramCell.xib in Resources */,
 				DC3E267416D6240C004483D5 /* FlickrPhotoHeaderView.xib in Resources */,
+				DC3E267916D73CDB004483D5 /* Instagram_Icon_Small.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -669,6 +678,7 @@
 				DC3E266D16D623F3004483D5 /* StackedGridLayoutSection.m in Sources */,
 				DC3E266E16D623F3004483D5 /* InstagramCell.m in Sources */,
 				DC3E267316D6240C004483D5 /* FlickrPhotoHeaderView.m in Sources */,
+				DC3E267716D73717004483D5 /* NWinstagram.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

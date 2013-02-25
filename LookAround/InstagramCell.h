@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+@class NWinstagram;
 @interface InstagramCell : UICollectionViewCell
 {
 }
@@ -20,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *locVertical;
 @property (weak, nonatomic) IBOutlet UIImageView *locHorizontal;
 @property (assign) NSInteger currentItemIndex;
+@property (nonatomic, strong) NWinstagram  *insta;
 
-//-(void) setChainge:(Chainge *)chainge ;
+-(void) setInsta:(NWinstagram *)instaGram ;
 @end

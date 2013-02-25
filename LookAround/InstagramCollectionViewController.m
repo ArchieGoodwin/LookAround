@@ -10,6 +10,7 @@
 #import "StackedGridLayout.h"
 #import "InstagramCell.h"
 #import "Defines.h"
+#import "NWinstagram.h"
 
 @interface InstagramCollectionViewController ()
 
@@ -48,7 +49,6 @@
     [btnBack addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btnBack];*/
 
-    _chainges = [NSMutableArray new];
 
     isScrolling = NO;
     pageSize = 50;
@@ -60,7 +60,7 @@
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     [flowLayout setItemSize:CGSizeMake(100, 100)];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
-    _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 44, 320, rect.size.height - 44) collectionViewLayout:flowLayout];
+    _collectionView = [[UICollectionView alloc] initWithFrame:rect collectionViewLayout:flowLayout];
     _collectionView.backgroundColor = [UIColor whiteColor];
 
 
@@ -90,16 +90,16 @@
     showExtrasSwipe2.direction = UISwipeGestureRecognizerDirectionLeft;
     [self.collectionView addGestureRecognizer:showExtrasSwipe2];
     
+    [self.collectionView reloadData];
 
-
-    [self getChainges];
+    //[self getChainges];
 }
 
--(void)initCollectionViewWithRect:(CGRect)rect controller:(UIViewController *)controller location:(CLLocation *)location
+-(void)initCollectionViewWithRect:(CGRect)rect instas:(NSMutableArray *)instas location:(CLLocation *)location
 {
     
 
-    _searchLocation = location;
+    _chainges = instas;
 
     [self realInit:rect];
 }
@@ -116,72 +116,7 @@
 
 
 
--(void)getChainges
-{
-    
-    if(_currentPageType == SearchPageBy4square)
-    {
-        [self getSearchPageBy4squareThread];
-        //[NSThread detachNewThreadSelector:@selector(getUserChaingesThread) toTarget:self withObject:nil];
-        
-    }
 
-
-    
-    
-}
-
-
-
--(void)getSearchPageBy4squareThread
-{
-    /*[appDelegate.manager.netManager getChaingesByDistance:page pageSize:pageSize latitude:_searchLocation.coordinate.latitude longitude:_searchLocation.coordinate.longitude completionBlock:^(NSMutableArray *result, NSError *error) {
-        NSLog(@"Success getSearchPageBy4squareThread array = %i", result.count);
-        if (!error) {
-
-            if (result.count > 0) {
-                BOOL hasChanges = NO;
-
-                hasChanges = [appDelegate.manager fillChaingesInDB:result mytype:_currentPageType];
-
-                if (hasChanges) {
-                    [[NSManagedObjectContext MR_defaultContext] MR_saveOnlySelfAndWait];
-
-
-                }
-                //[[NSNotificationCenter defaultCenter] postNotificationName:chGetChaingesSearchByDistance object:nil userInfo:nil];
-                [self refreshAll];
-                [self stopActivityInFooter];
-
-            }
-            else {
-                // isLoadingPage = NO;
-                [self stopActivityInFooter];
-
-                if (page > 1) {
-                    page = page - 1;
-
-                }
-                else
-                {
-                    if (page == 1)
-                    {
-                        [self showMessageView];
-                        [self hideMessageView];
-                    }
-                }
-
-
-            }
-
-        }
-        [appDelegate.manager.uploadPendingOperations.downloadQueue setSuspended:NO];
-        [appDelegate.manager.pendingOperations.downloadQueue setSuspended:NO];
-
-    }];
-    */
-    
-}
 
 - (void)showMessageView {
     viewForLabel = [[UIView alloc] initWithFrame:CGRectMake(20, 200, 280, 40)];
@@ -330,8 +265,8 @@
     InstagramCell *cell = [cv dequeueReusableCellWithReuseIdentifier:@"myChaingeCell" forIndexPath:indexPath];
 
     NSInteger row = [indexPath row];
-    //Chainge *ch = [_chainges objectAtIndex:row];
-    //cell.chainge = ch;
+    NWinstagram *ch = [_chainges objectAtIndex:row];
+    cell.insta = ch;
     cell.tag = indexPath.row;
 
     
@@ -405,7 +340,7 @@
                                    withReuseIdentifier:@"FlickrPhotoHeaderView" forIndexPath:indexPath];
 
     NSLog(@"indexPath.row = %i, %i", indexPath.row, indexPath.section);
-    if (!isLoadingPage) {
+    /*if (!isLoadingPage) {
 
         headerView.activityIndicator.hidden = NO;
         [headerView.activityIndicator startAnimating];
@@ -415,7 +350,7 @@
         [self getChainges];
 
 
-    }
+    }*/
 
     return headerView;
 }

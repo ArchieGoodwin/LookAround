@@ -17,6 +17,7 @@
 #import <Social/Social.h>
 #import <QuartzCore/QuartzCore.h>
 #import "AFNetworking.h"
+#import "NWinstagram.h"
 @implementation NWManager
 
 
@@ -86,7 +87,7 @@
     UIButton *btn_chat = [UIButton buttonWithType:UIButtonTypeCustom];
     btn_chat.frame = frame;//CGRectMake(20, 20, 200, 72);
     UIImage *image = [UIImage imageNamed:imageName];
-    CGSize newSize = image.size;
+    CGSize newSize = CGSizeMake(22, 22);// image.size;
     UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
     [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
@@ -328,18 +329,45 @@
 -(void)getInstagramAround:(double)lat lng:(double)lng completionBlock:(NWgetInstagramAroundCompletionBlock)completionBlock
 {
     NWgetInstagramAroundCompletionBlock completeBlock = [completionBlock copy];
-    NSMutableArray *result = [NSMutableArray new];
 
     
-    NSString *connectionString = [NSString stringWithFormat:@"https://api.instagram.com/v1/media/search?lat=%f&lng=%f&client_id=e6c25413297343d087a7918f284ce83e&distance=5000", lat, lng];
+    NSString *connectionString = [NSString stringWithFormat:@"https://api.instagram.com/v1/media/search?lat=%f&lng=%f&client_id=e6c25413297343d087a7918f284ce83e&distance=1000", lat, lng];
     NSLog(@"%@", connectionString);
     NSURL *url = [NSURL URLWithString:connectionString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     AFJSONRequestOperation *operation;
     operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-        NSLog(@"%@", JSON);
+        //NSLog(@"%@", JSON);
         
+        NSMutableArray *instas = [[NSMutableArray alloc] init];
         
+        //if([[json objectForKey:@"numResults"] integerValue] > 0)
+        //{
+        NSMutableArray *items = [JSON objectForKey:@"data"];
+        for (NSMutableDictionary *dict in items) {
+            NWinstagram *item = [[NWinstagram alloc] initWithDictionary:dict];
+            [instas addObject:item];
+        }
+        
+        if(instas.count > 0)
+        {
+            completeBlock(instas, nil);
+            /*NSSortDescriptor * sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"itemDistance" ascending:YES];
+            if(completeBlock)
+            {
+                completeBlock([pois sortedArrayUsingDescriptors:[NSMutableArray arrayWithObjects:sortDescriptor, nil]], nil);
+                
+            }*/
+        }
+        else
+        {
+            NSMutableDictionary* details = [NSMutableDictionary dictionary];
+            [details setValue:@"No photos" forKey:NSLocalizedDescriptionKey];
+            // populate the error object with the details
+            NSError *err = [NSError errorWithDomain:@"world" code:500 userInfo:details];
+            completeBlock(nil, err);
+        }
+
         
         
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {

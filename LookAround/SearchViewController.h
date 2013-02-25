@@ -9,10 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "MBProgressHUD.h"
 #import "IconDownloader.h"
-@interface SearchViewController : UITableViewController <UISearchBarDelegate, IconDownloaderDelegate>
+
+@interface SearchViewController : UITableViewController <UISearchBarDelegate, IconDownloaderDelegate, MBProgressHUDDelegate>
 @property (nonatomic,strong) IBOutlet UISearchBar *searchBar;
 @property (nonatomic, retain) NSMutableDictionary *imageDownloadsInProgress;
 @property(nonatomic, assign) NSInteger currentPageType;
 
+
+- (void)showHUD;
+
+- (void)hideHUD;
 
 @end

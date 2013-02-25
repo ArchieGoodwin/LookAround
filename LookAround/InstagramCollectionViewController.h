@@ -30,6 +30,6 @@
 @property (nonatomic, strong) StackedGridLayout *layout3;
 @property(nonatomic, assign) NSInteger currentPageType;
 
--(void)initCollectionViewWithRect:(CGRect)rect controller:(UIViewController *)controller location:(CLLocation *)location;
+-(void)initCollectionViewWithRect:(CGRect)rect instas:(NSMutableArray *)instas location:(CLLocation *)location;
 
 @end

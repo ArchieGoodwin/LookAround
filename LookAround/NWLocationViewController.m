@@ -13,13 +13,14 @@
 #import "Defines.h"
 #import <QuartzCore/QuartzCore.h>
 #import "NWTwitterViewController.h"
-
+#import "InstagramCollectionViewController.h"
 @interface NWLocationViewController ()
 {
     IBOutlet  MKMapView * mapView;
     IBOutlet UIWebView *webView;
     BOOL isMapShown;
     NSArray *tweets;
+    NSMutableArray *instagrams;
     BOOL downViewShown;
 }
 @end
@@ -63,7 +64,7 @@
 {
     [_btnTwitter setBackgroundImage:[NWHelper radialGradientImage:_btnTwitter.frame.size start:1 end:1 centre:CGPointMake(0.5, 0.5) radius:0.6] forState:UIControlStateNormal];
     
-    
+    [_btnInstagram  setBackgroundImage:[NWHelper radialGradientImage:_btnInstagram.frame.size start:1 end:1 centre:CGPointMake(0.5, 0.5) radius:0.6] forState:UIControlStateNormal];
    
     
 }
@@ -87,9 +88,33 @@
     
 }
 
+-(void)startInstaAnimate
+{
+    _btnInstagram.alpha = 0.2;
+    
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    [UIView beginAnimations:@"_btnInstagram" context:context];
+    [UIView setAnimationCurve:UIViewAnimationCurveLinear];
+    [UIView setAnimationDuration:0.3];
+    [UIView setAnimationRepeatCount:1000];
+    [UIView setAnimationRepeatAutoreverses:YES];
+    [UIView setAnimationDelegate:self];
+    
+    _btnInstagram.alpha = 1;
+    
+    [UIView commitAnimations];
+    
+}
+
 -(void)stopTwitterAnimate
 {
     [_btnTwitter.layer removeAllAnimations];
+}
+
+-(void)stopInstaAnimate
+{
+    [_btnInstagram.layer removeAllAnimations];
 }
 
 
@@ -100,12 +125,18 @@
     
     _btnTwitter = [NWHelper createButtonWithImageAndText:@"209-twitter.png" text:@"Tweets" action:@selector(showTwitter) tag:1001 frame:CGRectMake(10, 10, 30, 30) target:self];
     
+    _btnInstagram = [NWHelper createButtonWithImageAndText:@"Instagram_Icon_Small.png" text:@"" action:@selector(showInstagram) tag:1002 frame:CGRectMake(50, 10, 30, 30) target:self];
+
+    
     [self setTwitterButtonGlow];
+    
+    [self startInstaAnimate];
     
     [self startTwitterAnimate];
     
     [_statusView addSubview:_btnTwitter];
-    
+    [_statusView addSubview:_btnInstagram];
+
     mapView.layer.cornerRadius = 3;
     
     //mapView.layer.borderWidth = 2;
@@ -149,10 +180,15 @@
     }];
     
     
-    /*[NWHelper getInstagramAround:[[_location objectForKey:@"latitude"] doubleValue] lng:[[_location objectForKey:@"longitude"] doubleValue] completionBlock:^(NSArray *result, NSError *error) {
-        NSLog(@"inside");
+    [NWHelper getInstagramAround:[[_location objectForKey:@"latitude"] doubleValue] lng:[[_location objectForKey:@"longitude"] doubleValue] completionBlock:^(NSMutableArray *result, NSError *error) {
+        NSLog(@"inside %i", result.count);
+        
+        instagrams = result;
+        
+        [self stopInstaAnimate];
+        
     }];
-     */    
+       
     
     [self addAnnotationsToMap];
     
@@ -213,7 +249,11 @@
         _twitterController = [[NWTwitterViewController alloc] initMe:CGRectMake(0, 0, 320, 456)];
         
         _twitterController.tweets = tweets;
-        
+        _twitterController.view.tag = 123456;
+        if([_downView viewWithTag:123456])
+        {
+            [[_downView viewWithTag:123456] removeFromSuperview];
+        }
         [_downView addSubview:_twitterController.view];
         
         [_twitterController realInit];
@@ -226,7 +266,12 @@
         _twitterController = [[NWTwitterViewController alloc] initMe:CGRectMake(0, 0, 320, 456)];
         
         _twitterController.tweets = tweets;
-        
+        _twitterController.view.tag = 123456;
+        if([_downView viewWithTag:123456])
+        {
+            [[_downView viewWithTag:123456] removeFromSuperview];
+        }
+
         [_downView addSubview:_twitterController.view];
         
         [_twitterController realInit];
@@ -236,6 +281,47 @@
     
     
     
+}
+
+
+- (void)showInstagram{
+    
+    if(!downViewShown)
+    {
+        
+        _instaController = [[InstagramCollectionViewController alloc] init];
+        _instaController.currentPageType = SearchPageBy4square;
+        [_instaController initCollectionViewWithRect:CGRectMake(0, 0, 320, 456) instas:instagrams location:nil];
+        _instaController.view.tag = 12345;
+        
+        
+        if([_downView viewWithTag:12345])
+        {
+            [[_downView viewWithTag:12345] removeFromSuperview];
+        }
+        [_downView addSubview:_instaController.view];
+        
+        [self switchView:nil];
+        
+    }
+    else
+    {
+        _instaController = [[InstagramCollectionViewController alloc] init];
+        _instaController.currentPageType = SearchPageBy4square;
+        [_instaController initCollectionViewWithRect:CGRectMake(0, 0, 320, 456) instas:instagrams location:nil];
+        _instaController.view.tag = 12345;
+        if([_downView viewWithTag:12345])
+        {
+            [[_downView viewWithTag:12345] removeFromSuperview];
+        }
+        [_downView addSubview:_instaController.view];
+        
+    }
+
+    
+    
+    
+   
 }
 
 -(void)checkStreetView

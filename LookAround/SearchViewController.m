@@ -23,6 +23,8 @@
     double latitude;
     double longitude;
     NSDictionary *currentLocation;
+    MBProgressHUD *HUD;
+
 }
 @end
 
@@ -35,6 +37,27 @@
         // Custom initialization
     }
     return self;
+}
+
+
+-(void)showHUD
+{
+    
+    HUD = [[MBProgressHUD alloc] initWithView:self.view.window];
+	[self.view.window addSubview:HUD];
+    
+    //HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    HUD.mode = MBProgressHUDModeIndeterminate;
+    HUD.dimBackground = YES;
+    HUD.delegate = self;
+    HUD.labelText = @"Please wait...";
+    [HUD show:YES];
+}
+
+-(void)hideHUD
+{
+    [HUD hide:YES];
+    
 }
 
 
@@ -128,6 +151,8 @@
     }
     else
     {*/
+    
+    [self showHUD];
         [NWHelper getLocationsForSearchString:str completionBlock:^(NSArray *result, NSError *error) {
             
             if(result.count > 0)
@@ -143,13 +168,16 @@
                         
                     }
                     
+                    [self hideHUD];
+
                 }];
                 
                 
             }
             else
             {
-                
+                //no placemark
+                 [self hideHUD];
                 
             }
             
@@ -588,6 +616,14 @@
 }
 
 
+#pragma mark -
+#pragma mark MBProgressHUDDelegate methods
+
+- (void)hudWasHidden:(MBProgressHUD *)hud {
+    // Remove HUD from screen when the HUD was hidded
+    [HUD removeFromSuperview];
+    HUD = nil;
+}
 
 
 @end

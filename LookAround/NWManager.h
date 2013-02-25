@@ -14,7 +14,7 @@ typedef void (^ChGetLocationsBySearchString)(NSArray *result, NSError *error);
 typedef void (^WPgetPOIsCompletionBlock)        (NSArray *result, NSError *error);
 typedef void (^NWisStreetViewCompletionBlock)        (NSString *panoIdOfPlace, NSError *error);
 typedef void (^NWgetTwitterAroundCompletionBlock)        (NSArray *result, NSError *error);
-typedef void (^NWgetInstagramAroundCompletionBlock)        (NSArray *result, NSError *error);
+typedef void (^NWgetInstagramAroundCompletionBlock)        (NSMutableArray *result, NSError *error);
 
 
 @interface NWManager : NSObject <CLLocationManagerDelegate>
