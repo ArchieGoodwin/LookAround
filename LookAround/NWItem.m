@@ -14,7 +14,19 @@
 -(NWItem *)initWithDictionary:(NSMutableDictionary *)dict
 {
     
-
+/*
+ @property (nonatomic, strong) NSString *canonicalUrl;
+ @property (nonatomic, strong) NSString *formattedPhone;
+ @property (nonatomic, strong) NSString *twitter;
+ @property (nonatomic, assign) NSInteger hereNow;
+ @property (nonatomic, strong) NSString *status;
+ @property (nonatomic, assign) NSInteger likes;
+ @property (nonatomic, strong) NSDictionary *location;
+ @property (nonatomic, assign) NSInteger *rating;
+ 
+ @property (nonatomic, assign) NSInteger checkinsCount;
+ @property (nonatomic, assign) NSInteger userCount;
+ */
         
         //NSLog(@"%@", dict);
         if(dict != nil)
@@ -31,10 +43,22 @@
                 self.itemLat = [[[dict objectForKey:@"location"] objectForKey:@"lat"] doubleValue];
                 self.itemLng = [[[dict objectForKey:@"location"] objectForKey:@"lng"] doubleValue];
                 
+                
+                _canonicalUrl = [dict objectForKey:@"canonicalUrl"];
+                _formattedPhone = [[dict objectForKey:@"contact"] objectForKey:@"formattedPhone"];
+                _twitter = [[dict objectForKey:@"contact"] objectForKey:@"twitter"];
+                _hereNow = [[[dict objectForKey:@"hereNow"] objectForKey:@"count"] integerValue];
+                _status = [[dict objectForKey:@"hours"] objectForKey:@"status"];
+                _likes = [[[dict objectForKey:@"likes"] objectForKey:@"count"] integerValue];
+                _location = [dict objectForKey:@"location"];
+                _rating = [[dict objectForKey:@"rating"] floatValue];
+                _checkinsCount = [[[dict objectForKey:@"stats"] objectForKey:@"checkinsCount"] integerValue];
+                _userCount = [[[dict objectForKey:@"stats"] objectForKey:@"usersCount"] integerValue];
+                _venueId = [[dict objectForKey:@"venuePage"] objectForKey:@"id"];
                 return self;
             }
             @catch (NSException *exception) {
-                NSLog(@"Error while creating WPItem %@", exception.description);
+                NSLog(@"Error while creating NWItem %@", exception.description);
                 return nil;
             }
             @finally {

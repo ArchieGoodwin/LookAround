@@ -1,22 +1,21 @@
 //
-//  ChaingesCollectionViewController.m
-//  chainges
+//  NWFourSquareViewController.m
+//  LookAround
 //
-//  Created by Sergey Dikarev on 1/16/13.
+//  Created by Sergey Dikarev on 2/26/13.
 //  Copyright (c) 2013 Sergey Dikarev. All rights reserved.
 //
 
-#import "InstagramCollectionViewController.h"
+#import "NWFourSquareViewController.h"
 #import "StackedGridLayout.h"
 #import "InstagramCell.h"
 #import "Defines.h"
-#import "NWinstagram.h"
-
-@interface InstagramCollectionViewController ()
+#import "NWFourSquarePhoto.h"
+@interface NWFourSquareViewController ()
 
 @end
 
-@implementation InstagramCollectionViewController
+@implementation NWFourSquareViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -31,54 +30,54 @@
 {
     self.collectionView = nil;
     [self.view removeFromSuperview];
-
+    
     [self removeFromParentViewController];
-
+    
 }
 
 -(void)realInit:(CGRect)rect
 {
     
     self.view = [[UIView alloc] initWithFrame:rect];
-
+    
     self.view.backgroundColor = [UIColor whiteColor];
-   /* UIButton *btnBack = [UIButton buttonWithType:UIButtonTypeCustom];
-    btnBack.frame = CGRectMake(7, 3, 44, 44);
-    btnBack.backgroundColor = [UIColor clearColor];
-    [btnBack setImage:[UIImage imageNamed:@"09-arrow-west.png"] forState:UIControlStateNormal];
-    [btnBack addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:btnBack];*/
-
-
+    /* UIButton *btnBack = [UIButton buttonWithType:UIButtonTypeCustom];
+     btnBack.frame = CGRectMake(7, 3, 44, 44);
+     btnBack.backgroundColor = [UIColor clearColor];
+     [btnBack setImage:[UIImage imageNamed:@"09-arrow-west.png"] forState:UIControlStateNormal];
+     [btnBack addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+     [self.view addSubview:btnBack];*/
+    
+    
     isScrolling = NO;
     pageSize = 50;
     page = 1;
     isLoadingPage = YES;
     currentChaingeItemIndex = -1;
-
-
+    
+    
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     [flowLayout setItemSize:CGSizeMake(100, 100)];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
     _collectionView = [[UICollectionView alloc] initWithFrame:rect collectionViewLayout:flowLayout];
     _collectionView.backgroundColor = [UIColor whiteColor];
-
-
+    
+    
     [_collectionView setAllowsSelection:YES];
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
-
-
+    
+    
     self.layout3 = [[StackedGridLayout alloc] init];
     self.layout3.headerHeight = 0;
     self.layout3.footerHeight = 60;
-
+    
     self.collectionView.collectionViewLayout = self.layout3;
-
+    
     [self.collectionView registerClass:[InstagramCell class] forCellWithReuseIdentifier:@"myChaingeCell"];
-
+    
     [self.collectionView registerNib:[UINib nibWithNibName:@"FlickrPhotoHeaderView" bundle:[NSBundle mainBundle]] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"FlickrPhotoHeaderView"];
-
+    
     [self.view addSubview:self.collectionView];
     
     
@@ -91,19 +90,19 @@
     [self.collectionView addGestureRecognizer:showExtrasSwipe2];
     
     [self.collectionView reloadData];
-
     
-
+    
+    
     
     //[self getChainges];
 }
 
--(void)initCollectionViewWithRect:(CGRect)rect instas:(NSMutableArray *)instas location:(CLLocation *)location
+-(void)initCollectionViewWithRect:(CGRect)rect instas:(NSArray *)instas location:(CLLocation *)location
 {
     
-
+    
     _chainges = instas;
-
+    
     [self realInit:rect];
 }
 
@@ -133,48 +132,48 @@
     lblMessage.alpha = 0;
     [viewForLabel addSubview:lblMessage];
     [self.view addSubview:viewForLabel];
-
+    
     CGContextRef context = UIGraphicsGetCurrentContext();
     [UIView beginAnimations:nil context:context];
     [UIView setAnimationCurve:UIViewAnimationCurveLinear];
     [UIView setAnimationDuration:2];
     [UIView setAnimationDelegate:self];
-
+    
     lblMessage.alpha = 1;
-
+    
     [UIView commitAnimations];
-
-
+    
+    
 }
 
 
 -(void)hideMessageView
 {
-        CGContextRef context = UIGraphicsGetCurrentContext();
-        [UIView beginAnimations:nil context:context];
-        [UIView setAnimationCurve:UIViewAnimationCurveLinear];
-        [UIView setAnimationDuration:3];
-        [UIView setAnimationDelegate:self];
-
-        viewForLabel.alpha = 0;
-
-        [UIView commitAnimations];
-
-
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    [UIView beginAnimations:nil context:context];
+    [UIView setAnimationCurve:UIViewAnimationCurveLinear];
+    [UIView setAnimationDuration:3];
+    [UIView setAnimationDelegate:self];
+    
+    viewForLabel.alpha = 0;
+    
+    [UIView commitAnimations];
+    
+    
 }
 
 - (void)addToArray:(NSArray *)array {
     /*BOOL hasRepeated = NO;
-    for (Chainge *chainge in array) {
-        if ([_chainges containsObject:chainge]) {
-            hasRepeated = YES;
-            //break;
-        }
-        else
-        {
-            [_chainges addObject:chainge];
-        }
-    }*/
+     for (Chainge *chainge in array) {
+     if ([_chainges containsObject:chainge]) {
+     hasRepeated = YES;
+     //break;
+     }
+     else
+     {
+     [_chainges addObject:chainge];
+     }
+     }*/
     
 }
 
@@ -183,18 +182,15 @@
 - (void)refreshAll {
     if (_currentPageType == SearchPageBy4square) {
         //[appDelegate.manager clearUploadedFlag];
-        if (_chainges && page == 1) {
-            [_chainges removeAllObjects];
-        }
-
+                
         //[self addToArray:[appDelegate.manager getChaingesSortByDate:page pageSize:pageSize]];
-
+        
         //[self addToArray:[appDelegate.manager getChaingesSortByDistanceWithPage:page pageSize:pageSize userId:appDelegate.manager.userId loc:_searchLocation]];
-
+        
         [self.collectionView reloadData];
         // isLoadingPage = NO;
-
-
+        
+        
     }
     [self stopActivityInFooter];
 }
@@ -203,17 +199,17 @@
 
 
 - (void)viewWillAppear:(BOOL)animated {
-
-
+    
+    
     currentChaingeItemIndex = -1;
-
-
-
+    
+    
+    
     [super viewWillAppear:animated];
-
+    
     //[self updatedLocation];
-
-
+    
+    
 }
 
 
@@ -250,7 +246,7 @@
         isScrolling = NO;
         //isLoadingPage = NO;
         NSLog(@"scrollViewDidEndDragging");
-
+        
         //[self updatedLocation];
     }
 }
@@ -259,22 +255,21 @@
     isScrolling = NO;
     //isLoadingPage = NO;
     NSLog(@"scrollViewDidEndDecelerating");
-   // [self updatedLocation];
+    // [self updatedLocation];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-
-
-    InstagramCell *cell = [cv dequeueReusableCellWithReuseIdentifier:@"myChaingeCell" forIndexPath:indexPath];
-
-    NSInteger row = [indexPath row];
-    NWinstagram *ch = [_chainges objectAtIndex:row];
-    cell.insta = ch;
-    cell.controller = self;
-    cell.tag = indexPath.row;
-
     
-
+    
+    InstagramCell *cell = [cv dequeueReusableCellWithReuseIdentifier:@"myChaingeCell" forIndexPath:indexPath];
+    
+    NSInteger row = [indexPath row];
+    NWFourSquarePhoto *ch = [_chainges objectAtIndex:row];
+    cell.four = ch;
+    cell.fourController = self;
+    cell.tag = indexPath.row;
+    
+    NSLog(@"url = %@", ch.photoUrlFull);
     return cell;
 }
 
@@ -308,24 +303,24 @@
              atIndexPath:(NSIndexPath *)indexPath {
     NSInteger row = [indexPath row];
     //Chainge *ch = [_chainges objectAtIndex:row];
-
+    
     //ChaingeItem *item = [appDelegate.manager getf:ch];
-
-
+    
+    
     //UIImage *photo = [self imageRotated:[UIImage imageWithData:item.image.thumbvalue] c:ch];
-
-
+    
+    
     CGSize imageSize = CGSizeMake(100,
-            100);
-
+                                  100);
+    
     CGSize picSize = 100 > 0.0f ?
-            imageSize : CGSizeMake(100.0f, 100.0f);
+    imageSize : CGSizeMake(100.0f, 100.0f);
     picSize.height += 10.0f;
     picSize.width += 10.0f;
-
+    
     CGSize retval =
-            CGSizeMake(width,
-                    picSize.height * width / picSize.width);
+    CGSizeMake(width,
+               picSize.height * width / picSize.width);
     return retval;
 }
 
@@ -334,28 +329,28 @@
         activityIndicator.hidden = YES;
         [activityIndicator stopAnimating];
     }
-
+    
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)cv
            viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     FlickrPhotoHeaderView *headerView =
-            [cv dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter
-                                   withReuseIdentifier:@"FlickrPhotoHeaderView" forIndexPath:indexPath];
-
+    [cv dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter
+                           withReuseIdentifier:@"FlickrPhotoHeaderView" forIndexPath:indexPath];
+    
     NSLog(@"indexPath.row = %i, %i", indexPath.row, indexPath.section);
     /*if (!isLoadingPage) {
-
-        headerView.activityIndicator.hidden = NO;
-        [headerView.activityIndicator startAnimating];
-        isLoadingPage = YES;
-        page = page + 1;
-        activityIndicator = headerView.activityIndicator;
-        [self getChainges];
-
-
-    }*/
-
+     
+     headerView.activityIndicator.hidden = NO;
+     [headerView.activityIndicator startAnimating];
+     isLoadingPage = YES;
+     page = page + 1;
+     activityIndicator = headerView.activityIndicator;
+     [self getChainges];
+     
+     
+     }*/
+    
     return headerView;
 }
 

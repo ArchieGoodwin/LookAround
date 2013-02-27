@@ -14,6 +14,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "NWTwitterViewController.h"
 #import "InstagramCollectionViewController.h"
+#import "NWFourSquareViewController.h"
 @interface NWLocationViewController ()
 {
     IBOutlet  MKMapView * mapView;
@@ -21,6 +22,7 @@
     BOOL isMapShown;
     NSArray *tweets;
     NSMutableArray *instagrams;
+    NSArray *fourSquarePhotos;
     BOOL downViewShown;
 }
 @end
@@ -65,7 +67,10 @@
     [_btnTwitter setBackgroundImage:[NWHelper radialGradientImage:_btnTwitter.frame.size start:1 end:1 centre:CGPointMake(0.5, 0.5) radius:0.6] forState:UIControlStateNormal];
     
     [_btnInstagram  setBackgroundImage:[NWHelper radialGradientImage:_btnInstagram.frame.size start:1 end:1 centre:CGPointMake(0.5, 0.5) radius:0.6] forState:UIControlStateNormal];
-   
+
+    
+    [_btn4s  setBackgroundImage:[NWHelper radialGradientImage:_btnInstagram.frame.size start:1 end:1 centre:CGPointMake(0.5, 0.5) radius:0.6] forState:UIControlStateNormal];
+
     
 }
 
@@ -107,6 +112,25 @@
     
 }
 
+-(void)start4sAnimate
+{
+    _btn4s.alpha = 0.2;
+    
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    [UIView beginAnimations:@"_btn4s" context:context];
+    [UIView setAnimationCurve:UIViewAnimationCurveLinear];
+    [UIView setAnimationDuration:0.3];
+    [UIView setAnimationRepeatCount:1000];
+    [UIView setAnimationRepeatAutoreverses:YES];
+    [UIView setAnimationDelegate:self];
+    
+    _btn4s.alpha = 1;
+    
+    [UIView commitAnimations];
+    
+}
+
 -(void)stopTwitterAnimate
 {
     [_btnTwitter.layer removeAllAnimations];
@@ -115,6 +139,12 @@
 -(void)stopInstaAnimate
 {
     [_btnInstagram.layer removeAllAnimations];
+}
+
+
+-(void)stop4sAnimate
+{
+    [_btn4s.layer removeAllAnimations];
 }
 
 
@@ -127,6 +157,8 @@
     
     _btnInstagram = [NWHelper createButtonWithImageAndText:@"Instagram_Icon_Small.png" text:@"" action:@selector(showInstagram) tag:1002 frame:CGRectMake(50, 10, 30, 30) target:self];
 
+    _btn4s = [NWHelper createButtonWithImageAndText:@"4s.png" text:@"" action:@selector(show4square) tag:1003 frame:CGRectMake(90, 10, 30, 30) target:self];
+
     
     [self setTwitterButtonGlow];
     
@@ -134,9 +166,12 @@
     
     [self startTwitterAnimate];
     
+    [self start4sAnimate];
+    
     [_statusView addSubview:_btnTwitter];
     [_statusView addSubview:_btnInstagram];
-
+    [_statusView addSubview:_btn4s];
+    
     mapView.layer.cornerRadius = 3;
     
     //mapView.layer.borderWidth = 2;
@@ -190,6 +225,13 @@
     }];
        
     
+    [NWHelper photosByVenueId:_nwItem.itemId completionBlock:^(NSArray *result, NSError *error) {
+        fourSquarePhotos = result;
+        
+        [self stop4sAnimate];
+    }];
+    
+    
     [self addAnnotationsToMap];
     
     [self checkStreetView];
@@ -237,6 +279,50 @@
         
         controller.tweets = tweets;
     }
+    
+}
+
+
+-(void)show4square
+{
+    /*[NWHelper photosByVenueId:@"43695300f964a5208c291fe3" completionBlock:^(NSArray *result, NSError *error) {
+        NSLog(@"here");
+    }];*/
+    
+    if(!downViewShown)
+    {
+        
+        _fourController = [[NWFourSquareViewController alloc] init];
+        _fourController.currentPageType = SearchPageBy4square;
+        [_fourController initCollectionViewWithRect:CGRectMake(0, 0, 320, 456) instas:fourSquarePhotos location:nil];
+        _fourController.view.tag = 1234577;
+        
+        
+        if([_downView viewWithTag:1234577])
+        {
+            [[_downView viewWithTag:1234577] removeFromSuperview];
+        }
+        [_downView addSubview:_fourController.view];
+        
+        
+        
+        [self switchView:nil];
+        
+    }
+    else
+    {
+        _fourController = [[NWFourSquareViewController alloc] init];
+        _fourController.currentPageType = SearchPageBy4square;
+        [_fourController initCollectionViewWithRect:CGRectMake(0, 0, 320, 456) instas:fourSquarePhotos location:nil];
+        _fourController.view.tag = 1234577;
+        if([_downView viewWithTag:1234577])
+        {
+            [[_downView viewWithTag:1234577] removeFromSuperview];
+        }
+        [_downView addSubview:_fourController.view];
+        
+    }
+    
     
 }
 

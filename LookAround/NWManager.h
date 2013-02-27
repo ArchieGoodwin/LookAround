@@ -12,6 +12,8 @@
 #import "Defines.h"
 typedef void (^ChGetLocationsBySearchString)(NSArray *result, NSError *error);
 typedef void (^WPgetPOIsCompletionBlock)        (NSArray *result, NSError *error);
+typedef void (^WPphotosByVenueIdCompletionBlock)        (NSArray *result, NSError *error);
+
 typedef void (^NWisStreetViewCompletionBlock)        (NSString *panoIdOfPlace, NSError *error);
 typedef void (^NWgetTwitterAroundCompletionBlock)        (NSArray *result, NSError *error);
 typedef void (^NWgetInstagramAroundCompletionBlock)        (NSMutableArray *result, NSError *error);
@@ -34,4 +36,5 @@ typedef void (^NWgetInstagramAroundCompletionBlock)        (NSMutableArray *resu
 -(void)getInstagramAround:(double)lat lng:(double)lng completionBlock:(NWgetInstagramAroundCompletionBlock)completionBlock;
 -(UIButton *)createButtonWithImageAndText:(NSString *)imageName text:(NSString *)text action:(SEL)action tag:(NSInteger)tag frame:(CGRect)frame target:(id)target;
 - (UIImage *)radialGradientImage:(CGSize)size start:(float)start end:(float)end centre:(CGPoint)centre radius:(float)radius ;
+-(void)photosByVenueId:(NSString *)venueId completionBlock:(WPphotosByVenueIdCompletionBlock)completionBlock;
 @end

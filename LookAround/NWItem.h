@@ -29,6 +29,21 @@
 @property (nonatomic, assign) double itemLng;
 
 
+@property (nonatomic, strong) NSString *canonicalUrl;
+@property (nonatomic, strong) NSString *formattedPhone;
+@property (nonatomic, strong) NSString *twitter;
+@property (nonatomic, assign) NSInteger hereNow;
+@property (nonatomic, strong) NSString *status;
+@property (nonatomic, assign) NSInteger likes;
+@property (nonatomic, strong) NSDictionary *location;
+@property (nonatomic, assign) float rating;
+
+@property (nonatomic, assign) NSInteger checkinsCount;
+@property (nonatomic, assign) NSInteger userCount;
+@property (nonatomic, strong) NSString *venueId;
+
+
+
 -(NWItem *)initWithDictionary:(NSMutableDictionary *)dict;
 -(NWItem *)initWithFields:(NSString *)name lat:(double)lat lng:(double)lng;
 @end

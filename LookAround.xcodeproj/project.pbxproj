@@ -86,6 +86,12 @@
 		DC9A488616D237E500E3CAEF /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9A487C16D237E500E3CAEF /* AFXMLRequestOperation.m */; };
 		DC9A488716D237E500E3CAEF /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9A487E16D237E500E3CAEF /* UIImageView+AFNetworking.m */; };
 		DC9A488A16D2423500E3CAEF /* NWLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9A488916D2423400E3CAEF /* NWLocationViewController.m */; };
+		DC9FC18D16DE1566006A4657 /* NWFourSquarePhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9FC18C16DE1566006A4657 /* NWFourSquarePhoto.m */; };
+		DCFB478916DCCF3C0098744A /* ASMediaFocusController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCFB478516DCCF3C0098744A /* ASMediaFocusController.m */; };
+		DCFB478A16DCCF3C0098744A /* ASMediaFocusManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DCFB478716DCCF3C0098744A /* ASMediaFocusManager.m */; };
+		DCFB478B16DCCF3C0098744A /* ASMediaFocusController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCFB478816DCCF3C0098744A /* ASMediaFocusController.xib */; };
+		DCFB478E16DCDC2C0098744A /* NWFourSquareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCFB478D16DCDC2C0098744A /* NWFourSquareViewController.m */; };
+		DCFB479116DCDFCC0098744A /* 4s.png in Resources */ = {isa = PBXBuildFile; fileRef = DCFB479016DCDFCC0098744A /* 4s.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -232,6 +238,16 @@
 		DC9A487E16D237E500E3CAEF /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
 		DC9A488816D2423400E3CAEF /* NWLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWLocationViewController.h; sourceTree = "<group>"; };
 		DC9A488916D2423400E3CAEF /* NWLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWLocationViewController.m; sourceTree = "<group>"; };
+		DC9FC18B16DE1566006A4657 /* NWFourSquarePhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWFourSquarePhoto.h; sourceTree = "<group>"; };
+		DC9FC18C16DE1566006A4657 /* NWFourSquarePhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWFourSquarePhoto.m; sourceTree = "<group>"; };
+		DCFB478416DCCF3C0098744A /* ASMediaFocusController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASMediaFocusController.h; sourceTree = "<group>"; };
+		DCFB478516DCCF3C0098744A /* ASMediaFocusController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASMediaFocusController.m; sourceTree = "<group>"; };
+		DCFB478616DCCF3C0098744A /* ASMediaFocusManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASMediaFocusManager.h; sourceTree = "<group>"; };
+		DCFB478716DCCF3C0098744A /* ASMediaFocusManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASMediaFocusManager.m; sourceTree = "<group>"; };
+		DCFB478816DCCF3C0098744A /* ASMediaFocusController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ASMediaFocusController.xib; sourceTree = "<group>"; };
+		DCFB478C16DCDC2B0098744A /* NWFourSquareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWFourSquareViewController.h; sourceTree = "<group>"; };
+		DCFB478D16DCDC2C0098744A /* NWFourSquareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWFourSquareViewController.m; sourceTree = "<group>"; };
+		DCFB479016DCDFCC0098744A /* 4s.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4s.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -341,6 +357,7 @@
 		DC4B245516C4D27500976283 /* LookAround */ = {
 			isa = PBXGroup;
 			children = (
+				DCFB478F16DCDC330098744A /* FourSquare */,
 				DC3E266116D62349004483D5 /* InstagramView */,
 				DC3E266016D62321004483D5 /* TwitterView */,
 				DC3E265F16D622DC004483D5 /* LocationView */,
@@ -374,6 +391,7 @@
 		DC4B247716C4DA3F00976283 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				DCFB478316DCCF300098744A /* ASMediaFocusManager */,
 				DC9A486B16D237E500E3CAEF /* AFNetworking */,
 				DC4B249116C5065B00976283 /* MagicalRecord */,
 				DC4B248B16C5037400976283 /* PendingOperations.h */,
@@ -404,6 +422,8 @@
 				DC3E265816D4D43B004483D5 /* NWFoursquare.m */,
 				DC3E267516D73717004483D5 /* NWinstagram.h */,
 				DC3E267616D73717004483D5 /* NWinstagram.m */,
+				DC9FC18B16DE1566006A4657 /* NWFourSquarePhoto.h */,
+				DC9FC18C16DE1566006A4657 /* NWFourSquarePhoto.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -512,6 +532,7 @@
 		DC98308416CA4A0E004CB060 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				DCFB479016DCDFCC0098744A /* 4s.png */,
 				DC3E267816D73CDB004483D5 /* Instagram_Icon_Small.png */,
 				DC3E265C16D6022B004483D5 /* pin.png */,
 				DC98308516CA4A18004CB060 /* 209-twitter.png */,
@@ -544,6 +565,27 @@
 				DC9A487E16D237E500E3CAEF /* UIImageView+AFNetworking.m */,
 			);
 			path = AFNetworking;
+			sourceTree = "<group>";
+		};
+		DCFB478316DCCF300098744A /* ASMediaFocusManager */ = {
+			isa = PBXGroup;
+			children = (
+				DCFB478416DCCF3C0098744A /* ASMediaFocusController.h */,
+				DCFB478516DCCF3C0098744A /* ASMediaFocusController.m */,
+				DCFB478616DCCF3C0098744A /* ASMediaFocusManager.h */,
+				DCFB478716DCCF3C0098744A /* ASMediaFocusManager.m */,
+				DCFB478816DCCF3C0098744A /* ASMediaFocusController.xib */,
+			);
+			name = ASMediaFocusManager;
+			sourceTree = "<group>";
+		};
+		DCFB478F16DCDC330098744A /* FourSquare */ = {
+			isa = PBXGroup;
+			children = (
+				DCFB478C16DCDC2B0098744A /* NWFourSquareViewController.h */,
+				DCFB478D16DCDC2C0098744A /* NWFourSquareViewController.m */,
+			);
+			name = FourSquare;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -610,6 +652,8 @@
 				DC3E266F16D623F3004483D5 /* InstagramCell.xib in Resources */,
 				DC3E267416D6240C004483D5 /* FlickrPhotoHeaderView.xib in Resources */,
 				DC3E267916D73CDB004483D5 /* Instagram_Icon_Small.png in Resources */,
+				DCFB478B16DCCF3C0098744A /* ASMediaFocusController.xib in Resources */,
+				DCFB479116DCDFCC0098744A /* 4s.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -679,6 +723,10 @@
 				DC3E266E16D623F3004483D5 /* InstagramCell.m in Sources */,
 				DC3E267316D6240C004483D5 /* FlickrPhotoHeaderView.m in Sources */,
 				DC3E267716D73717004483D5 /* NWinstagram.m in Sources */,
+				DCFB478916DCCF3C0098744A /* ASMediaFocusController.m in Sources */,
+				DCFB478A16DCCF3C0098744A /* ASMediaFocusManager.m in Sources */,
+				DCFB478E16DCDC2C0098744A /* NWFourSquareViewController.m in Sources */,
+				DC9FC18D16DE1566006A4657 /* NWFourSquarePhoto.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

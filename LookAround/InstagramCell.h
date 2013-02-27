@@ -7,8 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ASMediaFocusManager.h"
+#import "InstagramCollectionViewController.h"
+#import "NWFourSquareViewController.h"
 @class NWinstagram;
-@interface InstagramCell : UICollectionViewCell
+@class NWFourSquarePhoto;
+@interface InstagramCell : UICollectionViewCell <ASMediasFocusDelegate>
 {
 }
 @property(strong, nonatomic) IBOutlet UIImageView *available;
@@ -23,5 +27,13 @@
 @property (assign) NSInteger currentItemIndex;
 @property (nonatomic, strong) NWinstagram  *insta;
 
+@property (nonatomic, strong) NWFourSquarePhoto  *four;
+@property (strong, nonatomic) ASMediaFocusManager *mediaFocusManager;
+@property (strong, nonatomic) InstagramCollectionViewController *controller;
+@property (strong, nonatomic) NWFourSquareViewController *fourController;
+
 -(void) setInsta:(NWinstagram *)instaGram ;
+
+-(void) setFour:(NWFourSquarePhoto *)photo ;
+
 @end

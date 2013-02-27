@@ -101,6 +101,11 @@
             
             
             
+            [NWHelper photosByVenueId:@"4ac518c5f964a520cba420e3" completionBlock:^(NSArray *result, NSError *error) {
+                NSLog(@"here");
+            }];
+            
+            
         }
         
     }];
@@ -166,6 +171,8 @@
                         
                         [self.tableView reloadData];
                         
+                        
+                       
                     }
                     
                     [self hideHUD];
@@ -247,7 +254,7 @@
         UITableViewCell *cell = (UITableViewCell *)sender;
         NWItem *item = [searchResult objectAtIndex:cell.tag];
         NSDictionary *dict = [NWHelper createDict:item.itemName lat:item.itemLat lng:item.itemLng];
-        
+        controller.nwItem = item;
         controller.location = dict;
     }
     if([segue.identifier isEqualToString:@"ViewLocationAddress"])

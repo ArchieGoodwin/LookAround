@@ -18,6 +18,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "AFNetworking.h"
 #import "NWinstagram.h"
+#import "NWFourSquarePhoto.h"
 @implementation NWManager
 
 
@@ -190,6 +191,56 @@
     [operation start];
     
    
+}
+
+-(void)photosByVenueId:(NSString *)venueId completionBlock:(WPphotosByVenueIdCompletionBlock)completionBlock
+{
+    
+    WPphotosByVenueIdCompletionBlock completeBlock = [completionBlock copy];
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+	[dateFormat setDateFormat:@"yyyyMMdd"];
+	NSString *dateString = [dateFormat stringFromDate:[NSDate date]];
+    
+    
+    NSString *connectionString = [NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/%@/photos?group=venue&client_id=%@&client_secret=%@&v=%@", venueId, CLIENT_ID, CLIENT_SECRET, dateString];
+    NSLog(@"connect to: %@",connectionString);
+    
+    
+    NSURL *url = [NSURL URLWithString:connectionString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    AFJSONRequestOperation *operation;
+    operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+        //NSLog(@"%@", JSON);
+        NSMutableArray *pois = [[NSMutableArray alloc] init];
+        NSMutableArray *items = [[[JSON objectForKey:@"response"] objectForKey:@"photos"] objectForKey:@"items"];
+        for (NSMutableDictionary *dict in items) {
+            NWFourSquarePhoto *item = [[NWFourSquarePhoto alloc] initWithDictionary:dict];
+            [pois addObject:item];
+        }
+        
+        if(pois.count > 0)
+        {
+            
+            if(completeBlock)
+            {
+                completeBlock(pois, nil);
+                
+            }
+        }
+        else
+        {
+            completeBlock(nil, nil);
+        }
+        
+        
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+        
+        completeBlock(nil, error);
+    }];
+    
+    [operation start];
+    
+    
 }
 
 
