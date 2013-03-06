@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "NWtwitter.h"
+@class NWLabel;
 @interface NWTwitterCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *imgProfile;
 @property (weak, nonatomic) IBOutlet UILabel *lblDate;
 @property (weak, nonatomic) IBOutlet UILabel *lblAuthor;
-@property (weak, nonatomic) IBOutlet UILabel *lblText;
+@property (weak, nonatomic) IBOutlet NWLabel *lblText;
 -(void)setAll:(NWtwitter *)twit;
 @end

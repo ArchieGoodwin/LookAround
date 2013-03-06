@@ -81,13 +81,13 @@
     [self.view addSubview:self.collectionView];
     
     
-    UISwipeGestureRecognizer *showExtrasSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(cellSwipeRight:)];
+    /*UISwipeGestureRecognizer *showExtrasSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(cellSwipeRight:)];
     showExtrasSwipe.direction = UISwipeGestureRecognizerDirectionRight;
     [self.collectionView addGestureRecognizer:showExtrasSwipe];
     
     UISwipeGestureRecognizer *showExtrasSwipe2 = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(cellSwipeLeft:)];
     showExtrasSwipe2.direction = UISwipeGestureRecognizerDirectionLeft;
-    [self.collectionView addGestureRecognizer:showExtrasSwipe2];
+    [self.collectionView addGestureRecognizer:showExtrasSwipe2];*/
     
     [self.collectionView reloadData];
     
@@ -309,12 +309,29 @@
     
     //UIImage *photo = [self imageRotated:[UIImage imageWithData:item.image.thumbvalue] c:ch];
     
+    NWFourSquarePhoto *ch = [_chainges objectAtIndex:row];
     
     CGSize imageSize = CGSizeMake(100,
                                   100);
+    if(ch.width > ch.height)
+    {
+        //horizontal
+        float ratio = (float)ch.height / (float)ch.width;
+        imageSize = CGSizeMake(100, ratio * 100);
+    }
+    else
+    {
+        //vertical
+        float ratio = (float)ch.height / (float)ch.width;
+
+        imageSize = CGSizeMake(100, ratio * 100);
+        
+    }
     
-    CGSize picSize = 100 > 0.0f ?
-    imageSize : CGSizeMake(100.0f, 100.0f);
+    
+
+    
+    CGSize picSize = imageSize;
     picSize.height += 10.0f;
     picSize.width += 10.0f;
     

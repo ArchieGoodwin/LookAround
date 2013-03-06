@@ -77,7 +77,7 @@
         }
     }
     self.imageDownloadsInProgress = [NSMutableDictionary dictionary];
-    self.navigationItem.title = @"Look Around";
+    self.navigationItem.title = @"LookAround";
     [super viewDidLoad];
 
 
@@ -256,6 +256,8 @@
         NSDictionary *dict = [NWHelper createDict:item.itemName lat:item.itemLat lng:item.itemLng];
         controller.nwItem = item;
         controller.location = dict;
+        
+        
     }
     if([segue.identifier isEqualToString:@"ViewLocationAddress"])
     {
@@ -275,6 +277,17 @@
         //controller.location = dict;
     }
 }
+
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
+{
+    return UIInterfaceOrientationPortrait;
+}
+- (NSUInteger)supportedInterfaceOrientations{
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+
 
 
 #pragma mark - Table view data source
@@ -613,7 +626,14 @@
             Searches *search = [array objectAtIndex:indexPath.row];
             _currentPageType = [search.searchType integerValue];
             _searchBar.text = search.searchStr;
+            
+            
+            
             [self searchByString:search.searchStr];
+            
+            search.dateSearhed = [NSDate date];
+
+            [[NSManagedObjectContext MR_defaultContext] MR_saveOnlySelfAndWait];
             
         }
     }

@@ -14,6 +14,7 @@
 #import "NWItem.h"
 @interface NWLocationViewController : UIViewController <MKMapViewDelegate, UIWebViewDelegate>
 
+@property (weak, nonatomic) IBOutlet UINavigationItem *myTitle;
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 @property (weak, nonatomic) IBOutlet UIView *upperView;
 @property (weak, nonatomic) IBOutlet UIView *statusView;

@@ -62,6 +62,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="Bb0-lk-ZHK"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
                         <outlet property="searchBar" destination="u6I-ud-I3E" id="DOE-Ze-kSQ"/>
                         <outlet property="view" destination="XUF-4O-vPd" id="Bbo-S5-9y6"/>
@@ -72,7 +73,7 @@
             </objects>
             <point key="canvasLocation" x="153" y="-202"/>
         </scene>
-        <!--Location View Controller-->
+        <!--Location View Controller - Title-->
         <scene sceneID="mGX-af-F1f">
             <objects>
                 <viewController storyboardIdentifier="locationController" id="Xae-mH-3dZ" customClass="NWLocationViewController" sceneMemberID="viewController">
@@ -129,7 +130,7 @@
                                     <view contentMode="scaleToFill" id="nKt-XY-tya">
                                         <rect key="frame" x="0.0" y="506" width="320" height="456"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -137,12 +138,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="VdY-RW-m1d"/>
+                    <navigationItem key="navigationItem" title="Title" id="CTR-P0-FP4"/>
                     <connections>
                         <outlet property="btnSwitch" destination="r2x-ZP-6rI" id="yHk-GW-ME2"/>
                         <outlet property="containerView" destination="7Mu-3R-54O" id="JwC-Lh-zmv"/>
                         <outlet property="downView" destination="nKt-XY-tya" id="4hT-OH-QAB"/>
                         <outlet property="mapView" destination="lvW-Ls-RqT" id="Zt1-6w-GJl"/>
+                        <outlet property="myTitle" destination="CTR-P0-FP4" id="PWp-5Y-od2"/>
                         <outlet property="statusView" destination="hrl-tB-Bw3" id="ut3-YM-e1J"/>
                         <outlet property="upperView" destination="Pld-gI-cUW" id="rpc-hd-T25"/>
                         <outlet property="view" destination="MLX-CV-mzq" id="q68-Jt-ogm"/>

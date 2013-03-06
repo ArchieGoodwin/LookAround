@@ -15,6 +15,10 @@
 #import "NWTwitterViewController.h"
 #import "InstagramCollectionViewController.h"
 #import "NWFourSquareViewController.h"
+#import "ALScrollViewPaging.h"
+
+#define RECTVISIBLE CGRectMake(0, 0, 320, 300)
+#define RECTHIDDEN CGRectMake(0, -300, 320, 300)
 @interface NWLocationViewController ()
 {
     IBOutlet  MKMapView * mapView;
@@ -24,6 +28,8 @@
     NSMutableArray *instagrams;
     NSArray *fourSquarePhotos;
     BOOL downViewShown;
+    ALScrollViewPaging *scrollView;
+    BOOL infoShown;
 }
 @end
 
@@ -147,10 +153,62 @@
     [_btn4s.layer removeAllAnimations];
 }
 
+-(void)createViewInfo
+{
+    UIView *infoView = [[UIView alloc] initWithFrame:RECTHIDDEN];
+    infoView.tag = 776;
+    infoView.backgroundColor = [UIColor whiteColor];
+    
+    [self.view addSubview:infoView];
+}
+
+
+-(IBAction)showMenuView:(id)sender
+{
+    UIView *infoView = [self.view viewWithTag:776];
+    
+    
+    if(!infoShown)
+    {
+        infoShown = YES;
+
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:0.3];
+        infoView.hidden = NO;
+        infoView.frame = RECTVISIBLE;
+        
+        [UIView commitAnimations];
+    }
+    else
+    {
+        infoShown = NO;
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:0.3];
+
+        infoView.frame = RECTHIDDEN;
+        
+        [UIView commitAnimations];
+    }
+    
+    
+    
+}
 
 
 - (void)viewDidLoad
 {
+    
+    [self createViewInfo];
+    
+    UIButton *btnTitle =[UIButton buttonWithType:UIButtonTypeCustom];
+    [btnTitle setTitle:@"Place info" forState:UIControlStateNormal];
+    [btnTitle setBackgroundColor:[UIColor whiteColor]];
+    [btnTitle setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    btnTitle.frame = CGRectMake(0, 0, 120, 25);
+    [btnTitle addTarget:self action:@selector(showMenuView:) forControlEvents:UIControlEventTouchUpInside];
+    
+    _myTitle.titleView = btnTitle;
+    
     isMapShown = NO;
     
     _btnTwitter = [NWHelper createButtonWithImageAndText:@"209-twitter.png" text:@"Tweets" action:@selector(showTwitter) tag:1001 frame:CGRectMake(10, 10, 30, 30) target:self];
@@ -212,6 +270,8 @@
         
         [self stopTwitterAnimate];
         
+        [self showScrollView];
+        
     }];
     
     
@@ -222,6 +282,8 @@
         
         [self stopInstaAnimate];
         
+        [self showScrollView];
+
     }];
        
     
@@ -229,6 +291,9 @@
         fourSquarePhotos = result;
         
         [self stop4sAnimate];
+        
+        [self showScrollView];
+
     }];
     
     
@@ -282,6 +347,94 @@
     
 }
 
+-(void)showScrollView
+{
+    //create the scrollview with specific frame
+    scrollView = [[ALScrollViewPaging alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 456)];
+    //array for views to add to the scrollview
+    scrollView.tag = 4445;
+    NSMutableArray *views = [[NSMutableArray alloc] init];
+    //array for colors of views
+    //cycle which creates views for the scrollview
+
+    UIView *view1 = [self createTwitterView];
+    [views addObject:view1];
+
+    UIView *view3 = [self createInstagramView];
+    [views addObject:view3];
+    
+    
+    UIView *view2 = [self createFourSquareView];
+    [views addObject:view2];
+
+
+
+    
+    //add pages to scrollview
+    [scrollView addPages:views];
+    
+    
+    if([_downView viewWithTag:4445])
+    {
+        [[_downView viewWithTag:4445] removeFromSuperview];
+    }
+    [_downView addSubview:scrollView];
+    
+    //add scrollview to the view
+    
+    //[scrollView setHasPageControl:YES];
+}
+
+-(UIView *)createFourSquareView
+{
+    _fourController = [[NWFourSquareViewController alloc] init];
+    _fourController.currentPageType = SearchPageBy4square;
+    [_fourController initCollectionViewWithRect:CGRectMake(0, 0, 320, 456) instas:fourSquarePhotos location:nil];
+    _fourController.view.tag = 1234577;
+    
+    
+    /*if([_downView viewWithTag:1234577])
+    {
+        [[_downView viewWithTag:1234577] removeFromSuperview];
+    }
+    [_downView addSubview:_fourController.view];*/
+    
+    return _fourController.view;
+    
+}
+
+-(UIView *)createTwitterView
+{
+    _twitterController = [[NWTwitterViewController alloc] initMe:CGRectMake(0, 0, 320, 456)];
+    
+    _twitterController.tweets = tweets;
+    _twitterController.view.tag = 123456;
+    /*if([_downView viewWithTag:123456])
+    {
+        [[_downView viewWithTag:123456] removeFromSuperview];
+    }
+    [_downView addSubview:_twitterController.view];*/
+    
+    [_twitterController realInit];
+    
+    return _twitterController.view;
+    
+}
+
+-(UIView *)createInstagramView
+{
+    _instaController = [[InstagramCollectionViewController alloc] init];
+    _instaController.currentPageType = SearchPageBy4square;
+    [_instaController initCollectionViewWithRect:CGRectMake(0, 0, 320, 456) instas:instagrams location:nil];
+    _instaController.view.tag = 12345;
+    
+    
+   
+    
+    return _instaController.view;
+    
+}
+
 
 -(void)show4square
 {
@@ -292,17 +445,14 @@
     if(!downViewShown)
     {
         
-        _fourController = [[NWFourSquareViewController alloc] init];
-        _fourController.currentPageType = SearchPageBy4square;
-        [_fourController initCollectionViewWithRect:CGRectMake(0, 0, 320, 456) instas:fourSquarePhotos location:nil];
-        _fourController.view.tag = 1234577;
+        //[self showScrollView];
         
-        
-        if([_downView viewWithTag:1234577])
-        {
-            [[_downView viewWithTag:1234577] removeFromSuperview];
-        }
-        [_downView addSubview:_fourController.view];
+        CGRect frame;
+        frame.origin.x = scrollView.frame.size.width * 2;
+        frame.origin.y = 0;
+        frame.size = scrollView.frame.size;
+        [scrollView scrollRectToVisible:frame animated:YES];
+        scrollView.pageControlBeingUsed = YES;
         
         
         
@@ -311,16 +461,15 @@
     }
     else
     {
-        _fourController = [[NWFourSquareViewController alloc] init];
-        _fourController.currentPageType = SearchPageBy4square;
-        [_fourController initCollectionViewWithRect:CGRectMake(0, 0, 320, 456) instas:fourSquarePhotos location:nil];
-        _fourController.view.tag = 1234577;
-        if([_downView viewWithTag:1234577])
-        {
-            [[_downView viewWithTag:1234577] removeFromSuperview];
-        }
-        [_downView addSubview:_fourController.view];
+        //[self showScrollView];
         
+        
+        CGRect frame;
+        frame.origin.x = scrollView.frame.size.width * 2;
+        frame.origin.y = 0;
+        frame.size = scrollView.frame.size;
+        [scrollView scrollRectToVisible:frame animated:YES];
+        scrollView.pageControlBeingUsed = YES;
     }
     
     
@@ -332,36 +481,28 @@
     
     if(!downViewShown)
     {
-        _twitterController = [[NWTwitterViewController alloc] initMe:CGRectMake(0, 0, 320, 456)];
+       //[self showScrollView];
         
-        _twitterController.tweets = tweets;
-        _twitterController.view.tag = 123456;
-        if([_downView viewWithTag:123456])
-        {
-            [[_downView viewWithTag:123456] removeFromSuperview];
-        }
-        [_downView addSubview:_twitterController.view];
-        
-        [_twitterController realInit];
+        CGRect frame;
+        frame.origin.x = scrollView.frame.size.width * 0;
+        frame.origin.y = 0;
+        frame.size = scrollView.frame.size;
+        [scrollView scrollRectToVisible:frame animated:YES];
+        scrollView.pageControlBeingUsed = YES;
         
         [self switchView:nil];
 
     }
     else
     {
-        _twitterController = [[NWTwitterViewController alloc] initMe:CGRectMake(0, 0, 320, 456)];
-        
-        _twitterController.tweets = tweets;
-        _twitterController.view.tag = 123456;
-        if([_downView viewWithTag:123456])
-        {
-            [[_downView viewWithTag:123456] removeFromSuperview];
-        }
+       //[self showScrollView];
 
-        [_downView addSubview:_twitterController.view];
-        
-        [_twitterController realInit];
-
+        CGRect frame;
+        frame.origin.x = scrollView.frame.size.width * 0;
+        frame.origin.y = 0;
+        frame.size = scrollView.frame.size;
+        [scrollView scrollRectToVisible:frame animated:YES];
+        scrollView.pageControlBeingUsed = YES;
     }
     
     
@@ -370,38 +511,43 @@
 }
 
 
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
+{
+    return UIInterfaceOrientationPortrait;
+}
+- (NSUInteger)supportedInterfaceOrientations{
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+
+
 - (void)showInstagram{
     
     if(!downViewShown)
     {
         
-        _instaController = [[InstagramCollectionViewController alloc] init];
-        _instaController.currentPageType = SearchPageBy4square;
-        [_instaController initCollectionViewWithRect:CGRectMake(0, 0, 320, 456) instas:instagrams location:nil];
-        _instaController.view.tag = 12345;
+        //[self showScrollView];
         
-        
-        if([_downView viewWithTag:12345])
-        {
-            [[_downView viewWithTag:12345] removeFromSuperview];
-        }
-        [_downView addSubview:_instaController.view];
+        CGRect frame;
+        frame.origin.x = scrollView.frame.size.width * 1;
+        frame.origin.y = 0;
+        frame.size = scrollView.frame.size;
+        [scrollView scrollRectToVisible:frame animated:YES];
+        scrollView.pageControlBeingUsed = YES;
         
         [self switchView:nil];
         
     }
     else
     {
-        _instaController = [[InstagramCollectionViewController alloc] init];
-        _instaController.currentPageType = SearchPageBy4square;
-        [_instaController initCollectionViewWithRect:CGRectMake(0, 0, 320, 456) instas:instagrams location:nil];
-        _instaController.view.tag = 12345;
-        if([_downView viewWithTag:12345])
-        {
-            [[_downView viewWithTag:12345] removeFromSuperview];
-        }
-        [_downView addSubview:_instaController.view];
+       //[self showScrollView];
         
+        CGRect frame;
+        frame.origin.x = scrollView.frame.size.width * 1;
+        frame.origin.y = 0;
+        frame.size = scrollView.frame.size;
+        [scrollView scrollRectToVisible:frame animated:YES];
+        scrollView.pageControlBeingUsed = YES;
     }
 
     

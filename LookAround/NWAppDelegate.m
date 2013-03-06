@@ -8,13 +8,15 @@
 
 #import "NWAppDelegate.h"
 #import "Defines.h"
+#import <Crashlytics/Crashlytics.h>
 @implementation NWAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
     
-
+    [Crashlytics startWithAPIKey:@"ce72f654090cf0479c9ff146d447fdecdf5b6a0a"];
+    
     [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreNamed:@"Model.sqlite"];
     [NWHelper startUpdateLocation];
     

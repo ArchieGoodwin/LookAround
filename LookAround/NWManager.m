@@ -382,7 +382,7 @@
     NWgetInstagramAroundCompletionBlock completeBlock = [completionBlock copy];
 
     
-    NSString *connectionString = [NSString stringWithFormat:@"https://api.instagram.com/v1/media/search?lat=%f&lng=%f&client_id=e6c25413297343d087a7918f284ce83e&distance=1000", lat, lng];
+    NSString *connectionString = [NSString stringWithFormat:@"https://api.instagram.com/v1/media/search?lat=%f&lng=%f&client_id=e6c25413297343d087a7918f284ce83e&distance=500", lat, lng];
     NSLog(@"%@", connectionString);
     NSURL *url = [NSURL URLWithString:connectionString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];

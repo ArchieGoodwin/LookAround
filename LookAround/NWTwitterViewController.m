@@ -11,7 +11,7 @@
 #import "NWtwitter.h"
 #import "NWTwitterCell.h"
 #import "AFNetworking.h"
-
+#import "NWLabel.h"
 @interface NWTwitterViewController ()
 {
 }

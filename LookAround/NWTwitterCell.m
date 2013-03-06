@@ -9,7 +9,7 @@
 #import "NWTwitterCell.h"
 #import "NWtwitter.h"
 #import "AFNetworking.h"
-
+#import "NWLabel.h"
 @implementation NWTwitterCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -34,6 +34,9 @@
 -(void)setAll:(NWtwitter *)twit
 {
     _lblText.text = twit.message;
+    _lblText.verticalAlignment = VerticalAlignmentTop;
+    
+   // [_lblText sizeToFit];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
