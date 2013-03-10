@@ -8,9 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "MBProgressHUD.h"
-#import "IconDownloader.h"
 
-@interface SearchViewController : UITableViewController <UISearchBarDelegate, IconDownloaderDelegate, MBProgressHUDDelegate>
+@interface SearchViewController : UITableViewController <UISearchBarDelegate, MBProgressHUDDelegate>
 @property (nonatomic,strong) IBOutlet UISearchBar *searchBar;
 @property (nonatomic, retain) NSMutableDictionary *imageDownloadsInProgress;
 @property(nonatomic, assign) NSInteger currentPageType;

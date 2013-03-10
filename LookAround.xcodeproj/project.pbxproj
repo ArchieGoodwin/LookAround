@@ -35,15 +35,17 @@
 		DC4B248116C4DAF600976283 /* NWItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DC4B247F16C4DAF600976283 /* NWItem.m */; };
 		DC4B248416C5006400976283 /* NWManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DC4B248316C5006400976283 /* NWManager.m */; };
 		DC4B248716C501D200976283 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC4B248616C501D200976283 /* CoreLocation.framework */; };
-		DC4B248A16C502ED00976283 /* URLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = DC4B248916C502ED00976283 /* URLConnection.m */; };
 		DC4B248F16C5037600976283 /* PendingOperations.m in Sources */ = {isa = PBXBuildFile; fileRef = DC4B248C16C5037500976283 /* PendingOperations.m */; };
-		DC4B249016C5037600976283 /* IconDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = DC4B248E16C5037500976283 /* IconDownloader.m */; };
 		DC4B24E816C5067500976283 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC4B24E716C5067500976283 /* CoreData.framework */; };
 		DC4B24EB16C506BE00976283 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DC4B24E916C506BE00976283 /* Model.xcdatamodeld */; };
 		DC4B24EE16C5075400976283 /* Searches.m in Sources */ = {isa = PBXBuildFile; fileRef = DC4B24ED16C5075400976283 /* Searches.m */; };
 		DC4B24F916C6855F00976283 /* STImageAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC4B24F316C6855E00976283 /* STImageAnnotationView.m */; };
 		DC4B24FA16C6855F00976283 /* MapAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = DC4B24F516C6855E00976283 /* MapAnnotation.m */; };
 		DC4B24FE16C687FD00976283 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC4B24FD16C687FC00976283 /* MapKit.framework */; };
+		DC56CF8716E7534000FF429A /* 243-globe.png in Resources */ = {isa = PBXBuildFile; fileRef = DC56CF8516E7534000FF429A /* 243-globe.png */; };
+		DC56CF8816E7534000FF429A /* 243-globe@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC56CF8616E7534000FF429A /* 243-globe@2x.png */; };
+		DC56CF8B16E755B000FF429A /* 25-circle-northeast.png in Resources */ = {isa = PBXBuildFile; fileRef = DC56CF8916E755B000FF429A /* 25-circle-northeast.png */; };
+		DC56CF8C16E755B000FF429A /* 25-circle-northeast@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC56CF8A16E755B000FF429A /* 25-circle-northeast@2x.png */; };
 		DC98307E16C8C1CC004CB060 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC98307D16C8C1CC004CB060 /* Social.framework */; };
 		DC98308016C8C25A004CB060 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC98307F16C8C25A004CB060 /* Accounts.framework */; };
 		DC98308316C90BB0004CB060 /* NWtwitter.m in Sources */ = {isa = PBXBuildFile; fileRef = DC98308216C90BB0004CB060 /* NWtwitter.m */; };
@@ -117,12 +119,8 @@
 		DC4B248316C5006400976283 /* NWManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWManager.m; sourceTree = "<group>"; };
 		DC4B248516C500DE00976283 /* Defines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Defines.h; sourceTree = "<group>"; };
 		DC4B248616C501D200976283 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		DC4B248816C502ED00976283 /* URLConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLConnection.h; sourceTree = "<group>"; };
-		DC4B248916C502ED00976283 /* URLConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLConnection.m; sourceTree = "<group>"; };
 		DC4B248B16C5037400976283 /* PendingOperations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PendingOperations.h; sourceTree = "<group>"; };
 		DC4B248C16C5037500976283 /* PendingOperations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PendingOperations.m; sourceTree = "<group>"; };
-		DC4B248D16C5037500976283 /* IconDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconDownloader.h; sourceTree = "<group>"; };
-		DC4B248E16C5037500976283 /* IconDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconDownloader.m; sourceTree = "<group>"; };
 		DC4B24E716C5067500976283 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		DC4B24EA16C506BE00976283 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		DC4B24EC16C5075400976283 /* Searches.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Searches.h; sourceTree = "<group>"; };
@@ -132,6 +130,10 @@
 		DC4B24F416C6855E00976283 /* MapAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapAnnotation.h; sourceTree = "<group>"; };
 		DC4B24F516C6855E00976283 /* MapAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapAnnotation.m; sourceTree = "<group>"; };
 		DC4B24FD16C687FC00976283 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		DC56CF8516E7534000FF429A /* 243-globe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "243-globe.png"; sourceTree = "<group>"; };
+		DC56CF8616E7534000FF429A /* 243-globe@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "243-globe@2x.png"; sourceTree = "<group>"; };
+		DC56CF8916E755B000FF429A /* 25-circle-northeast.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "25-circle-northeast.png"; sourceTree = "<group>"; };
+		DC56CF8A16E755B000FF429A /* 25-circle-northeast@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "25-circle-northeast@2x.png"; sourceTree = "<group>"; };
 		DC98307D16C8C1CC004CB060 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		DC98307F16C8C25A004CB060 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		DC98308116C90BB0004CB060 /* NWtwitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWtwitter.h; sourceTree = "<group>"; };
@@ -333,10 +335,6 @@
 				DC9A486B16D237E500E3CAEF /* AFNetworking */,
 				DC4B248B16C5037400976283 /* PendingOperations.h */,
 				DC4B248C16C5037500976283 /* PendingOperations.m */,
-				DC4B248D16C5037500976283 /* IconDownloader.h */,
-				DC4B248E16C5037500976283 /* IconDownloader.m */,
-				DC4B248816C502ED00976283 /* URLConnection.h */,
-				DC4B248916C502ED00976283 /* URLConnection.m */,
 				DC4B248516C500DE00976283 /* Defines.h */,
 				DC4B247816C4DA4C00976283 /* MBProgressHUD.h */,
 				DC4B247916C4DA4C00976283 /* MBProgressHUD.m */,
@@ -370,6 +368,10 @@
 		DC98308416CA4A0E004CB060 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				DC56CF8916E755B000FF429A /* 25-circle-northeast.png */,
+				DC56CF8A16E755B000FF429A /* 25-circle-northeast@2x.png */,
+				DC56CF8516E7534000FF429A /* 243-globe.png */,
+				DC56CF8616E7534000FF429A /* 243-globe@2x.png */,
 				DCFB479016DCDFCC0098744A /* 4s.png */,
 				DC3E267816D73CDB004483D5 /* Instagram_Icon_Small.png */,
 				DC3E265C16D6022B004483D5 /* pin.png */,
@@ -494,6 +496,10 @@
 				DC3E267916D73CDB004483D5 /* Instagram_Icon_Small.png in Resources */,
 				DCFB478B16DCCF3C0098744A /* ASMediaFocusController.xib in Resources */,
 				DCFB479116DCDFCC0098744A /* 4s.png in Resources */,
+				DC56CF8716E7534000FF429A /* 243-globe.png in Resources */,
+				DC56CF8816E7534000FF429A /* 243-globe@2x.png in Resources */,
+				DC56CF8B16E755B000FF429A /* 25-circle-northeast.png in Resources */,
+				DC56CF8C16E755B000FF429A /* 25-circle-northeast@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -540,9 +546,7 @@
 				DC4B247A16C4DA4C00976283 /* MBProgressHUD.m in Sources */,
 				DC4B248116C4DAF600976283 /* NWItem.m in Sources */,
 				DC4B248416C5006400976283 /* NWManager.m in Sources */,
-				DC4B248A16C502ED00976283 /* URLConnection.m in Sources */,
 				DC4B248F16C5037600976283 /* PendingOperations.m in Sources */,
-				DC4B249016C5037600976283 /* IconDownloader.m in Sources */,
 				DC4B24EB16C506BE00976283 /* Model.xcdatamodeld in Sources */,
 				DC4B24EE16C5075400976283 /* Searches.m in Sources */,
 				DC4B24F916C6855F00976283 /* STImageAnnotationView.m in Sources */,

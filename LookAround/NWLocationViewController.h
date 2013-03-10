@@ -12,7 +12,7 @@
 #import "InstagramCollectionViewController.h"
 #import "NWFourSquareViewController.h"
 #import "NWItem.h"
-@interface NWLocationViewController : UIViewController <MKMapViewDelegate, UIWebViewDelegate>
+@interface NWLocationViewController : UIViewController <MKMapViewDelegate, UIWebViewDelegate, UIActionSheetDelegate>
 
 @property (weak, nonatomic) IBOutlet UINavigationItem *myTitle;
 @property (weak, nonatomic) IBOutlet UIView *containerView;

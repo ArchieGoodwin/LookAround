@@ -9,7 +9,6 @@
 #import "NWManager.h"
 #import <CoreLocation/CoreLocation.h>
 #import "Defines.h"
-#import "URLConnection.h"
 #import "NWItem.h"
 #import "Searches.h"
 #import "NWtwitter.h"
@@ -95,9 +94,13 @@
     UIGraphicsEndImageContext();
     [btn_chat setImage:newImage forState:UIControlStateNormal];
     btn_chat.imageEdgeInsets = UIEdgeInsetsMake(0, 4, 0, 0);
-    //[btn_chat setTitle:text forState:UIControlStateNormal];
-    //btn_chat.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:14];
-    //[btn_chat setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+    if(text)
+    {
+        [btn_chat setTitle:text forState:UIControlStateNormal];
+        btn_chat.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:14];
+        [btn_chat setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+    }
+
     
     btn_chat.titleEdgeInsets = UIEdgeInsetsMake(0, 7, 0, 0);
     btn_chat.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
@@ -111,6 +114,15 @@
 }
 
 
+-(void)addLabelWithText:(NSString *)text toView:(UIView *)toView rect:(CGRect)rect font:(UIFont *)font
+{
+    UILabel *lblTemp = [[UILabel alloc] initWithFrame:rect];
+    lblTemp.backgroundColor = [UIColor clearColor];
+    lblTemp.textColor = [UIColor grayColor];
+    lblTemp.font = font;
+    lblTemp.text = text;
+    [toView addSubview:lblTemp];
+}
 
 
 #pragma mark - Location methods
@@ -320,33 +332,38 @@
     
     NSString *connectionString = [NSString stringWithFormat:@"http://cbk0.google.com/cbk?output=json&ll=%@", loc];
     NSLog(@"connect to: %@",connectionString);
+
+    NSURL *url = [NSURL URLWithString:connectionString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    AFJSONRequestOperation *operation;
+    operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+        //NSLog(@"%@", JSON);
+        
+        NSLog(@"%@", JSON);
+        
+        if([JSON objectForKey:@"Location"] == nil)
+            completeBlock(@"", nil);
+        
+        //NSLog(@"panoId: %@",[[json objectForKey:@"Location"] objectForKey:@"panoId"]);
+        
+        completeBlock([[JSON objectForKey:@"Location"] objectForKey:@"panoId"], nil);
+        
+        
+        
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+        
+        NSMutableDictionary* details = [NSMutableDictionary dictionary];
+        [details setValue:[error description] forKey:NSLocalizedDescriptionKey];
+        // populate the error object with the details
+        NSError *err = [NSError errorWithDomain:@"world" code:200 userInfo:details];
+        
+        completeBlock(NO, err);
+    }];
     
-    [URLConnection asyncConnectionWithURLString:connectionString
-                                completionBlock:^(NSData *data, NSURLResponse *response)
-     {
-         NSLog(@"Data length %d", [data length]);
-         NSMutableDictionary* json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-         //NSLog(@"%@", json);
-         
-         if([json objectForKey:@"Location"] == nil)
-             completeBlock(@"", nil);
-         
-         //NSLog(@"panoId: %@",[[json objectForKey:@"Location"] objectForKey:@"panoId"]);
-         
-         completeBlock([[json objectForKey:@"Location"] objectForKey:@"panoId"], nil);
-     }
-                                     errorBlock:^(NSError *error)
-     {
-         
-         NSMutableDictionary* details = [NSMutableDictionary dictionary];
-         [details setValue:[error description] forKey:NSLocalizedDescriptionKey];
-         // populate the error object with the details
-         NSError *err = [NSError errorWithDomain:@"world" code:200 userInfo:details];
-         
-         completeBlock(NO, err);
-         
-         
-     }];
+    [operation start];
+    
+    
+
 }
 
 

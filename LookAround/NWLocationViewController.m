@@ -159,7 +159,42 @@
     infoView.tag = 776;
     infoView.backgroundColor = [UIColor whiteColor];
     
+    
+    [NWHelper addLabelWithText:[NSString stringWithFormat:@"Rating:%.2f/Likes: %i", _nwItem.rating, _nwItem.likes] toView:infoView rect:CGRectMake(10, 110, 140, 30) font:[UIFont systemFontOfSize:12]];
+    [NWHelper addLabelWithText:[NSString stringWithFormat:@"Here now: %i", _nwItem.hereNow] toView:infoView rect:CGRectMake(10, 160, 140, 30) font:[UIFont systemFontOfSize:12]];
+    [NWHelper addLabelWithText:[NSString stringWithFormat:@"Status: %@", _nwItem.status] toView:infoView rect:CGRectMake(10, 210, 140, 30) font:[UIFont systemFontOfSize:12]];
+    [NWHelper addLabelWithText:[NSString stringWithFormat:@"Checkins:%i", _nwItem.checkinsCount] toView:infoView rect:CGRectMake(10, 260, 140, 30) font:[UIFont systemFontOfSize:12]];
+    [NWHelper addLabelWithText:[NSString stringWithFormat:@"Users: %i", _nwItem.userCount] toView:infoView rect:CGRectMake(170, 210, 140, 30) font:[UIFont systemFontOfSize:12]];
+
+
+    UIButton *link = [NWHelper createButtonWithImageAndText:@"25-circle-northeast.png" text:@"Web site" action:@selector(showLink) tag:1007 frame:CGRectMake(170, 110, 140, 30) target:self];
+    [infoView addSubview: link];
+    
+    [NWHelper addLabelWithText:[NSString stringWithFormat:@"%@, %@", [_nwItem.location objectForKey:@"address"], [_nwItem.location objectForKey:@"city"]] toView:infoView rect:CGRectMake(170, 160, 140, 30) font:[UIFont systemFontOfSize:12]];
+
+    
     [self.view addSubview:infoView];
+}
+
+-(void)showLink
+{
+    if(_nwItem.canonicalUrl)
+    {
+        [[[UIActionSheet alloc] initWithTitle:_nwItem.canonicalUrl delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Open Link in Safari", nil), nil] showInView:self.view];
+
+    }
+}
+
+
+
+#pragma mark - UIActionSheetDelegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == actionSheet.cancelButtonIndex) {
+        return;
+    }
+    
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:actionSheet.title]];
 }
 
 
@@ -211,11 +246,11 @@
     
     isMapShown = NO;
     
-    _btnTwitter = [NWHelper createButtonWithImageAndText:@"209-twitter.png" text:@"Tweets" action:@selector(showTwitter) tag:1001 frame:CGRectMake(10, 10, 30, 30) target:self];
+    _btnTwitter = [NWHelper createButtonWithImageAndText:@"209-twitter.png" text:nil action:@selector(showTwitter) tag:1001 frame:CGRectMake(10, 10, 30, 30) target:self];
     
-    _btnInstagram = [NWHelper createButtonWithImageAndText:@"Instagram_Icon_Small.png" text:@"" action:@selector(showInstagram) tag:1002 frame:CGRectMake(50, 10, 30, 30) target:self];
+    _btnInstagram = [NWHelper createButtonWithImageAndText:@"Instagram_Icon_Small.png" text:nil action:@selector(showInstagram) tag:1002 frame:CGRectMake(50, 10, 30, 30) target:self];
 
-    _btn4s = [NWHelper createButtonWithImageAndText:@"4s.png" text:@"" action:@selector(show4square) tag:1003 frame:CGRectMake(90, 10, 30, 30) target:self];
+    _btn4s = [NWHelper createButtonWithImageAndText:@"4s.png" text:nil action:@selector(show4square) tag:1003 frame:CGRectMake(90, 10, 30, 30) target:self];
 
     
     [self setTwitterButtonGlow];

@@ -12,7 +12,6 @@
 #import "NWItem.h"
 #import <QuartzCore/QuartzCore.h>
 #import <CoreLocation/CoreLocation.h>
-#import "IconDownloader.h"
 #import "Searches.h"
 #import "AFNetworking.h"
 #import "NWLocationViewController.h"
