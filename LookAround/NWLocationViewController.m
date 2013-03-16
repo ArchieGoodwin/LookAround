@@ -159,6 +159,7 @@
     infoView.tag = 776;
     infoView.backgroundColor = [UIColor whiteColor];
     
+    [NWHelper addLabelWithText:_nwItem.itemName toView:infoView rect:CGRectMake(10, 60, 300, 40) font:[UIFont systemFontOfSize:17]];
     
     [NWHelper addLabelWithText:[NSString stringWithFormat:@"Rating:%.2f/Likes: %i", _nwItem.rating, _nwItem.likes] toView:infoView rect:CGRectMake(10, 110, 140, 30) font:[UIFont systemFontOfSize:12]];
     [NWHelper addLabelWithText:[NSString stringWithFormat:@"Here now: %i", _nwItem.hereNow] toView:infoView rect:CGRectMake(10, 160, 140, 30) font:[UIFont systemFontOfSize:12]];

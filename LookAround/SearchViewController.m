@@ -15,6 +15,7 @@
 #import "Searches.h"
 #import "AFNetworking.h"
 #import "NWLocationViewController.h"
+#import "NWMapViewController.h"
 @interface SearchViewController ()
 {
     NSMutableArray *searchResult;
@@ -63,6 +64,8 @@
 - (void)viewDidLoad
 {
     //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatedLocation) name:chLocationMuchUpdated object:nil];
+
+    [self showOrHideBtnMap:NO];
 
     _currentPageType = SearchPagePastSearches;
     searchResult = [NSMutableArray new];
@@ -117,7 +120,32 @@
 }
 
 
+-(void)showOrHideBtnMap:(BOOL)show
+{
+    NSMutableArray *toolbarButtons = [self.navigationItem.rightBarButtonItems mutableCopy];
+    
+    if(show)
+    {
+        // This is how you add the button to the toolbar and animate it
+        if (![toolbarButtons containsObject:_btnMap]) {
 
+            [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:_btnMap, nil]];
+            
+        }
+    }
+    else
+    {
+        // This is how you remove the button from the toolbar and animate it
+        [toolbarButtons removeObject:_btnMap];
+        
+        [self.navigationItem setRightBarButtonItems:toolbarButtons];
+    }
+    
+    
+    
+    
+    
+}
 
 
 -(void)searchByString:(NSString *)str
@@ -166,11 +194,14 @@
                 [NWHelper poisNearLocation:CLLocationCoordinate2DMake(placemark.location.coordinate.latitude, placemark.location.coordinate.longitude) completionBlock:^(NSArray *result, NSError *error) {
                     if(!error)
                     {
-                        searchResult = [NSMutableArray arrayWithArray:result];
+                        NSSortDescriptor *sortDescriptor;
+                        sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"itemDistance" ascending:YES selector:@selector(compare:)];
+                        NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+                        searchResult = [NSMutableArray arrayWithArray:[result sortedArrayUsingDescriptors:sortDescriptors]];
                         
                         [self.tableView reloadData];
                         
-                        
+                        [self showOrHideBtnMap:YES];
                        
                     }
                     
@@ -232,6 +263,8 @@
         _currentPageType = SearchPagePastSearches;
         [self.tableView reloadData];
         [searchBar resignFirstResponder];
+        
+        [self showOrHideBtnMap:NO];
     }
     
     //}
@@ -269,11 +302,15 @@
     
     if([segue.identifier isEqualToString:@"LocView"])
     {
-        //NWLocationViewController *controller = (NWLocationViewController *)segue.destinationViewController;
-        //NSDictionary *dict = [NWHelper createDict:_searchBar.text lat:placemark.location.coordinate.latitude lng:placemark.location.coordinate.longitude];
         
         
-        //controller.location = dict;
+    }
+    if([segue.identifier isEqualToString:@"MapView"])
+    {
+        NWMapViewController *controller = (NWMapViewController *)segue.destinationViewController;
+        controller.items = searchResult;
+        //[controller addAnnotationsToMap];
+        
     }
 }
 

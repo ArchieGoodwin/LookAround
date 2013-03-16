@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="9HV-0J-yG5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="9HV-0J-yG5">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -61,9 +61,16 @@
                             <outlet property="delegate" destination="Q9Y-FJ-cQC" id="nss-ax-nI3"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Bb0-lk-ZHK"/>
+                    <navigationItem key="navigationItem" id="Bb0-lk-ZHK">
+                        <barButtonItem key="rightBarButtonItem" title="Map" id="O3h-Dk-nUR">
+                            <connections>
+                                <segue destination="l9L-hp-BqA" kind="push" identifier="MapView" id="URh-hZ-06t"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
+                        <outlet property="btnMap" destination="O3h-Dk-nUR" id="5EW-Qi-u7P"/>
                         <outlet property="searchBar" destination="u6I-ud-I3E" id="DOE-Ze-kSQ"/>
                         <outlet property="view" destination="XUF-4O-vPd" id="Bbo-S5-9y6"/>
                         <segue destination="Xae-mH-3dZ" kind="push" identifier="LocView" id="Qrm-Gp-xIu"/>
@@ -71,7 +78,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uQ7-MG-EKi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="153" y="-202"/>
+            <point key="canvasLocation" x="133" y="-502"/>
         </scene>
         <!--Location View Controller - Title-->
         <scene sceneID="mGX-af-F1f">
@@ -235,13 +242,86 @@
             </objects>
             <point key="canvasLocation" x="-324" y="121"/>
         </scene>
+        <!--Map View Controller-->
+        <scene sceneID="wSH-VH-Fqb">
+            <objects>
+                <viewController id="l9L-hp-BqA" customClass="NWMapViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="oYo-v8-d8Y">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="FuR-Yi-PF8">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="l9L-hp-BqA" id="VPh-b2-J08"/>
+                                </connections>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="JnV-iF-KOR"/>
+                    <connections>
+                        <outlet property="mapView" destination="FuR-Yi-PF8" id="aCA-RH-Jow"/>
+                        <segue destination="Xae-mH-3dZ" kind="push" identifier="LocViewFromMapView" id="TPn-3m-lFn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wuT-2I-xyI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="165" y="220"/>
+        </scene>
     </scenes>
+    <classes>
+        <class className="NWLabel" superclassName="UILabel">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NWLabel.h"/>
+        </class>
+        <class className="NWLocationViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NWLocationViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="btnSwitchMap:"/>
+                <relationship kind="outlet" name="btnSwitch" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="containerView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="downView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
+                <relationship kind="outlet" name="myTitle" candidateClass="UINavigationItem"/>
+                <relationship kind="outlet" name="statusView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="upperView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
+            </relationships>
+        </class>
+        <class className="NWMapViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NWMapViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="goToPlace:"/>
+                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
+            </relationships>
+        </class>
+        <class className="NWTwitterCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NWTwitterCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="imgProfile" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="lblAuthor" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lblDate" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lblText" candidateClass="NWLabel"/>
+            </relationships>
+        </class>
+        <class className="NWTwitterViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NWTwitterViewController.h"/>
+        </class>
+        <class className="SearchViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="btnMap" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Jqt-Qk-ySK"/>
+        <segue reference="TPn-3m-lFn"/>
     </inferredMetricsTieBreakers>
 </document>

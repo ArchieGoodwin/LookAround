@@ -28,5 +28,24 @@
 	return self;
 }
 
+- (id)initWithUser:(CLLocationCoordinate2D)coord  name:(NSString *)name annotationType:(WPMapAnnotationType) annotationType tagMe:(NSInteger)tagMe{
+	if (self = [super init]) {
+		self.title = name;
+		//self.subtitle = [user desc];
+		coordinate.longitude = coord.longitude;
+		coordinate.latitude = coord.latitude;
+		_annotationType = annotationType;
+        tag = tagMe;
+        
+        if(annotationType == WPMapAnnotationCategoryImage)
+        {
+            self.userData = @"pin.png";
+            
+        }
+		return self;
+	}
+	return self;
+}
+
 
 @end

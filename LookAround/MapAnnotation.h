@@ -27,4 +27,5 @@ typedef enum {
 @property WPMapAnnotationType annotationType;
 
 - (id)initWithUser:(CLLocationCoordinate2D)coord  name:(NSString *)name annotationType:(WPMapAnnotationType) annotationType;
+- (id)initWithUser:(CLLocationCoordinate2D)coord  name:(NSString *)name annotationType:(WPMapAnnotationType) annotationType tagMe:(NSInteger)tagMe;
 @end

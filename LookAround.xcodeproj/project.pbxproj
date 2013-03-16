@@ -63,6 +63,7 @@
 		DC9A488616D237E500E3CAEF /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9A487C16D237E500E3CAEF /* AFXMLRequestOperation.m */; };
 		DC9A488716D237E500E3CAEF /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9A487E16D237E500E3CAEF /* UIImageView+AFNetworking.m */; };
 		DC9A488A16D2423500E3CAEF /* NWLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9A488916D2423400E3CAEF /* NWLocationViewController.m */; };
+		DC9F221016F1E014009E3FBB /* NWMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9F220F16F1E014009E3FBB /* NWMapViewController.m */; };
 		DC9FC18D16DE1566006A4657 /* NWFourSquarePhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9FC18C16DE1566006A4657 /* NWFourSquarePhoto.m */; };
 		DC9FC19316E08304006A4657 /* ALScrollViewPaging.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9FC19216E08304006A4657 /* ALScrollViewPaging.m */; };
 		DCB1DF8E16E49ED800D3CB1D /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCB1DF8D16E49ED800D3CB1D /* Crashlytics.framework */; };
@@ -165,6 +166,8 @@
 		DC9A487E16D237E500E3CAEF /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
 		DC9A488816D2423400E3CAEF /* NWLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWLocationViewController.h; sourceTree = "<group>"; };
 		DC9A488916D2423400E3CAEF /* NWLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWLocationViewController.m; sourceTree = "<group>"; };
+		DC9F220E16F1E014009E3FBB /* NWMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWMapViewController.h; sourceTree = "<group>"; };
+		DC9F220F16F1E014009E3FBB /* NWMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWMapViewController.m; sourceTree = "<group>"; };
 		DC9FC18B16DE1566006A4657 /* NWFourSquarePhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWFourSquarePhoto.h; sourceTree = "<group>"; };
 		DC9FC18C16DE1566006A4657 /* NWFourSquarePhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWFourSquarePhoto.m; sourceTree = "<group>"; };
 		DC9FC19116E08304006A4657 /* ALScrollViewPaging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALScrollViewPaging.h; sourceTree = "<group>"; };
@@ -295,6 +298,7 @@
 		DC4B245516C4D27500976283 /* LookAround */ = {
 			isa = PBXGroup;
 			children = (
+				DC9F220D16F1DFE8009E3FBB /* MapView */,
 				DCFB478F16DCDC330098744A /* FourSquare */,
 				DC3E266116D62349004483D5 /* InstagramView */,
 				DC3E266016D62321004483D5 /* TwitterView */,
@@ -405,6 +409,15 @@
 				DC9A487E16D237E500E3CAEF /* UIImageView+AFNetworking.m */,
 			);
 			path = AFNetworking;
+			sourceTree = "<group>";
+		};
+		DC9F220D16F1DFE8009E3FBB /* MapView */ = {
+			isa = PBXGroup;
+			children = (
+				DC9F220E16F1E014009E3FBB /* NWMapViewController.h */,
+				DC9F220F16F1E014009E3FBB /* NWMapViewController.m */,
+			);
+			name = MapView;
 			sourceTree = "<group>";
 		};
 		DCFB478316DCCF300098744A /* ASMediaFocusManager */ = {
@@ -577,6 +590,7 @@
 				DC9FC18D16DE1566006A4657 /* NWFourSquarePhoto.m in Sources */,
 				DC9FC19316E08304006A4657 /* ALScrollViewPaging.m in Sources */,
 				DCB1DF9116E4A64900D3CB1D /* NWLabel.m in Sources */,
+				DC9F221016F1E014009E3FBB /* NWMapViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

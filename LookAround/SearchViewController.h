@@ -13,6 +13,7 @@
 @property (nonatomic,strong) IBOutlet UISearchBar *searchBar;
 @property (nonatomic, retain) NSMutableDictionary *imageDownloadsInProgress;
 @property(nonatomic, assign) NSInteger currentPageType;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *btnMap;
 
 
 - (void)showHUD;
