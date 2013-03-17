@@ -18,7 +18,6 @@
 #import "NWMapViewController.h"
 @interface SearchViewController ()
 {
-    NSMutableArray *searchResult;
     CLPlacemark *placemark;
     double latitude;
     double longitude;
@@ -68,7 +67,7 @@
     [self showOrHideBtnMap:NO];
 
     _currentPageType = SearchPagePastSearches;
-    searchResult = [NSMutableArray new];
+    _searchResult = [NSMutableArray new];
     for (UIView * v in _searchBar.subviews) {
         if ([v isKindOfClass:NSClassFromString(@"UISearchBarTextField")]) {
             v.superview.alpha = 0;
@@ -97,7 +96,7 @@
     [NWHelper poisNearLocation:CLLocationCoordinate2DMake([NWHelper locationManager].location.coordinate.latitude, [NWHelper locationManager].location.coordinate.longitude) completionBlock:^(NSArray *result, NSError *error) {
         if(!error)
         {
-            searchResult = [NSMutableArray arrayWithArray:result];
+            _searchResult = [NSMutableArray arrayWithArray:result];
             
             [self.tableView reloadData];
             
@@ -197,7 +196,7 @@
                         NSSortDescriptor *sortDescriptor;
                         sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"itemDistance" ascending:YES selector:@selector(compare:)];
                         NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-                        searchResult = [NSMutableArray arrayWithArray:[result sortedArrayUsingDescriptors:sortDescriptors]];
+                        _searchResult = [NSMutableArray arrayWithArray:[result sortedArrayUsingDescriptors:sortDescriptors]];
                         
                         [self.tableView reloadData];
                         
@@ -258,7 +257,7 @@
     //{
     if([searchText isEqualToString:@""])
     {
-        [searchResult removeAllObjects];
+        [_searchResult removeAllObjects];
         placemark = nil;
         _currentPageType = SearchPagePastSearches;
         [self.tableView reloadData];
@@ -284,7 +283,7 @@
      
         
         UITableViewCell *cell = (UITableViewCell *)sender;
-        NWItem *item = [searchResult objectAtIndex:cell.tag];
+        NWItem *item = [_searchResult objectAtIndex:cell.tag];
         NSDictionary *dict = [NWHelper createDict:item.itemName lat:item.itemLat lng:item.itemLng];
         controller.nwItem = item;
         controller.location = dict;
@@ -308,7 +307,7 @@
     if([segue.identifier isEqualToString:@"MapView"])
     {
         NWMapViewController *controller = (NWMapViewController *)segue.destinationViewController;
-        controller.items = searchResult;
+        controller.items = [_searchResult mutableCopy];
         //[controller addAnnotationsToMap];
         
     }
@@ -347,7 +346,7 @@
         {
             return 1;
         }
-        return searchResult.count;
+        return _searchResult.count;
 
     }
     if(_currentPageType == SearchPagePastSearches)
@@ -357,7 +356,7 @@
     
     if(_currentPageType == SearchNewType)
     {
-        return searchResult.count;
+        return _searchResult.count;
     }
     
     return 1;
@@ -371,9 +370,9 @@
 
             if(indexPath.section == 1)
             {
-                if(searchResult.count > 0)
+                if(_searchResult.count > 0)
                 {
-                    NWItem *item = [searchResult objectAtIndex:indexPath.row];
+                    NWItem *item = [_searchResult objectAtIndex:indexPath.row];
                     
                     
                     return [self getLabelSize:item.itemName fontSize:16] + 20;
@@ -471,11 +470,11 @@
                 {
                     [inside removeFromSuperview];
                 }
-                if(searchResult.count > 0)
+                if(_searchResult.count > 0)
                 {
                     
 
-                        NWItem *item = [searchResult objectAtIndex:indexPath.row];
+                        NWItem *item = [_searchResult objectAtIndex:indexPath.row];
                         
                         
                         UILabel * lblTitle = [[UILabel alloc] initWithFrame:CGRectMake(35, 10, 280, [self getLabelSize:item.itemName fontSize:16])];
@@ -538,11 +537,11 @@
         {
             [inside removeFromSuperview];
         }
-        if(searchResult.count > 0)
+        if(_searchResult.count > 0)
         {
             
             
-            MKMapItem *item = [searchResult objectAtIndex:indexPath.row];
+            MKMapItem *item = [_searchResult objectAtIndex:indexPath.row];
            // NSLog(@"MKMapItem: %@", item.);
             
             UILabel * lblTitle = [[UILabel alloc] initWithFrame:CGRectMake(35, 10, 280, [self getLabelSize:item.name fontSize:16])];

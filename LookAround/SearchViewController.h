@@ -14,6 +14,7 @@
 @property (nonatomic, retain) NSMutableDictionary *imageDownloadsInProgress;
 @property(nonatomic, assign) NSInteger currentPageType;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *btnMap;
+@property (strong, nonatomic)     NSMutableArray *searchResult;
 
 
 - (void)showHUD;

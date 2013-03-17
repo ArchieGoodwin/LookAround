@@ -52,7 +52,7 @@
         [UIView beginAnimations:nil context:NULL];
         [UIView setAnimationDuration:0.3];
         
-        _containerView.frame = CGRectMake(0, -456, 320, 962);
+        _containerView.frame = CGRectMake(0,  [NWHelper isIphone5] ? -456 : -366, 320, [NWHelper isIphone5] ? 962 : 782);
         
         [UIView commitAnimations];
     }
@@ -62,7 +62,7 @@
         [UIView beginAnimations:nil context:NULL];
         [UIView setAnimationDuration:0.3];
         
-        _containerView.frame = CGRectMake(0, 0, 320, 962);
+        _containerView.frame = CGRectMake(0, 0, 320, [NWHelper isIphone5] ? 962 : 782);
         
         [UIView commitAnimations];
     }
@@ -245,7 +245,16 @@
     
     _myTitle.titleView = btnTitle;
     
-    isMapShown = NO;
+    isMapShown = YES;
+    [self btnSwitchMap:nil];
+    
+    //isMapShown = NO;
+    //[self btnSwitchMap:nil];
+    if(![NWHelper isIphone5])
+    {
+        _statusView.frame = CGRectMake(0, 366, 320, 50);
+        _downView.frame = CGRectMake(0, 416, 320, 361);
+    }
     
     _btnTwitter = [NWHelper createButtonWithImageAndText:@"209-twitter.png" text:nil action:@selector(showTwitter) tag:1001 frame:CGRectMake(10, 10, 30, 30) target:self];
     
@@ -386,7 +395,7 @@
 -(void)showScrollView
 {
     //create the scrollview with specific frame
-    scrollView = [[ALScrollViewPaging alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 456)];
+    scrollView = [[ALScrollViewPaging alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, [NWHelper isIphone5] ? 456 : 366)];
     //array for views to add to the scrollview
     scrollView.tag = 4445;
     NSMutableArray *views = [[NSMutableArray alloc] init];
@@ -425,7 +434,7 @@
 {
     _fourController = [[NWFourSquareViewController alloc] init];
     _fourController.currentPageType = SearchPageBy4square;
-    [_fourController initCollectionViewWithRect:CGRectMake(0, 0, 320, 456) instas:fourSquarePhotos location:nil];
+    [_fourController initCollectionViewWithRect:CGRectMake(0, 0, 320, [NWHelper isIphone5] ? 456 : 361) instas:fourSquarePhotos location:nil];
     _fourController.view.tag = 1234577;
     
     
@@ -441,7 +450,7 @@
 
 -(UIView *)createTwitterView
 {
-    _twitterController = [[NWTwitterViewController alloc] initMe:CGRectMake(0, 0, 320, 456)];
+    _twitterController = [[NWTwitterViewController alloc] initMe:CGRectMake(0, 0, 320, [NWHelper isIphone5] ? 456 : 366)];
     
     _twitterController.tweets = tweets;
     _twitterController.view.tag = 123456;
@@ -461,7 +470,7 @@
 {
     _instaController = [[InstagramCollectionViewController alloc] init];
     _instaController.currentPageType = SearchPageBy4square;
-    [_instaController initCollectionViewWithRect:CGRectMake(0, 0, 320, 456) instas:instagrams location:nil];
+    [_instaController initCollectionViewWithRect:CGRectMake(0, 0, 320, [NWHelper isIphone5] ? 456 : 366) instas:instagrams location:nil];
     _instaController.view.tag = 12345;
     
     
@@ -727,8 +736,10 @@
     if(isMapShown)
     {
         //show street view on full screen
-        mapView.frame = CGRectMake(225, [NWHelper isIphone5] ? 354 : 325, 75, 75);
-        webView.frame = CGRectMake(0, 0, 320, [NWHelper isIphone5] ? 456 : 400);
+        mapView.frame = CGRectMake(225, [NWHelper isIphone5] ? 354 : 274, 75, 75);
+        _btnSwitch.frame = CGRectMake(225, [NWHelper isIphone5] ? 354 : 274, 75, 75);
+
+        webView.frame = CGRectMake(0, 0, 320, [NWHelper isIphone5] ? 456 : 366);
         [_upperView bringSubviewToFront:mapView];
         [_upperView bringSubviewToFront:_btnSwitch];
         isMapShown = NO;
@@ -737,8 +748,9 @@
     else
     {
         //show map on full screen
-        mapView.frame = CGRectMake(0, 0, 320, [NWHelper isIphone5] ? 456 : 400);
-        webView.frame = CGRectMake(225, [NWHelper isIphone5] ? 354 : 325, 75, 75);
+        mapView.frame = CGRectMake(0, 0, 320, [NWHelper isIphone5] ? 456 : 366);
+        webView.frame = CGRectMake(225, [NWHelper isIphone5] ? 354 : 274, 75, 75);
+        _btnSwitch.frame = CGRectMake(225, [NWHelper isIphone5] ? 354 : 274, 75, 75);
         [_upperView bringSubviewToFront:webView];
         [_upperView bringSubviewToFront:_btnSwitch];
         isMapShown = YES;

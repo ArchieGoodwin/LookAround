@@ -192,6 +192,14 @@
 
 #pragma mark - Table view delegate
 
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == actionSheet.cancelButtonIndex) {
+        return;
+    }
+    
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:actionSheet.title]];
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Navigation logic may go here. Create and push another view controller.
@@ -201,6 +209,16 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+    
+    NWtwitter *tweet = _tweets[indexPath.row];
+    
+    if(tweet.author)
+    {
+        [[[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"https://twitter.com/%@", tweet.author] delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Open Link in Safari", nil), nil] showInView:self.view];
+        
+    }
+    
+
 }
 
 @end

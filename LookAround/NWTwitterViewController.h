@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NWTwitterViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface NWTwitterViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate>
 
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic)     NSArray *tweets;

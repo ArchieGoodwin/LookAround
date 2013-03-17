@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 #import "NWItem.h"
-@interface NWMapViewController : UIViewController <MKMapViewDelegate>
+#import "MBProgressHUD.h"
+@interface NWMapViewController : UIViewController <MKMapViewDelegate, MBProgressHUDDelegate>
 @property (strong, nonatomic) NSMutableArray *items;
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
 

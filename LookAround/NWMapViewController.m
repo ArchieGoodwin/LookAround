@@ -15,6 +15,8 @@
 #import "Defines.h"
 @interface NWMapViewController ()
 {
+    MBProgressHUD *HUD;
+
     NSInteger currentItem;
 }
 @end
@@ -51,6 +53,51 @@
     [super viewWillAppear:animated];
     
     [self addAnnotationsToMap];
+}
+
+
+-(void)showHUD
+{
+    
+    HUD = [[MBProgressHUD alloc] initWithView:self.view.window];
+	[self.view.window addSubview:HUD];
+    
+    //HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    HUD.mode = MBProgressHUDModeIndeterminate;
+    HUD.dimBackground = YES;
+    HUD.delegate = self;
+    HUD.labelText = @"Please wait...";
+    [HUD show:YES];
+}
+
+-(void)hideHUD
+{
+    [HUD hide:YES];
+    
+}
+
+-(IBAction)findPlacesOnMap:(id)sender
+{
+    CLLocationCoordinate2D coord = [_mapView centerCoordinate];
+    [self showHUD];
+    [NWHelper poisNearLocation:coord completionBlock:^(NSArray *result, NSError *error) {
+        if(!error)
+        {
+            //NSSortDescriptor *sortDescriptor;
+            //sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"itemDistance" ascending:YES selector:@selector(compare:)];
+            //NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+            [_items removeAllObjects];
+            _items = [NSMutableArray arrayWithArray:result];
+            
+            [self addAnnotationsToMap];
+            
+            
+            
+        }
+        
+        [self hideHUD];
+        
+    }];
 }
 
 #pragma mark Map methods

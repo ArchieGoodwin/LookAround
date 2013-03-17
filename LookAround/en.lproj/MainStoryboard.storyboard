@@ -260,7 +260,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="JnV-iF-KOR"/>
+                    <navigationItem key="navigationItem" id="JnV-iF-KOR">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="4LT-6E-YHM">
+                            <connections>
+                                <action selector="findPlacesOnMap:" destination="l9L-hp-BqA" id="B5D-JW-av2"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="FuR-Yi-PF8" id="aCA-RH-Jow"/>
                         <segue destination="Xae-mH-3dZ" kind="push" identifier="LocViewFromMapView" id="TPn-3m-lFn"/>
@@ -292,6 +298,7 @@
         <class className="NWMapViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NWMapViewController.h"/>
             <relationships>
+                <relationship kind="action" name="findPlacesOnMap:"/>
                 <relationship kind="action" name="goToPlace:"/>
                 <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
             </relationships>
