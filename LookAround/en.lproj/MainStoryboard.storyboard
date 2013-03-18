@@ -62,7 +62,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="Bb0-lk-ZHK">
-                        <barButtonItem key="rightBarButtonItem" title="Map" id="O3h-Dk-nUR">
+                        <barButtonItem key="rightBarButtonItem" image="103-map.png" id="O3h-Dk-nUR">
                             <connections>
                                 <segue destination="l9L-hp-BqA" kind="push" identifier="MapView" id="URh-hZ-06t"/>
                             </connections>
@@ -132,7 +132,25 @@
                                     <view contentMode="scaleToFill" id="hrl-tB-Bw3">
                                         <rect key="frame" x="0.0" y="456" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="downbar.png" id="fGu-bO-G2B">
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="nTo-fx-fjH">
+                                                <rect key="frame" x="270" y="0.0" width="50" height="51"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                <state key="normal" image="03-arrow-north.png">
+                                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="highlighted">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
                                     <view contentMode="scaleToFill" id="nKt-XY-tya">
                                         <rect key="frame" x="0.0" y="506" width="320" height="456"/>
@@ -147,6 +165,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="CTR-P0-FP4"/>
                     <connections>
+                        <outlet property="btnDownShow" destination="nTo-fx-fjH" id="vvk-Tw-jKt"/>
                         <outlet property="btnSwitch" destination="r2x-ZP-6rI" id="yHk-GW-ME2"/>
                         <outlet property="containerView" destination="7Mu-3R-54O" id="JwC-Lh-zmv"/>
                         <outlet property="downView" destination="nKt-XY-tya" id="4hT-OH-QAB"/>
@@ -261,7 +280,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="JnV-iF-KOR">
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="4LT-6E-YHM">
+                        <barButtonItem key="rightBarButtonItem" image="13-target.png" id="4LT-6E-YHM">
                             <connections>
                                 <action selector="findPlacesOnMap:" destination="l9L-hp-BqA" id="B5D-JW-av2"/>
                             </connections>
@@ -277,6 +296,12 @@
             <point key="canvasLocation" x="165" y="220"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="03-arrow-north.png" width="16" height="19"/>
+        <image name="103-map.png" width="26" height="21"/>
+        <image name="13-target.png" width="28" height="28"/>
+        <image name="downbar.png" width="320" height="50"/>
+    </resources>
     <classes>
         <class className="NWLabel" superclassName="UILabel">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NWLabel.h"/>
@@ -285,6 +310,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NWLocationViewController.h"/>
             <relationships>
                 <relationship kind="action" name="btnSwitchMap:"/>
+                <relationship kind="outlet" name="btnDownShow" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="btnSwitch" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="containerView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="downView" candidateClass="UIView"/>
@@ -298,8 +324,6 @@
         <class className="NWMapViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NWMapViewController.h"/>
             <relationships>
-                <relationship kind="action" name="findPlacesOnMap:"/>
-                <relationship kind="action" name="goToPlace:"/>
                 <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
             </relationships>
         </class>

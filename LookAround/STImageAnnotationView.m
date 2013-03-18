@@ -4,8 +4,8 @@
 #import "STImageAnnotationView.h"
 #import "MapAnnotation.h"
 
-#define kHeight 54
-#define kWidth  60
+#define kHeight 26
+#define kWidth  16
 #define kBorder 2
 
 @implementation STImageAnnotationView
@@ -23,13 +23,13 @@
 	_imageView = [[UIImageView alloc] initWithImage:image];
 	
 	//_imageView.frame = CGRectMake(kBorder, kBorder, kWidth - 2 * kBorder, kHeight - 2 * kBorder);
-    if([csAnnotation.userData isEqualToString:@"pin.png"])
+    if([csAnnotation.userData isEqualToString:@"07-map-marker.png"])
     {
-        _imageView.frame = CGRectMake(0, 0, 60, 54);
+        _imageView.frame = CGRectMake(0, 0, 16, 26);
 
     }
     else {
-        _imageView.frame = CGRectMake(0, 0, 60, 54);
+        _imageView.frame = CGRectMake(0, 0, 16, 26);
 
     }
 	_imageView.contentMode = UIViewContentModeScaleAspectFill;

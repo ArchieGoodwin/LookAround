@@ -107,20 +107,40 @@
     [btn_chat addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
     [btn_chat setTag:tag];
     [btn_chat setBackgroundColor:[UIColor clearColor]];
-    btn_chat.layer.borderColor = [[UIColor lightGrayColor] CGColor];
-    btn_chat.layer.cornerRadius = 5;
-    btn_chat.layer.borderWidth = 1;
+    //btn_chat.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    //btn_chat.layer.cornerRadius = 5;
+    //btn_chat.layer.borderWidth = 1;
     return btn_chat;
 }
 
 
--(void)addLabelWithText:(NSString *)text toView:(UIView *)toView rect:(CGRect)rect font:(UIFont *)font
+-(void)addLabelWithText:(NSString *)text toView:(UIView *)toView rect:(CGRect)rect font:(UIFont *)font color:(UIColor *)color
+{
+    UILabel *lblTemp = [[UILabel alloc] initWithFrame:rect];
+    lblTemp.backgroundColor = [UIColor clearColor];
+    lblTemp.textColor = color;
+    lblTemp.font = font;
+    lblTemp.text = text;
+    [toView addSubview:lblTemp];
+}
+
+-(void)addLabelMultiLineWithText:(NSString *)text toView:(UIView *)toView rect:(CGRect)rect font:(UIFont *)font
 {
     UILabel *lblTemp = [[UILabel alloc] initWithFrame:rect];
     lblTemp.backgroundColor = [UIColor clearColor];
     lblTemp.textColor = [UIColor grayColor];
     lblTemp.font = font;
     lblTemp.text = text;
+    lblTemp.numberOfLines = 0;
+    lblTemp.lineBreakMode = NSLineBreakByWordWrapping;
+    
+    
+	CGSize constraintSize = CGSizeMake(rect.size.width, MAXFLOAT);
+	CGSize labelSize = [text sizeWithFont:font constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
+    
+    lblTemp.frame = CGRectMake(rect.origin.x, rect.origin.y, rect.size.width, labelSize.height);
+    
+    
     [toView addSubview:lblTemp];
 }
 

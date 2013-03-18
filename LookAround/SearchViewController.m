@@ -23,7 +23,7 @@
     double longitude;
     NSDictionary *currentLocation;
     MBProgressHUD *HUD;
-
+    UIBarButtonItem *btnMap;
 }
 @end
 
@@ -64,6 +64,20 @@
 {
     //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatedLocation) name:chLocationMuchUpdated object:nil];
 
+    
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"bar.png"] forBarMetrics:UIBarMetricsDefault];
+    
+    
+    UIBarButtonItem *btnLoc = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"74-location.png"] style:UIBarButtonItemStylePlain target:self action:@selector(searchMyLocation:)];
+
+    self.navigationItem.leftBarButtonItem = btnLoc;
+
+    self.navigationItem.backBarButtonItem = nil;
+        
+    
+    UIImage *image = [[UIImage imageNamed:@"bar.png"]  resizableImageWithCapInsets:UIEdgeInsetsMake(0, 5, 0, 5)];
+    [[UIBarButtonItem appearance] setBackgroundImage:image forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    
     [self showOrHideBtnMap:NO];
 
     _currentPageType = SearchPagePastSearches;
@@ -118,6 +132,35 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+-(IBAction)searchMyLocation:(id)sender
+{
+    [self.searchBar resignFirstResponder];
+    [self showHUD];
+    _currentPageType = SearchPageBy4square;
+    CLGeocoder *geo = [[CLGeocoder alloc] init];
+    [geo reverseGeocodeLocation:[NWHelper locationManager].location completionHandler:^(NSArray *placemarks, NSError *error) {
+        placemark = [placemarks objectAtIndex:0];
+        NSLog(@"Placemark: %@", placemark.addressDictionary);
+        [NWHelper poisNearLocation:CLLocationCoordinate2DMake(placemark.location.coordinate.latitude, placemark.location.coordinate.longitude) completionBlock:^(NSArray *result, NSError *error) {
+            if(!error)
+            {
+                NSSortDescriptor *sortDescriptor;
+                sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"itemDistance" ascending:YES selector:@selector(compare:)];
+                NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+                _searchResult = [NSMutableArray arrayWithArray:[result sortedArrayUsingDescriptors:sortDescriptors]];
+                
+                [self.tableView reloadData];
+                
+                [self showOrHideBtnMap:YES];
+                
+            }
+            
+            [self hideHUD];
+            
+        }];
+    }];
+}
 
 -(void)showOrHideBtnMap:(BOOL)show
 {
@@ -295,7 +338,7 @@
         NWLocationViewController *controller = (NWLocationViewController *)segue.destinationViewController;
         NSDictionary *dict = [NWHelper createDict:_searchBar.text lat:placemark.location.coordinate.latitude lng:placemark.location.coordinate.longitude];
 
-        
+        controller.nwItem = nil;
         controller.location = dict;
     }
     
@@ -308,7 +351,7 @@
     {
         NWMapViewController *controller = (NWMapViewController *)segue.destinationViewController;
         controller.items = [_searchResult mutableCopy];
-        //[controller addAnnotationsToMap];
+        [controller addAnnotationsToMap];
         
     }
 }

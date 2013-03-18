@@ -34,11 +34,27 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
     
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btn setImage:[UIImage imageNamed:@"09-arrow-west.png"] forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchUpInside];
+   
+    btn.frame = CGRectMake(0.0, 0.0, 44, 44);
+    UIBarButtonItem *barbtn = [[UIBarButtonItem alloc] initWithCustomView:btn];
+    self.navigationItem.leftBarButtonItem = barbtn;
+    
+    
+    
+    
+    [super viewDidLoad];
+    [self addAnnotationsToMap];
 	// Do any additional setup after loading the view.
 }
 
+-(void)goBack
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 
 - (void)didReceiveMemoryWarning
@@ -52,7 +68,7 @@
 {
     [super viewWillAppear:animated];
     
-    [self addAnnotationsToMap];
+    //[self addAnnotationsToMap];
 }
 
 
@@ -162,7 +178,7 @@
     
     
     
-    
+    [self centerMap2];
     
     
     
@@ -171,7 +187,7 @@
 
 -(void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views
 {
-    [self centerMap2];
+    //[self centerMap2];
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mv viewForAnnotation:(id<MKAnnotation>)a

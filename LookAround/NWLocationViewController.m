@@ -16,6 +16,8 @@
 #import "InstagramCollectionViewController.h"
 #import "NWFourSquareViewController.h"
 #import "ALScrollViewPaging.h"
+#import "AFNetworking.h"
+#import "NWFourSquarePhoto.h"
 
 #define RECTVISIBLE CGRectMake(0, 0, 320, 300)
 #define RECTHIDDEN CGRectMake(0, -300, 320, 300)
@@ -30,6 +32,7 @@
     BOOL downViewShown;
     ALScrollViewPaging *scrollView;
     BOOL infoShown;
+    UIImageView *placeImage;
 }
 @end
 
@@ -55,6 +58,8 @@
         _containerView.frame = CGRectMake(0,  [NWHelper isIphone5] ? -456 : -366, 320, [NWHelper isIphone5] ? 962 : 782);
         
         [UIView commitAnimations];
+        [_btnDownShow setImage:[UIImage imageNamed:@"06-arrow-south.png"] forState:UIControlStateNormal];
+        [_btnDownShow addTarget:self action:@selector(showUpperPart) forControlEvents:UIControlEventTouchUpInside];
     }
     else
     {
@@ -63,8 +68,10 @@
         [UIView setAnimationDuration:0.3];
         
         _containerView.frame = CGRectMake(0, 0, 320, [NWHelper isIphone5] ? 962 : 782);
-        
+
         [UIView commitAnimations];
+        [_btnDownShow setImage:[UIImage imageNamed:@"03-arrow-north.png"] forState:UIControlStateNormal];
+        [_btnDownShow addTarget:self action:@selector(showDownPart) forControlEvents:UIControlEventTouchUpInside];
     }
 }
 
@@ -159,19 +166,29 @@
     infoView.tag = 776;
     infoView.backgroundColor = [UIColor whiteColor];
     
-    [NWHelper addLabelWithText:_nwItem.itemName toView:infoView rect:CGRectMake(10, 60, 300, 40) font:[UIFont systemFontOfSize:17]];
     
-    [NWHelper addLabelWithText:[NSString stringWithFormat:@"Rating:%.2f/Likes: %i", _nwItem.rating, _nwItem.likes] toView:infoView rect:CGRectMake(10, 110, 140, 30) font:[UIFont systemFontOfSize:12]];
-    [NWHelper addLabelWithText:[NSString stringWithFormat:@"Here now: %i", _nwItem.hereNow] toView:infoView rect:CGRectMake(10, 160, 140, 30) font:[UIFont systemFontOfSize:12]];
-    [NWHelper addLabelWithText:[NSString stringWithFormat:@"Status: %@", _nwItem.status] toView:infoView rect:CGRectMake(10, 210, 140, 30) font:[UIFont systemFontOfSize:12]];
-    [NWHelper addLabelWithText:[NSString stringWithFormat:@"Checkins:%i", _nwItem.checkinsCount] toView:infoView rect:CGRectMake(10, 260, 140, 30) font:[UIFont systemFontOfSize:12]];
-    [NWHelper addLabelWithText:[NSString stringWithFormat:@"Users: %i", _nwItem.userCount] toView:infoView rect:CGRectMake(170, 210, 140, 30) font:[UIFont systemFontOfSize:12]];
+    placeImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 100)];
+    placeImage.contentMode = UIViewContentModeScaleAspectFill;
+    [placeImage setClipsToBounds:YES];
+    [infoView addSubview:placeImage];
+    
+    UIView *back = [[UIView alloc] initWithFrame:CGRectMake(15, 60, 290, 30)];
+    UIColor *bg = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.6];
+    back.backgroundColor = bg;
+    [infoView addSubview:back];
+    [NWHelper addLabelWithText:_nwItem.itemName toView:infoView rect:CGRectMake(20, 60, 280, 30) font:[UIFont systemFontOfSize:17] color:[UIColor blackColor]];
+    
+    [NWHelper addLabelWithText:[NSString stringWithFormat:@"Rating:%.2f/Likes: %i", _nwItem.rating, _nwItem.likes] toView:infoView rect:CGRectMake(10, 110, 140, 30) font:[UIFont systemFontOfSize:12] color:[UIColor grayColor]];
+    [NWHelper addLabelWithText:[NSString stringWithFormat:@"Here now: %i", _nwItem.hereNow] toView:infoView rect:CGRectMake(10, 160, 140, 30) font:[UIFont systemFontOfSize:12] color:[UIColor grayColor]];
+    [NWHelper addLabelWithText:[NSString stringWithFormat:@"Status: %@", _nwItem.status == nil ? @""  : _nwItem.status] toView:infoView rect:CGRectMake(10, 210, 140, 30) font:[UIFont systemFontOfSize:12] color:[UIColor grayColor]];
+    [NWHelper addLabelWithText:[NSString stringWithFormat:@"Checkins:%i", _nwItem.checkinsCount] toView:infoView rect:CGRectMake(10, 260, 140, 30) font:[UIFont systemFontOfSize:12] color:[UIColor grayColor]];
+    [NWHelper addLabelWithText:[NSString stringWithFormat:@"Users: %i", _nwItem.userCount] toView:infoView rect:CGRectMake(170, 210, 140, 30) font:[UIFont systemFontOfSize:12] color:[UIColor grayColor]];
 
 
-    UIButton *link = [NWHelper createButtonWithImageAndText:@"25-circle-northeast.png" text:@"Web site" action:@selector(showLink) tag:1007 frame:CGRectMake(170, 110, 140, 30) target:self];
+    UIButton *link = [NWHelper createButtonWithImageAndText:@"25-circle-northeast.png" text:@"Place web page" action:@selector(showLink) tag:1007 frame:CGRectMake(170, 110, 140, 30) target:self];
     [infoView addSubview: link];
     
-    [NWHelper addLabelWithText:[NSString stringWithFormat:@"%@, %@", [_nwItem.location objectForKey:@"address"], [_nwItem.location objectForKey:@"city"]] toView:infoView rect:CGRectMake(170, 160, 140, 30) font:[UIFont systemFontOfSize:12]];
+    [NWHelper addLabelMultiLineWithText:[NSString stringWithFormat:@"%@, %@", [_nwItem.location objectForKey:@"address"], [_nwItem.location objectForKey:@"city"]] toView:infoView rect:CGRectMake(170, 160, 140, 30) font:[UIFont systemFontOfSize:12]];
 
     
     [self.view addSubview:infoView];
@@ -230,21 +247,41 @@
     
 }
 
+-(void)goBack
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 
 - (void)viewDidLoad
 {
     
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btn setImage:[UIImage imageNamed:@"09-arrow-west.png"] forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchUpInside];
+    
+    btn.frame = CGRectMake(0.0, 0.0, 44, 44);
+    UIBarButtonItem *barbtn = [[UIBarButtonItem alloc] initWithCustomView:btn];
+    self.navigationItem.leftBarButtonItem = barbtn;
+
+
+
+    
+    
     [self createViewInfo];
     
-    UIButton *btnTitle =[UIButton buttonWithType:UIButtonTypeCustom];
-    [btnTitle setTitle:@"Place info" forState:UIControlStateNormal];
-    [btnTitle setBackgroundColor:[UIColor whiteColor]];
-    [btnTitle setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-    btnTitle.frame = CGRectMake(0, 0, 120, 25);
-    [btnTitle addTarget:self action:@selector(showMenuView:) forControlEvents:UIControlEventTouchUpInside];
-    
-    _myTitle.titleView = btnTitle;
-    
+    if(_nwItem)
+    {
+        UIButton *btnTitle =[UIButton buttonWithType:UIButtonTypeCustom];
+        [btnTitle setImage:[UIImage imageNamed:@"42-info.png"] forState:UIControlStateNormal];
+        
+        btnTitle.frame = CGRectMake(0, 0, 44, 44);
+        [btnTitle addTarget:self action:@selector(showMenuView:) forControlEvents:UIControlEventTouchUpInside];
+        
+        _myTitle.titleView = btnTitle;
+
+    }
+        
     isMapShown = YES;
     [self btnSwitchMap:nil];
     
@@ -256,14 +293,16 @@
         _downView.frame = CGRectMake(0, 416, 320, 361);
     }
     
-    _btnTwitter = [NWHelper createButtonWithImageAndText:@"209-twitter.png" text:nil action:@selector(showTwitter) tag:1001 frame:CGRectMake(10, 10, 30, 30) target:self];
+    [_btnDownShow addTarget:self action:@selector(showDownPart) forControlEvents:UIControlEventTouchUpInside];
+    
+    _btnTwitter = [NWHelper createButtonWithImageAndText:@"210-twitterbird.png" text:nil action:@selector(showTwitter) tag:1001 frame:CGRectMake(10, 10, 30, 30) target:self];
     
     _btnInstagram = [NWHelper createButtonWithImageAndText:@"Instagram_Icon_Small.png" text:nil action:@selector(showInstagram) tag:1002 frame:CGRectMake(50, 10, 30, 30) target:self];
 
     _btn4s = [NWHelper createButtonWithImageAndText:@"4s.png" text:nil action:@selector(show4square) tag:1003 frame:CGRectMake(90, 10, 30, 30) target:self];
 
     
-    [self setTwitterButtonGlow];
+    //[self setTwitterButtonGlow];
     
     [self startInstaAnimate];
     
@@ -274,7 +313,7 @@
     [_statusView addSubview:_btnTwitter];
     [_statusView addSubview:_btnInstagram];
     [_statusView addSubview:_btn4s];
-    
+
     mapView.layer.cornerRadius = 3;
     
     //mapView.layer.borderWidth = 2;
@@ -289,15 +328,15 @@
     [super viewDidLoad];
     
     
-    self.navigationItem.title = @"Place";
+    self.navigationItem.title = [_location objectForKey:@"name"];
     [NWHelper getTwitterAround:[[_location objectForKey:@"latitude"] doubleValue] lng:[[_location objectForKey:@"longitude"] doubleValue] completionBlock:^(NSArray *result, NSError *error) {
         
         tweets = result;
         if(!_btnTwitter)
         {
-            _btnTwitter = [NWHelper createButtonWithImageAndText:@"209-twitter.png" text:[NSString stringWithFormat:@"Tweets:%@", result.count >= 100 ? @">100" : [NSString stringWithFormat:@"%i", result.count]] action:@selector(showTwitter) tag:1001 frame:CGRectMake(10, 10, 30, 30) target:self];
+            _btnTwitter = [NWHelper createButtonWithImageAndText:@"210-twitterbird.png" text:[NSString stringWithFormat:@"Tweets:%@", result.count >= 100 ? @">100" : [NSString stringWithFormat:@"%i", result.count]] action:@selector(showTwitter) tag:1001 frame:CGRectMake(10, 10, 30, 30) target:self];
             
-            [self setTwitterButtonGlow];
+            //[self setTwitterButtonGlow];
 
             [_statusView addSubview:_btnTwitter];
         }
@@ -305,9 +344,9 @@
         {
             [_btnTwitter removeFromSuperview];
             
-            _btnTwitter = [NWHelper createButtonWithImageAndText:@"209-twitter.png" text:[NSString stringWithFormat:@"Tweets:%@", result.count >= 100 ? @">100" : [NSString stringWithFormat:@"%i", result.count]] action:@selector(showTwitter) tag:1001 frame:CGRectMake(10, 10, 30, 30) target: self];
+            _btnTwitter = [NWHelper createButtonWithImageAndText:@"210-twitterbird.png" text:[NSString stringWithFormat:@"Tweets:%@", result.count >= 100 ? @">100" : [NSString stringWithFormat:@"%i", result.count]] action:@selector(showTwitter) tag:1001 frame:CGRectMake(10, 10, 30, 30) target: self];
             
-            [self setTwitterButtonGlow];
+            //[self setTwitterButtonGlow];
 
             [_statusView addSubview:_btnTwitter];
             
@@ -331,15 +370,34 @@
 
     }];
        
+    if(_nwItem)
+    {
+        [NWHelper photosByVenueId:_nwItem.itemId completionBlock:^(NSArray *result, NSError *error) {
+            fourSquarePhotos = result;
+            
+            [self stop4sAnimate];
+            
+            [self showScrollView];
+            
+            if(fourSquarePhotos.count > 0)
+            {
+                NWFourSquarePhoto *photo = fourSquarePhotos[0];
+                
+                //UIImage* image = [UIImage imageNamed:@"BigPlaceholder.png"];
+                placeImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:photo.photoUrlFull]]];
+                //[placeImage setImageWithURL:[NSURL URLWithString:photo.photoUrlFull] placeholderImage:image];
+                //placeImage.contentMode = UIViewContentModeScaleAspectFill;
+            }
+            
+            
+        }];
+    }
+    else
+    {
+        _btn4s.hidden = YES;
+        
+    }
     
-    [NWHelper photosByVenueId:_nwItem.itemId completionBlock:^(NSArray *result, NSError *error) {
-        fourSquarePhotos = result;
-        
-        [self stop4sAnimate];
-        
-        [self showScrollView];
-
-    }];
     
     
     [self addAnnotationsToMap];
@@ -366,6 +424,7 @@
     if(!downViewShown)
     {
         [self switchView:nil];
+       
     }
 }
 
@@ -408,9 +467,12 @@
     UIView *view3 = [self createInstagramView];
     [views addObject:view3];
     
-    
-    UIView *view2 = [self createFourSquareView];
-    [views addObject:view2];
+    if(_nwItem)
+    {
+        UIView *view2 = [self createFourSquareView];
+        [views addObject:view2];
+    }
+
 
 
 
@@ -499,8 +561,7 @@
         [scrollView scrollRectToVisible:frame animated:YES];
         scrollView.pageControlBeingUsed = YES;
         
-        
-        
+
         [self switchView:nil];
         
     }
@@ -515,6 +576,7 @@
         frame.size = scrollView.frame.size;
         [scrollView scrollRectToVisible:frame animated:YES];
         scrollView.pageControlBeingUsed = YES;
+     
     }
     
     
@@ -536,7 +598,7 @@
         scrollView.pageControlBeingUsed = YES;
         
         [self switchView:nil];
-
+        
     }
     else
     {
@@ -548,6 +610,7 @@
         frame.size = scrollView.frame.size;
         [scrollView scrollRectToVisible:frame animated:YES];
         scrollView.pageControlBeingUsed = YES;
+       
     }
     
     
@@ -579,7 +642,7 @@
         frame.size = scrollView.frame.size;
         [scrollView scrollRectToVisible:frame animated:YES];
         scrollView.pageControlBeingUsed = YES;
-        
+
         [self switchView:nil];
         
     }
@@ -593,6 +656,7 @@
         frame.size = scrollView.frame.size;
         [scrollView scrollRectToVisible:frame animated:YES];
         scrollView.pageControlBeingUsed = YES;
+       
     }
 
     

@@ -20,7 +20,7 @@
 
         if(annotationType == WPMapAnnotationCategoryImage)
         {
-            self.userData = @"pin.png";
+            self.userData = @"07-map-marker.png";
             
         }
 		return self;
@@ -39,7 +39,7 @@
         
         if(annotationType == WPMapAnnotationCategoryImage)
         {
-            self.userData = @"pin.png";
+            self.userData = @"07-map-marker.png";
             
         }
 		return self;
