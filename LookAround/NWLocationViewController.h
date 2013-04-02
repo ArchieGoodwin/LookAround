@@ -13,7 +13,10 @@
 #import "NWFourSquareViewController.h"
 #import "NWItem.h"
 @interface NWLocationViewController : UIViewController <MKMapViewDelegate, UIWebViewDelegate, UIActionSheetDelegate>
+@property (weak, nonatomic) IBOutlet UIImageView *weatherIcon;
+@property (weak, nonatomic) IBOutlet UILabel *lblTemperature;
 
+@property (weak, nonatomic) IBOutlet UIView *weatherView;
 @property (weak, nonatomic) IBOutlet UIButton *btnDownShow;
 @property (weak, nonatomic) IBOutlet UINavigationItem *myTitle;
 @property (weak, nonatomic) IBOutlet UIView *containerView;

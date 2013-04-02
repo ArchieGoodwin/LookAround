@@ -2,4 +2,19 @@
 <Bucket
    type = "0"
    version = "1.0">
+   <FileBreakpoints>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "LookAround/NWAppDelegate.m"
+         timestampString = "386426172.88373"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "52"
+         endingLineNumber = "52"
+         landmarkName = "-application:openURL:sourceApplication:annotation:"
+         landmarkType = "5">
+      </FileBreakpoint>
+   </FileBreakpoints>
 </Bucket>

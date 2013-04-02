@@ -8,8 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		5D060C3BD2454FF8A10EF59A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B0F874F53034B4E8DBFD9D5 /* libPods.a */; };
+		D54CA26D15EF15911C84926B /* TwitterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D54CABDB5C2D4468A92954B3 /* TwitterCell.xib */; };
+		D54CA7915581992D0A654191 /* NWTwitterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D54CAAD5864FF0191030E159 /* NWTwitterViewController.m */; };
+		D54CA7F7EE73EC30DAB3AA5A /* NWTwitterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D54CAC405C4570E284AC0E93 /* NWTwitterCell.m */; };
+		DC08DC9616F87F1C00510EFC /* Sequencer.m in Sources */ = {isa = PBXBuildFile; fileRef = DC08DC9516F87F1C00510EFC /* Sequencer.m */; };
 		DC3E265916D4D43B004483D5 /* NWFoursquare.m in Sources */ = {isa = PBXBuildFile; fileRef = DC3E265816D4D43B004483D5 /* NWFoursquare.m */; };
-		DC3E265B16D4E327004483D5 /* TwitterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC3E265A16D4E327004483D5 /* TwitterCell.xib */; };
 		DC3E265D16D6022B004483D5 /* pin.png in Resources */ = {isa = PBXBuildFile; fileRef = DC3E265C16D6022B004483D5 /* pin.png */; };
 		DC3E266416D623BE004483D5 /* InstagramCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC3E266316D623BE004483D5 /* InstagramCollectionViewController.m */; };
 		DC3E266C16D623F3004483D5 /* StackedGridLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = DC3E266616D623F3004483D5 /* StackedGridLayout.m */; };
@@ -68,15 +71,27 @@
 		DC4C5D2316F73208006F37ED /* 03-arrow-north@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC4C5D2116F73208006F37ED /* 03-arrow-north@2x.png */; };
 		DC4C5D2616F735C5006F37ED /* 42-info.png in Resources */ = {isa = PBXBuildFile; fileRef = DC4C5D2416F735C5006F37ED /* 42-info.png */; };
 		DC4C5D2716F735C5006F37ED /* 42-info@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC4C5D2516F735C5006F37ED /* 42-info@2x.png */; };
+		DC4C5D2B16F82B51006F37ED /* NWAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC4C5D2A16F82B51006F37ED /* NWAboutViewController.m */; };
+		DC4C5D2D16F82D0C006F37ED /* poweredByFoursquare_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = DC4C5D2C16F82D0C006F37ED /* poweredByFoursquare_gray.png */; };
+		DC4C5D3016F8348F006F37ED /* NWWeather.m in Sources */ = {isa = PBXBuildFile; fileRef = DC4C5D2F16F8348F006F37ED /* NWWeather.m */; };
+		DC4C5D3216F86341006F37ED /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = DC4C5D3116F86341006F37ED /* icon.png */; };
+		DC4C5D3416F86346006F37ED /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC4C5D3316F86346006F37ED /* icon@2x.png */; };
+		DC4C5D3616F86353006F37ED /* icon1024.png in Resources */ = {isa = PBXBuildFile; fileRef = DC4C5D3516F86353006F37ED /* icon1024.png */; };
+		DC4C5D3816F8690E006F37ED /* pin_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = DC4C5D3716F8690E006F37ED /* pin_blue.png */; };
+		DC4C5D3B16F86A3E006F37ED /* pin1.png in Resources */ = {isa = PBXBuildFile; fileRef = DC4C5D3916F86A3D006F37ED /* pin1.png */; };
+		DC4C5D3C16F86A3E006F37ED /* pin1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC4C5D3A16F86A3D006F37ED /* pin1@2x.png */; };
 		DC56CF8716E7534000FF429A /* 243-globe.png in Resources */ = {isa = PBXBuildFile; fileRef = DC56CF8516E7534000FF429A /* 243-globe.png */; };
 		DC56CF8816E7534000FF429A /* 243-globe@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC56CF8616E7534000FF429A /* 243-globe@2x.png */; };
 		DC56CF8B16E755B000FF429A /* 25-circle-northeast.png in Resources */ = {isa = PBXBuildFile; fileRef = DC56CF8916E755B000FF429A /* 25-circle-northeast.png */; };
 		DC56CF8C16E755B000FF429A /* 25-circle-northeast@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC56CF8A16E755B000FF429A /* 25-circle-northeast@2x.png */; };
+		DC5EA5411708546400579FED /* BZFoursquare.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5EA53E1708546400579FED /* BZFoursquare.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DC5EA5421708546400579FED /* BZFoursquareRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5EA5401708546400579FED /* BZFoursquareRequest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DC5EA5441708589800579FED /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC5EA5431708589800579FED /* MobileCoreServices.framework */; };
+		DC5EA5471709BB2C00579FED /* 05-shuffle.png in Resources */ = {isa = PBXBuildFile; fileRef = DC5EA5451709BB2C00579FED /* 05-shuffle.png */; };
+		DC5EA5481709BB2C00579FED /* 05-shuffle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC5EA5461709BB2C00579FED /* 05-shuffle@2x.png */; };
 		DC98307E16C8C1CC004CB060 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC98307D16C8C1CC004CB060 /* Social.framework */; };
 		DC98308016C8C25A004CB060 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC98307F16C8C25A004CB060 /* Accounts.framework */; };
 		DC98308316C90BB0004CB060 /* NWtwitter.m in Sources */ = {isa = PBXBuildFile; fileRef = DC98308216C90BB0004CB060 /* NWtwitter.m */; };
-		DC98308B16CA664F004CB060 /* NWTwitterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC98308A16CA664E004CB060 /* NWTwitterViewController.m */; };
-		DC98308E16CA6BB8004CB060 /* NWTwitterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DC98308D16CA6BB8004CB060 /* NWTwitterCell.m */; };
 		DC9A487F16D237E500E3CAEF /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9A486D16D237E500E3CAEF /* AFHTTPClient.m */; };
 		DC9A488016D237E500E3CAEF /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9A486F16D237E500E3CAEF /* AFHTTPRequestOperation.m */; };
 		DC9A488116D237E500E3CAEF /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9A487116D237E500E3CAEF /* AFImageRequestOperation.m */; };
@@ -101,9 +116,15 @@
 
 /* Begin PBXFileReference section */
 		7B0F874F53034B4E8DBFD9D5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D54CA981734740A0F701079E /* NWTwitterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWTwitterCell.h; sourceTree = "<group>"; };
+		D54CAAD5864FF0191030E159 /* NWTwitterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWTwitterViewController.m; sourceTree = "<group>"; };
+		D54CABDB5C2D4468A92954B3 /* TwitterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TwitterCell.xib; sourceTree = "<group>"; };
+		D54CAC405C4570E284AC0E93 /* NWTwitterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWTwitterCell.m; sourceTree = "<group>"; };
+		D54CAE2763301F27D840D181 /* NWTwitterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWTwitterViewController.h; sourceTree = "<group>"; };
+		DC08DC9416F87F1C00510EFC /* Sequencer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sequencer.h; sourceTree = "<group>"; };
+		DC08DC9516F87F1C00510EFC /* Sequencer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sequencer.m; sourceTree = "<group>"; };
 		DC3E265716D4D43B004483D5 /* NWFoursquare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWFoursquare.h; sourceTree = "<group>"; };
 		DC3E265816D4D43B004483D5 /* NWFoursquare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWFoursquare.m; sourceTree = "<group>"; };
-		DC3E265A16D4E327004483D5 /* TwitterCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TwitterCell.xib; sourceTree = "<group>"; };
 		DC3E265C16D6022B004483D5 /* pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pin.png; sourceTree = "<group>"; };
 		DC3E266216D623BE004483D5 /* InstagramCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstagramCollectionViewController.h; sourceTree = "<group>"; };
 		DC3E266316D623BE004483D5 /* InstagramCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstagramCollectionViewController.m; sourceTree = "<group>"; };
@@ -181,18 +202,32 @@
 		DC4C5D2116F73208006F37ED /* 03-arrow-north@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "03-arrow-north@2x.png"; sourceTree = "<group>"; };
 		DC4C5D2416F735C5006F37ED /* 42-info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "42-info.png"; sourceTree = "<group>"; };
 		DC4C5D2516F735C5006F37ED /* 42-info@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "42-info@2x.png"; sourceTree = "<group>"; };
+		DC4C5D2916F82B51006F37ED /* NWAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWAboutViewController.h; sourceTree = "<group>"; };
+		DC4C5D2A16F82B51006F37ED /* NWAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWAboutViewController.m; sourceTree = "<group>"; };
+		DC4C5D2C16F82D0C006F37ED /* poweredByFoursquare_gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poweredByFoursquare_gray.png; sourceTree = "<group>"; };
+		DC4C5D2E16F8348F006F37ED /* NWWeather.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWWeather.h; sourceTree = "<group>"; };
+		DC4C5D2F16F8348F006F37ED /* NWWeather.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWWeather.m; sourceTree = "<group>"; };
+		DC4C5D3116F86341006F37ED /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		DC4C5D3316F86346006F37ED /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
+		DC4C5D3516F86353006F37ED /* icon1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon1024.png; sourceTree = "<group>"; };
+		DC4C5D3716F8690E006F37ED /* pin_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pin_blue.png; sourceTree = "<group>"; };
+		DC4C5D3916F86A3D006F37ED /* pin1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pin1.png; sourceTree = "<group>"; };
+		DC4C5D3A16F86A3D006F37ED /* pin1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pin1@2x.png"; sourceTree = "<group>"; };
 		DC56CF8516E7534000FF429A /* 243-globe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "243-globe.png"; sourceTree = "<group>"; };
 		DC56CF8616E7534000FF429A /* 243-globe@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "243-globe@2x.png"; sourceTree = "<group>"; };
 		DC56CF8916E755B000FF429A /* 25-circle-northeast.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "25-circle-northeast.png"; sourceTree = "<group>"; };
 		DC56CF8A16E755B000FF429A /* 25-circle-northeast@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "25-circle-northeast@2x.png"; sourceTree = "<group>"; };
+		DC5EA53D1708546400579FED /* BZFoursquare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZFoursquare.h; sourceTree = "<group>"; };
+		DC5EA53E1708546400579FED /* BZFoursquare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZFoursquare.m; sourceTree = "<group>"; };
+		DC5EA53F1708546400579FED /* BZFoursquareRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZFoursquareRequest.h; sourceTree = "<group>"; };
+		DC5EA5401708546400579FED /* BZFoursquareRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZFoursquareRequest.m; sourceTree = "<group>"; };
+		DC5EA5431708589800579FED /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		DC5EA5451709BB2C00579FED /* 05-shuffle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "05-shuffle.png"; sourceTree = "<group>"; };
+		DC5EA5461709BB2C00579FED /* 05-shuffle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "05-shuffle@2x.png"; sourceTree = "<group>"; };
 		DC98307D16C8C1CC004CB060 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		DC98307F16C8C25A004CB060 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		DC98308116C90BB0004CB060 /* NWtwitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWtwitter.h; sourceTree = "<group>"; };
 		DC98308216C90BB0004CB060 /* NWtwitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWtwitter.m; sourceTree = "<group>"; };
-		DC98308916CA664E004CB060 /* NWTwitterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWTwitterViewController.h; sourceTree = "<group>"; };
-		DC98308A16CA664E004CB060 /* NWTwitterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWTwitterViewController.m; sourceTree = "<group>"; };
-		DC98308C16CA6BB8004CB060 /* NWTwitterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWTwitterCell.h; sourceTree = "<group>"; };
-		DC98308D16CA6BB8004CB060 /* NWTwitterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWTwitterCell.m; sourceTree = "<group>"; };
 		DC9A486C16D237E500E3CAEF /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
 		DC9A486D16D237E500E3CAEF /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
 		DC9A486E16D237E500E3CAEF /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -239,6 +274,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC5EA5441708589800579FED /* MobileCoreServices.framework in Frameworks */,
 				DC98308016C8C25A004CB060 /* Accounts.framework in Frameworks */,
 				DC98307E16C8C1CC004CB060 /* Social.framework in Frameworks */,
 				DC4B24FE16C687FD00976283 /* MapKit.framework in Frameworks */,
@@ -255,6 +291,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D54CA2A19FB4F624F24A50E5 /* TwitterView */ = {
+			isa = PBXGroup;
+			children = (
+				D54CA981734740A0F701079E /* NWTwitterCell.h */,
+				D54CAC405C4570E284AC0E93 /* NWTwitterCell.m */,
+				D54CABDB5C2D4468A92954B3 /* TwitterCell.xib */,
+				D54CAE2763301F27D840D181 /* NWTwitterViewController.h */,
+				D54CAAD5864FF0191030E159 /* NWTwitterViewController.m */,
+			);
+			name = TwitterView;
+			sourceTree = "<group>";
+		};
 		DC3E265E16D622CC004483D5 /* FirstView */ = {
 			isa = PBXGroup;
 			children = (
@@ -275,18 +323,6 @@
 				DC4B24F516C6855E00976283 /* MapAnnotation.m */,
 			);
 			name = LocationView;
-			sourceTree = "<group>";
-		};
-		DC3E266016D62321004483D5 /* TwitterView */ = {
-			isa = PBXGroup;
-			children = (
-				DC98308C16CA6BB8004CB060 /* NWTwitterCell.h */,
-				DC98308D16CA6BB8004CB060 /* NWTwitterCell.m */,
-				DC3E265A16D4E327004483D5 /* TwitterCell.xib */,
-				DC98308916CA664E004CB060 /* NWTwitterViewController.h */,
-				DC98308A16CA664E004CB060 /* NWTwitterViewController.m */,
-			);
-			name = TwitterView;
 			sourceTree = "<group>";
 		};
 		DC3E266116D62349004483D5 /* InstagramView */ = {
@@ -311,6 +347,9 @@
 		DC4B244316C4D27500976283 = {
 			isa = PBXGroup;
 			children = (
+				DC5EA5431708589800579FED /* MobileCoreServices.framework */,
+				DC4C5D3316F86346006F37ED /* icon@2x.png */,
+				DC4C5D3116F86341006F37ED /* icon.png */,
 				DC4B245516C4D27500976283 /* LookAround */,
 				DC4B244E16C4D27500976283 /* Frameworks */,
 				DC4B244D16C4D27500976283 /* Products */,
@@ -346,10 +385,10 @@
 		DC4B245516C4D27500976283 /* LookAround */ = {
 			isa = PBXGroup;
 			children = (
+				DC4C5D2816F82B3B006F37ED /* About */,
 				DC9F220D16F1DFE8009E3FBB /* MapView */,
 				DCFB478F16DCDC330098744A /* FourSquare */,
 				DC3E266116D62349004483D5 /* InstagramView */,
-				DC3E266016D62321004483D5 /* TwitterView */,
 				DC3E265F16D622DC004483D5 /* LocationView */,
 				DC3E265E16D622CC004483D5 /* FirstView */,
 				DC4B247B16C4DAE100976283 /* Model */,
@@ -358,6 +397,7 @@
 				DC4B245F16C4D27500976283 /* NWAppDelegate.m */,
 				DC4B246716C4D27500976283 /* MainStoryboard.storyboard */,
 				DC4B245616C4D27500976283 /* Supporting Files */,
+				D54CA2A19FB4F624F24A50E5 /* TwitterView */,
 			);
 			path = LookAround;
 			sourceTree = "<group>";
@@ -381,6 +421,9 @@
 		DC4B247716C4DA3F00976283 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				DC5EA53C1708546400579FED /* BZFoursquare */,
+				DC08DC9416F87F1C00510EFC /* Sequencer.h */,
+				DC08DC9516F87F1C00510EFC /* Sequencer.m */,
 				DC9FC19116E08304006A4657 /* ALScrollViewPaging.h */,
 				DC9FC19216E08304006A4657 /* ALScrollViewPaging.m */,
 				DCFB478316DCCF300098744A /* ASMediaFocusManager */,
@@ -413,13 +456,42 @@
 				DC3E267616D73717004483D5 /* NWinstagram.m */,
 				DC9FC18B16DE1566006A4657 /* NWFourSquarePhoto.h */,
 				DC9FC18C16DE1566006A4657 /* NWFourSquarePhoto.m */,
+				DC4C5D2E16F8348F006F37ED /* NWWeather.h */,
+				DC4C5D2F16F8348F006F37ED /* NWWeather.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		DC4C5D2816F82B3B006F37ED /* About */ = {
+			isa = PBXGroup;
+			children = (
+				DC4C5D2916F82B51006F37ED /* NWAboutViewController.h */,
+				DC4C5D2A16F82B51006F37ED /* NWAboutViewController.m */,
+			);
+			name = About;
+			sourceTree = "<group>";
+		};
+		DC5EA53C1708546400579FED /* BZFoursquare */ = {
+			isa = PBXGroup;
+			children = (
+				DC5EA53D1708546400579FED /* BZFoursquare.h */,
+				DC5EA53E1708546400579FED /* BZFoursquare.m */,
+				DC5EA53F1708546400579FED /* BZFoursquareRequest.h */,
+				DC5EA5401708546400579FED /* BZFoursquareRequest.m */,
+			);
+			path = BZFoursquare;
 			sourceTree = "<group>";
 		};
 		DC98308416CA4A0E004CB060 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				DC5EA5451709BB2C00579FED /* 05-shuffle.png */,
+				DC5EA5461709BB2C00579FED /* 05-shuffle@2x.png */,
+				DC4C5D3916F86A3D006F37ED /* pin1.png */,
+				DC4C5D3A16F86A3D006F37ED /* pin1@2x.png */,
+				DC4C5D3716F8690E006F37ED /* pin_blue.png */,
+				DC4C5D3516F86353006F37ED /* icon1024.png */,
+				DC4C5D2C16F82D0C006F37ED /* poweredByFoursquare_gray.png */,
 				DC4C5D2416F735C5006F37ED /* 42-info.png */,
 				DC4C5D2516F735C5006F37ED /* 42-info@2x.png */,
 				DC4C5D2016F73207006F37ED /* 03-arrow-north.png */,
@@ -572,7 +644,6 @@
 				DC4B246416C4D27500976283 /* Default@2x.png in Resources */,
 				DC4B246616C4D27500976283 /* Default-568h@2x.png in Resources */,
 				DC4B246916C4D27500976283 /* MainStoryboard.storyboard in Resources */,
-				DC3E265B16D4E327004483D5 /* TwitterCell.xib in Resources */,
 				DC3E265D16D6022B004483D5 /* pin.png in Resources */,
 				DC3E266F16D623F3004483D5 /* InstagramCell.xib in Resources */,
 				DC3E267416D6240C004483D5 /* FlickrPhotoHeaderView.xib in Resources */,
@@ -609,6 +680,16 @@
 				DC4C5D2316F73208006F37ED /* 03-arrow-north@2x.png in Resources */,
 				DC4C5D2616F735C5006F37ED /* 42-info.png in Resources */,
 				DC4C5D2716F735C5006F37ED /* 42-info@2x.png in Resources */,
+				DC4C5D2D16F82D0C006F37ED /* poweredByFoursquare_gray.png in Resources */,
+				DC4C5D3216F86341006F37ED /* icon.png in Resources */,
+				DC4C5D3416F86346006F37ED /* icon@2x.png in Resources */,
+				DC4C5D3616F86353006F37ED /* icon1024.png in Resources */,
+				DC4C5D3816F8690E006F37ED /* pin_blue.png in Resources */,
+				DC4C5D3B16F86A3E006F37ED /* pin1.png in Resources */,
+				DC4C5D3C16F86A3E006F37ED /* pin1@2x.png in Resources */,
+				D54CA26D15EF15911C84926B /* TwitterCell.xib in Resources */,
+				DC5EA5471709BB2C00579FED /* 05-shuffle.png in Resources */,
+				DC5EA5481709BB2C00579FED /* 05-shuffle@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -661,8 +742,6 @@
 				DC4B24F916C6855F00976283 /* STImageAnnotationView.m in Sources */,
 				DC4B24FA16C6855F00976283 /* MapAnnotation.m in Sources */,
 				DC98308316C90BB0004CB060 /* NWtwitter.m in Sources */,
-				DC98308B16CA664F004CB060 /* NWTwitterViewController.m in Sources */,
-				DC98308E16CA6BB8004CB060 /* NWTwitterCell.m in Sources */,
 				DC9A487F16D237E500E3CAEF /* AFHTTPClient.m in Sources */,
 				DC9A488016D237E500E3CAEF /* AFHTTPRequestOperation.m in Sources */,
 				DC9A488116D237E500E3CAEF /* AFImageRequestOperation.m in Sources */,
@@ -687,6 +766,13 @@
 				DC9FC19316E08304006A4657 /* ALScrollViewPaging.m in Sources */,
 				DCB1DF9116E4A64900D3CB1D /* NWLabel.m in Sources */,
 				DC9F221016F1E014009E3FBB /* NWMapViewController.m in Sources */,
+				DC4C5D2B16F82B51006F37ED /* NWAboutViewController.m in Sources */,
+				DC4C5D3016F8348F006F37ED /* NWWeather.m in Sources */,
+				DC08DC9616F87F1C00510EFC /* Sequencer.m in Sources */,
+				D54CA7F7EE73EC30DAB3AA5A /* NWTwitterCell.m in Sources */,
+				D54CA7915581992D0A654191 /* NWTwitterViewController.m in Sources */,
+				DC5EA5411708546400579FED /* BZFoursquare.m in Sources */,
+				DC5EA5421708546400579FED /* BZFoursquareRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

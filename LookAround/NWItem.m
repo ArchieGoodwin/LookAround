@@ -35,13 +35,27 @@
             @try {
                 self.itemName = [dict  objectForKey:@"name"];
                 self.itemId = [dict objectForKey:@"id"];
-                NSString *url = [[[[dict objectForKey:@"categories"] objectAtIndex:0] objectForKey:@"icon"] objectForKey:@"prefix"];
-                NSString *ext = [[[[dict objectForKey:@"categories"] objectAtIndex:0] objectForKey:@"icon"] objectForKey:@"suffix"];
-                NSString *fullUrl = [NSString stringWithFormat:@"%@%@", [url substringToIndex:[url length]-1], ext];
-                self.itemDistance = [[[dict objectForKey:@"location"] objectForKey:@"distance"] integerValue];
-                self.iconUrl = fullUrl;
-                self.itemLat = [[[dict objectForKey:@"location"] objectForKey:@"lat"] doubleValue];
-                self.itemLng = [[[dict objectForKey:@"location"] objectForKey:@"lng"] doubleValue];
+                if([dict objectForKey:@"categories"] != nil && ((NSArray *)[dict objectForKey:@"categories"]).count > 0)
+                {
+                    NSString *url = [[[[dict objectForKey:@"categories"] objectAtIndex:0] objectForKey:@"icon"] objectForKey:@"prefix"];
+                    NSString *ext = [[[[dict objectForKey:@"categories"] objectAtIndex:0] objectForKey:@"icon"] objectForKey:@"suffix"];
+                    NSString *fullUrl = [NSString stringWithFormat:@"%@%@", [url substringToIndex:[url length]-1], ext];
+                    self.iconUrl = fullUrl;
+
+                }
+                   
+               if([[dict objectForKey:@"location"] objectForKey:@"distance"] != [NSNull null])
+               {
+                   self.itemDistance = [[[dict objectForKey:@"location"] objectForKey:@"distance"] integerValue];
+
+               }
+                if([[dict objectForKey:@"location"] objectForKey:@"lat"] != [NSNull null])
+                {
+                    self.itemLat = [[[dict objectForKey:@"location"] objectForKey:@"lat"] doubleValue];
+                    self.itemLng = [[[dict objectForKey:@"location"] objectForKey:@"lng"] doubleValue];
+                }
+
+
                 
                 
                 _canonicalUrl = [dict objectForKey:@"canonicalUrl"];

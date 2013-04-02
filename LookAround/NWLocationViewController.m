@@ -18,6 +18,7 @@
 #import "ALScrollViewPaging.h"
 #import "AFNetworking.h"
 #import "NWFourSquarePhoto.h"
+#import "Sequencer.h"
 
 #define RECTVISIBLE CGRectMake(0, 0, 320, 300)
 #define RECTHIDDEN CGRectMake(0, -300, 320, 300)
@@ -179,14 +180,15 @@
     [NWHelper addLabelWithText:_nwItem.itemName toView:infoView rect:CGRectMake(20, 60, 280, 30) font:[UIFont systemFontOfSize:17] color:[UIColor blackColor]];
     
     [NWHelper addLabelWithText:[NSString stringWithFormat:@"Rating:%.2f/Likes: %i", _nwItem.rating, _nwItem.likes] toView:infoView rect:CGRectMake(10, 110, 140, 30) font:[UIFont systemFontOfSize:12] color:[UIColor grayColor]];
-    [NWHelper addLabelWithText:[NSString stringWithFormat:@"Here now: %i", _nwItem.hereNow] toView:infoView rect:CGRectMake(10, 160, 140, 30) font:[UIFont systemFontOfSize:12] color:[UIColor grayColor]];
-    [NWHelper addLabelWithText:[NSString stringWithFormat:@"Status: %@", _nwItem.status == nil ? @""  : _nwItem.status] toView:infoView rect:CGRectMake(10, 210, 140, 30) font:[UIFont systemFontOfSize:12] color:[UIColor grayColor]];
-    [NWHelper addLabelWithText:[NSString stringWithFormat:@"Checkins:%i", _nwItem.checkinsCount] toView:infoView rect:CGRectMake(10, 260, 140, 30) font:[UIFont systemFontOfSize:12] color:[UIColor grayColor]];
-    [NWHelper addLabelWithText:[NSString stringWithFormat:@"Users: %i", _nwItem.userCount] toView:infoView rect:CGRectMake(170, 210, 140, 30) font:[UIFont systemFontOfSize:12] color:[UIColor grayColor]];
+    [NWHelper addLabelWithText:[NSString stringWithFormat:@"Here now: %i", _nwItem.hereNow] toView:infoView rect:CGRectMake(10, 153, 140, 30) font:[UIFont systemFontOfSize:12] color:[UIColor grayColor]];
+    [NWHelper addLabelMultiLineWithText:[NSString stringWithFormat:@"Status: %@", _nwItem.status == nil ? @""  : _nwItem.status] toView:infoView rect:CGRectMake(10, 210, 140, 30) font:[UIFont systemFontOfSize:12]];
+    [NWHelper addLabelWithText:[NSString stringWithFormat:@"Checkins:%i", _nwItem.checkinsCount] toView:infoView rect:CGRectMake(10, 250, 140, 30) font:[UIFont systemFontOfSize:12] color:[UIColor grayColor]];
+    [NWHelper addLabelWithText:[NSString stringWithFormat:@"Users: %i", _nwItem.userCount] toView:infoView rect:CGRectMake(170, 203, 140, 30) font:[UIFont systemFontOfSize:12] color:[UIColor grayColor]];
 
 
-    UIButton *link = [NWHelper createButtonWithImageAndText:@"25-circle-northeast.png" text:@"Place web page" action:@selector(showLink) tag:1007 frame:CGRectMake(170, 110, 140, 30) target:self];
+    UIButton *link = [NWHelper createButtonWithImageAndText:@"25-circle-northeast.png" text:@"Web page" action:@selector(showLink) tag:1007 frame:CGRectMake(170, 110, 140, 30) target:self];
     [infoView addSubview: link];
+    
     
     [NWHelper addLabelMultiLineWithText:[NSString stringWithFormat:@"%@, %@", [_nwItem.location objectForKey:@"address"], [_nwItem.location objectForKey:@"city"]] toView:infoView rect:CGRectMake(170, 160, 140, 30) font:[UIFont systemFontOfSize:12]];
 
@@ -327,83 +329,130 @@
     webView.opaque = NO;
     [super viewDidLoad];
     
+    _weatherView.backgroundColor = [UIColor clearColor];
+    
     
     self.navigationItem.title = [_location objectForKey:@"name"];
-    [NWHelper getTwitterAround:[[_location objectForKey:@"latitude"] doubleValue] lng:[[_location objectForKey:@"longitude"] doubleValue] completionBlock:^(NSArray *result, NSError *error) {
-        
-        tweets = result;
-        if(!_btnTwitter)
-        {
-            _btnTwitter = [NWHelper createButtonWithImageAndText:@"210-twitterbird.png" text:[NSString stringWithFormat:@"Tweets:%@", result.count >= 100 ? @">100" : [NSString stringWithFormat:@"%i", result.count]] action:@selector(showTwitter) tag:1001 frame:CGRectMake(10, 10, 30, 30) target:self];
-            
-            //[self setTwitterButtonGlow];
-
-            [_statusView addSubview:_btnTwitter];
-        }
-        else
-        {
-            [_btnTwitter removeFromSuperview];
-            
-            _btnTwitter = [NWHelper createButtonWithImageAndText:@"210-twitterbird.png" text:[NSString stringWithFormat:@"Tweets:%@", result.count >= 100 ? @">100" : [NSString stringWithFormat:@"%i", result.count]] action:@selector(showTwitter) tag:1001 frame:CGRectMake(10, 10, 30, 30) target: self];
-            
-            //[self setTwitterButtonGlow];
-
-            [_statusView addSubview:_btnTwitter];
-            
-        }
-        
-        [self stopTwitterAnimate];
-        
-        [self showScrollView];
-        
-    }];
-    
-    
-    [NWHelper getInstagramAround:[[_location objectForKey:@"latitude"] doubleValue] lng:[[_location objectForKey:@"longitude"] doubleValue] completionBlock:^(NSMutableArray *result, NSError *error) {
-        NSLog(@"inside %i", result.count);
-        
-        instagrams = result;
-        
-        [self stopInstaAnimate];
-        
-        [self showScrollView];
-
-    }];
-       
-    if(_nwItem)
-    {
-        [NWHelper photosByVenueId:_nwItem.itemId completionBlock:^(NSArray *result, NSError *error) {
-            fourSquarePhotos = result;
-            
-            [self stop4sAnimate];
-            
-            [self showScrollView];
-            
-            if(fourSquarePhotos.count > 0)
-            {
-                NWFourSquarePhoto *photo = fourSquarePhotos[0];
-                
-                //UIImage* image = [UIImage imageNamed:@"BigPlaceholder.png"];
-                placeImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:photo.photoUrlFull]]];
-                //[placeImage setImageWithURL:[NSURL URLWithString:photo.photoUrlFull] placeholderImage:image];
-                //placeImage.contentMode = UIViewContentModeScaleAspectFill;
-            }
-            
-            
-        }];
-    }
-    else
-    {
-        _btn4s.hidden = YES;
-        
-    }
-    
-    
     
     [self addAnnotationsToMap];
     
     [self checkStreetView];
     
+    Sequencer *sequencer = [[Sequencer alloc] init];
+
+    [sequencer enqueueStep:^(id result, SequencerCompletion completion) {
+        NSLog(@"step photosByVenueId");
+        if(_nwItem)
+        {
+            [NWHelper photosByVenueId:_nwItem.itemId completionBlock:^(NSArray *result, NSError *error) {
+                fourSquarePhotos = result;
+                
+                [self stop4sAnimate];
+                
+                [self showScrollView];
+                
+                if(result.count > 0)
+                {
+                    [NSThread detachNewThreadSelector:@selector(placePhotoToInfo) toTarget:self withObject:nil];
+                    
+                }
+                else
+                {
+                    [NWHelper getStreetViewImageByLastAndLng:[[_location objectForKey:@"latitude"] doubleValue] lng:[[_location objectForKey:@"longitude"] doubleValue] completionBlock:^(UIImage *imageView, NSError *error) {
+                        placeImage.image = imageView;
+                    }];
+                }
+                
+            }];
+        }
+        else
+        {
+            
+            [NWHelper getStreetViewImageByLastAndLng:[[_location objectForKey:@"latitude"] doubleValue] lng:[[_location objectForKey:@"longitude"] doubleValue] completionBlock:^(UIImage *imageView, NSError *error) {
+                placeImage.image = imageView;
+            }];
+            
+            _btn4s.hidden = YES;
+            
+        }
+        completion(nil);
+    }];
+    [sequencer enqueueStep:^(id result, SequencerCompletion completion) {
+        NSLog(@"step getWeatherAround");
+        [NWHelper getWeatherAround:[[_location objectForKey:@"latitude"] doubleValue] lng:[[_location objectForKey:@"longitude"] doubleValue] completionBlock:^(NWWeather *weather, NSError *error) {
+            NSLog(@"Weather received");
+            [_weatherIcon setImageWithURL:[NSURL URLWithString:weather.weatherIconUrl]];
+            
+            NSLocale *locale = [NSLocale currentLocale];
+            BOOL isMetric = [[locale objectForKey:NSLocaleUsesMetricSystem] boolValue];
+            if(isMetric)
+            {
+                _lblTemperature.text = weather.temp_C;
+            }
+            else
+            {
+                _lblTemperature.text = weather.temp_F;
+            }
+            
+        }];
+        completion(nil);
+    }];
+
+    
+    [sequencer enqueueStep:^(id result, SequencerCompletion completion) {
+        NSLog(@"step twitter");
+        
+        [NWHelper getTwitterAround:[[_location objectForKey:@"latitude"] doubleValue] lng:[[_location objectForKey:@"longitude"] doubleValue] completionBlock:^(NSArray *result, NSError *error) {
+            
+            tweets = result;
+            if(!_btnTwitter)
+            {
+                _btnTwitter = [NWHelper createButtonWithImageAndText:@"210-twitterbird.png" text:[NSString stringWithFormat:@"Tweets:%@", result.count >= 100 ? @">100" : [NSString stringWithFormat:@"%i", result.count]] action:@selector(showTwitter) tag:1001 frame:CGRectMake(10, 10, 30, 30) target:self];
+                
+                //[self setTwitterButtonGlow];
+                
+                [_statusView addSubview:_btnTwitter];
+            }
+            else
+            {
+                [_btnTwitter removeFromSuperview];
+                
+                _btnTwitter = [NWHelper createButtonWithImageAndText:@"210-twitterbird.png" text:[NSString stringWithFormat:@"Tweets:%@", result.count >= 100 ? @">100" : [NSString stringWithFormat:@"%i", result.count]] action:@selector(showTwitter) tag:1001 frame:CGRectMake(10, 10, 30, 30) target: self];
+                
+                //[self setTwitterButtonGlow];
+                
+                [_statusView addSubview:_btnTwitter];
+                
+            }
+            
+            [self stopTwitterAnimate];
+            
+            [self showScrollView];
+            
+        }];
+        completion(nil);
+    }];
+    
+    
+   
+    [sequencer enqueueStep:^(id result, SequencerCompletion completion) {
+        NSLog(@"step getInstagramAround");
+        
+        [NWHelper getInstagramAround:[[_location objectForKey:@"latitude"] doubleValue] lng:[[_location objectForKey:@"longitude"] doubleValue] completionBlock:^(NSMutableArray *result, NSError *error) {
+            NSLog(@"inside %i", result.count);
+            
+            instagrams = result;
+            
+            [self stopInstaAnimate];
+            
+            [self showScrollView];
+            
+        }];
+        completion(nil);
+    }];
+    
+    [sequencer run];
+
     
     [self centerMap2];
     
@@ -417,6 +466,20 @@
     [_statusView addGestureRecognizer:showExtrasSwipe4];
 
     
+}
+
+
+-(void)placePhotoToInfo
+{
+    if(fourSquarePhotos.count > 0)
+     {
+         NWFourSquarePhoto *photo = fourSquarePhotos[0];
+         
+         //UIImage* image = [UIImage imageNamed:@"BigPlaceholder.png"];
+         placeImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:photo.photoUrlFull]]];
+         //[placeImage setImageWithURL:[NSURL URLWithString:photo.photoUrlFull] placeholderImage:image];
+         //placeImage.contentMode = UIViewContentModeScaleAspectFill;
+     }
 }
 
 -(void)showDownPart

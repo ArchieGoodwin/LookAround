@@ -4,10 +4,113 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
+        <!--About View Controller-->
+        <scene sceneID="AO6-RD-hgD">
+            <objects>
+                <viewController id="Erp-q8-CXm" customClass="NWAboutViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tFT-Ym-nga">
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" id="N0C-pO-uWr">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="About&amp;Credits" id="jWL-q8-Ole">
+                                        <barButtonItem key="leftBarButtonItem" image="09-arrow-west.png" id="KU6-cu-5Lk">
+                                            <connections>
+                                                <action selector="back:" destination="Erp-q8-CXm" id="dAo-pX-Ard"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Zuh-64-Ph0">
+                                <rect key="frame" x="20" y="103" width="287" height="137"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <attributedString key="attributedText">
+                                    <fragment>
+                                        <string key="content">This app uses the foursquare® application programming interface but is not endorsed or certified by Foursquare Labs, Inc.  All of the foursquare® logos (including all badges) and trademarks displayed on this app are the property of Foursquare Labs, Inc.</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.23529411764705882" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="13" name="HelveticaNeue"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" defaultTabInterval="36">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="poweredByFoursquare_gray.png" id="cex-HQ-rti">
+                                <rect key="frame" x="40" y="57" width="240" height="84"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="guV-jf-NjA">
+                                <rect key="frame" x="17" y="274" width="287" height="118"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <attributedString key="attributedText">
+                                    <fragment>
+                                        <string key="content">This app uses the Instagram™ API and is not endorsed or certified by  Instagram or Instagram, Inc. 
+All Instagram™ logos and trademarks displayed on this app are property of Instagram, Inc.</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.14901960784313725" green="0.14901960784313725" blue="0.14901960784313725" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="13" name="HelveticaNeue"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" defaultTabInterval="36">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="Instagram_Icon_Small.png" id="GM7-qQ-sEx">
+                                <rect key="frame" x="142" y="248" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pBe-6i-hlU">
+                                <rect key="frame" x="30" y="513" width="261" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Copyright 2013, Incoding Software">
+                                        <attributes>
+                                            <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <font key="NSFont" size="13" name="HelveticaNeue-Medium"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="JxX-Dg-dMW">
+                                <rect key="frame" x="30" y="484" width="261" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Version 1.0">
+                                        <attributes>
+                                            <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <font key="NSFont" size="14" name="HelveticaNeue-Medium"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="toolBar" destination="N0C-pO-uWr" id="9z0-G6-l0z"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qgD-W1-U9s" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-317" y="-941"/>
+        </scene>
         <!--Search View Controller - Look Around-->
         <scene sceneID="nNd-u1-M0Y">
             <objects>
-                <tableViewController title="Look Around" id="Q9Y-FJ-cQC" customClass="SearchViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SearchController" title="Look Around" id="Q9Y-FJ-cQC" customClass="SearchViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="XUF-4O-vPd">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -33,16 +136,16 @@
                                     <segue destination="Xae-mH-3dZ" kind="push" identifier="ViewLocation" id="EI9-FB-Dyb"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="PlaceStartCell" id="6CE-te-m7v">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="PlaceStartCell" id="6CE-te-m7v">
                                 <rect key="frame" x="0.0" y="110" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <connections>
-                                    <segue destination="Xae-mH-3dZ" kind="push" identifier="ViewLocationAddress" id="Jqt-Qk-ySK"/>
+                                    <segue destination="Xae-mH-3dZ" kind="push" identifier="ViewLocationAddress" id="cjS-oR-d3W"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="PlaceSearchCell" id="Jk0-FC-Hja">
@@ -74,6 +177,7 @@
                         <outlet property="searchBar" destination="u6I-ud-I3E" id="DOE-Ze-kSQ"/>
                         <outlet property="view" destination="XUF-4O-vPd" id="Bbo-S5-9y6"/>
                         <segue destination="Xae-mH-3dZ" kind="push" identifier="LocView" id="Qrm-Gp-xIu"/>
+                        <segue destination="Erp-q8-CXm" kind="modal" identifier="ShowAbout" modalTransitionStyle="coverVertical" id="NPC-ki-PbN"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uQ7-MG-EKi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -163,17 +267,43 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="CTR-P0-FP4"/>
+                    <navigationItem key="navigationItem" title="Title" id="CTR-P0-FP4">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="Agn-bT-rzT">
+                            <view key="customView" contentMode="scaleToFill" id="VZr-BG-5sX">
+                                <rect key="frame" x="244" y="5" width="71" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" id="Zab-8r-fo8">
+                                        <rect key="frame" x="38" y="0.0" width="33" height="33"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </imageView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Hbw-Sb-aM4">
+                                        <rect key="frame" x="6" y="4" width="35" height="25"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="btnDownShow" destination="nTo-fx-fjH" id="vvk-Tw-jKt"/>
                         <outlet property="btnSwitch" destination="r2x-ZP-6rI" id="yHk-GW-ME2"/>
                         <outlet property="containerView" destination="7Mu-3R-54O" id="JwC-Lh-zmv"/>
                         <outlet property="downView" destination="nKt-XY-tya" id="4hT-OH-QAB"/>
+                        <outlet property="lblTemperature" destination="Hbw-Sb-aM4" id="OJm-8K-o0A"/>
                         <outlet property="mapView" destination="lvW-Ls-RqT" id="Zt1-6w-GJl"/>
                         <outlet property="myTitle" destination="CTR-P0-FP4" id="PWp-5Y-od2"/>
                         <outlet property="statusView" destination="hrl-tB-Bw3" id="ut3-YM-e1J"/>
                         <outlet property="upperView" destination="Pld-gI-cUW" id="rpc-hd-T25"/>
                         <outlet property="view" destination="MLX-CV-mzq" id="q68-Jt-ogm"/>
+                        <outlet property="weatherIcon" destination="Zab-8r-fo8" id="zin-R9-TJd"/>
+                        <outlet property="weatherView" destination="VZr-BG-5sX" id="67L-aQ-Oxd"/>
                         <outlet property="webView" destination="KnA-WT-zBr" id="lc7-V1-Czg"/>
                         <segue destination="FUc-D7-5eP" kind="push" identifier="ViewTwitter" id="On8-3U-Dom"/>
                     </connections>
@@ -298,61 +428,19 @@
     </scenes>
     <resources>
         <image name="03-arrow-north.png" width="16" height="19"/>
+        <image name="09-arrow-west.png" width="19" height="16"/>
         <image name="103-map.png" width="26" height="21"/>
         <image name="13-target.png" width="28" height="28"/>
+        <image name="Instagram_Icon_Small.png" width="72" height="72"/>
         <image name="downbar.png" width="320" height="50"/>
+        <image name="poweredByFoursquare_gray.png" width="482" height="121"/>
     </resources>
-    <classes>
-        <class className="NWLabel" superclassName="UILabel">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NWLabel.h"/>
-        </class>
-        <class className="NWLocationViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NWLocationViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="btnSwitchMap:"/>
-                <relationship kind="outlet" name="btnDownShow" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="btnSwitch" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="containerView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="downView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
-                <relationship kind="outlet" name="myTitle" candidateClass="UINavigationItem"/>
-                <relationship kind="outlet" name="statusView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="upperView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
-            </relationships>
-        </class>
-        <class className="NWMapViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NWMapViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
-            </relationships>
-        </class>
-        <class className="NWTwitterCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NWTwitterCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="imgProfile" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="lblAuthor" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="lblDate" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="lblText" candidateClass="NWLabel"/>
-            </relationships>
-        </class>
-        <class className="NWTwitterViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NWTwitterViewController.h"/>
-        </class>
-        <class className="SearchViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="btnMap" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="TPn-3m-lFn"/>
+        <segue reference="cjS-oR-d3W"/>
     </inferredMetricsTieBreakers>
 </document>

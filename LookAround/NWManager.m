@@ -18,6 +18,8 @@
 #import "AFNetworking.h"
 #import "NWinstagram.h"
 #import "NWFourSquarePhoto.h"
+#import "NWWeather.h"
+#import "AFImageRequestOperation.h"
 @implementation NWManager
 
 
@@ -29,6 +31,12 @@
     _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     _locationManager.delegate = self;
     [_locationManager startUpdatingLocation];
+    
+    
+    self.foursquare = [[BZFoursquare alloc] initWithClientID:@"LZ0C00MK1JPNA2TJAQ22ZZ4HIRC4OB12I5OUGFCFJQOLMR1C" callbackURL:kRCFoursquareCallbackURL];
+    self.foursquare.version = @"20111119";
+    self.foursquare.locale = [[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode];
+
 	
     
 #if !(TARGET_IPHONE_SIMULATOR)
@@ -98,7 +106,7 @@
     {
         [btn_chat setTitle:text forState:UIControlStateNormal];
         btn_chat.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:14];
-        [btn_chat setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+        [btn_chat setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     }
 
     
@@ -275,6 +283,34 @@
     
 }
 
+-(id)getSettingsValue:(NSString *)key
+{
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults ];
+	NSString *ret = [userDefaults objectForKey:key];
+    return ret;
+}
+
+-(void)saveToUserDefaults:(id)object key:(NSString *)key
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	[userDefaults setObject:object forKey:key];
+	[userDefaults synchronize];
+    
+}
+
+-(void)createPredefinedSearches
+{
+    
+    
+    [self createSearchRequest:@"New York Wall Street" searchType:SearchPageBy4square];
+    [self createSearchRequest:@"London National Gallery" searchType:SearchPageBy4square];
+    [self createSearchRequest:@"Paris Eiffel Tower" searchType:SearchPageBy4square];
+    [self createSearchRequest:@"Milan Scale the Duomo" searchType:SearchPageBy4square];
+
+
+    
+}
 
 -(Searches *)createSearchRequest:(NSString *)request searchType:(SearchPageListType)searchType
 {
@@ -419,7 +455,7 @@
     NWgetInstagramAroundCompletionBlock completeBlock = [completionBlock copy];
 
     
-    NSString *connectionString = [NSString stringWithFormat:@"https://api.instagram.com/v1/media/search?lat=%f&lng=%f&client_id=e6c25413297343d087a7918f284ce83e&distance=500", lat, lng];
+    NSString *connectionString = [NSString stringWithFormat:@"https://api.instagram.com/v1/media/search?lat=%f&lng=%f&client_id=e6c25413297343d087a7918f284ce83e&distance=300", lat, lng];
     NSLog(@"%@", connectionString);
     NSURL *url = [NSURL URLWithString:connectionString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -467,6 +503,65 @@
     
 }
 
+
+-(void)getWeatherAround:(double)lat lng:(double)lng completionBlock:(NWgetWeatherAroundCompletionBlock)completionBlock
+{
+    //http://free.worldweatheronline.com/feed/weather.ashx?q=34.00,43.00&format=json&num_of_days=2&key=b603d14d52054854131903
+    
+    NWgetWeatherAroundCompletionBlock completeBlock = [completionBlock copy];
+    
+    
+    NSString *connectionString = [NSString stringWithFormat:@"http://free.worldweatheronline.com/feed/weather.ashx?q=%f,%f&format=json&num_of_days=2&key=b603d14d52054854131903", lat, lng];
+    NSLog(@"%@", connectionString);
+    NSURL *url = [NSURL URLWithString:connectionString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    AFJSONRequestOperation *operation;
+    operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+        //NSLog(@"%@", JSON);
+        
+        
+        //if([[json objectForKey:@"numResults"] integerValue] > 0)
+        //{
+        NWWeather *item = [[NWWeather alloc] initWithDictionary:[JSON objectForKey:@"data"]];;
+        
+        
+
+        completeBlock(item, nil);
+               
+        
+        
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+        
+        completeBlock(nil, error);
+    }];
+    
+    [operation start];
+    
+}
+
+
+
+-(void)getStreetViewImageByLastAndLng:(double)lat lng:(double)lng completionBlock:(NWgetStreetViewImageCompletionBlock)completionBlock
+{
+    NWgetStreetViewImageCompletionBlock completeBlock = [completionBlock copy];
+    
+    
+    NSString *connectionString = [NSString stringWithFormat:@"http://maps.googleapis.com/maps/api/streetview?size=600x300&location=%f,%f&sensor=true&key=AIzaSyDZ-DVmg3g_aerPo1MQ87Z-Fl39XnEBkN4", lat, lng];
+    NSLog(@"getStreetViewImageByLastAndLng: %@", connectionString);
+    NSURL *url = [NSURL URLWithString:connectionString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+     
+    AFImageRequestOperation *operation;
+
+    
+    operation = [AFImageRequestOperation imageRequestOperationWithRequest:request success:^(UIImage *image) {
+        completeBlock(image, nil);
+    }];
+    
+    [operation start];
+}
+
+
 - (void)getTwitterAround:(double)lat lng:(double)lng completionBlock:(NWgetTwitterAroundCompletionBlock)completionBlock
 {
     NWgetTwitterAroundCompletionBlock completeBlock = [completionBlock copy];
@@ -484,14 +579,14 @@
                 //ACAccount *twitterAccount = [accounts objectAtIndex:0];
                 // Creating a request to get the info about a user on Twitter
     
-                NSDateComponents *componentsToSubtract = [[NSDateComponents alloc] init];
-                [componentsToSubtract setDay:-5];
+                //NSDateComponents *componentsToSubtract = [[NSDateComponents alloc] init];
+                //[componentsToSubtract setDay:-5];
     
-                NSDate *yesterday = [[NSCalendar currentCalendar] dateByAddingComponents:componentsToSubtract toDate:[NSDate date] options:0];
+                //NSDate *yesterday = [[NSCalendar currentCalendar] dateByAddingComponents:componentsToSubtract  toDate:[NSDate date] options:0];
     
-                NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-                [dateFormat setDateFormat:@"yyyy-MM-dd"];
-                NSString *dateString = [dateFormat stringFromDate:[NSDate date]];
+                //NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+                //[dateFormat setDateFormat:@"yyyy-MM-dd"];
+                //NSString *dateString = [dateFormat stringFromDate:[NSDate date]];
     
                 SLRequest *twitterInfoRequest = [SLRequest requestForServiceType:SLServiceTypeTwitter requestMethod:SLRequestMethodGET URL:[NSURL URLWithString:@"https://search.twitter.com/search.json?"] parameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%.6f,%.6f,0.2km", lat, lng], @"geocode", @"100", @"rpp", nil]];
                 //[twitterInfoRequest setAccount:twitterAccount];
@@ -524,31 +619,7 @@
                             }
                             
                             completeBlock(result, nil);
-                            /*NSString *screen_name = [(NSDictionary *)TWData objectForKey:@"screen_name"];
-                             NSString *name = [(NSDictionary *)TWData objectForKey:@"name"];
-                             int followers = [[(NSDictionary *)TWData objectForKey:@"followers_count"] integerValue];
-                             int following = [[(NSDictionary *)TWData objectForKey:@"friends_count"] integerValue];
-                             int tweets = [[(NSDictionary *)TWData objectForKey:@"statuses_count"] integerValue];
-                             NSString *profileImageStringURL = [(NSDictionary *)TWData objectForKey:@"profile_image_url_https"];
-                             NSString *bannerImageStringURL =[(NSDictionary *)TWData objectForKey:@"profile_banner_url"];
-                             // Update the interface with the loaded data
-                             nameLabel.text = name;
-                             usernameLabel.text= [NSString stringWithFormat:@"@%@",screen_name];
-                             tweetsLabel.text = [NSString stringWithFormat:@"%i", tweets];
-                             followingLabel.text= [NSString stringWithFormat:@"%i", following];
-                             followersLabel.text = [NSString stringWithFormat:@"%i", followers];
-                             NSString *lastTweet = [[(NSDictionary *)TWData objectForKey:@"status"] objectForKey:@"text"];
-                             lastTweetTextView.text= lastTweet;
-                             // Get the profile image in the original resolution
-                             profileImageStringURL = [profileImageStringURL stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
-                             [self getProfileImageForURLString:profileImageStringURL];
-                             // Get the banner image, if the user has one
-                             if (bannerImageStringURL) {
-                             NSString *bannerURLString = [NSString stringWithFormat:@"%@/mobile_retina", bannerImageStringURL];
-                             [self getBannerImageForURLString:bannerURLString];
-                             } else {
-                             bannerImageView.backgroundColor = [UIColor underPageBackgroundColor];
-                             }*/
+
                         }
                     });
                 }];

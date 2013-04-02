@@ -14,6 +14,7 @@
 #import "NWLabel.h"
 @interface NWTwitterViewController ()
 {
+    UIView *viewForLabel;
 }
 @end
 
@@ -27,6 +28,7 @@
     {
         self.view.frame = frame;
         self.tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain];
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
 
@@ -36,7 +38,47 @@
 
 }
 
+- (void)showMessageView {
+    viewForLabel = [[UIView alloc] initWithFrame:CGRectMake(20, 200, 280, 40)];
+    viewForLabel.backgroundColor = [UIColor whiteColor];
+    UILabel *lblMessage = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 280, 40)] ;
+    lblMessage.backgroundColor = [UIColor clearColor];
+    lblMessage.font = [UIFont fontWithName:@"HelveticaNeue" size:16];
+    lblMessage.text = @"There are no tweets around there";
+    lblMessage.textColor = [UIColor blackColor];
+    lblMessage.textAlignment = NSTextAlignmentCenter;
+    lblMessage.alpha = 0;
+    [viewForLabel addSubview:lblMessage];
+    [self.view addSubview:viewForLabel];
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    [UIView beginAnimations:nil context:context];
+    [UIView setAnimationCurve:UIViewAnimationCurveLinear];
+    [UIView setAnimationDuration:2];
+    [UIView setAnimationDelegate:self];
+    
+    lblMessage.alpha = 1;
+    
+    [UIView commitAnimations];
+    
+    
+}
 
+
+-(void)hideMessageView
+{
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    [UIView beginAnimations:nil context:context];
+    [UIView setAnimationCurve:UIViewAnimationCurveLinear];
+    [UIView setAnimationDuration:3];
+    [UIView setAnimationDelegate:self];
+    
+    viewForLabel.alpha = 0;
+    
+    [UIView commitAnimations];
+    
+    
+}
 
 - (void)viewDidLoad
 {
@@ -53,6 +95,16 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if(_tweets.count == 0)
+    {
+        [self showMessageView];
+        //[self hideMessageView];
+    }
+}
 
 -(void)realInit
 {
@@ -107,7 +159,8 @@
     NWtwitter *tweet = _tweets[indexPath.row];
     
     cell.lblText.text = tweet.message;
-    cell.lblDate.text = [tweet.dateCreated description];
+    
+    cell.lblDate.text =  [NSDateFormatter localizedStringFromDate:tweet.dateCreated dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterShortStyle];
     cell.lblAuthor.text = tweet.author;
 
     UIImage* image = [UIImage imageNamed:@"Placeholder.png"];

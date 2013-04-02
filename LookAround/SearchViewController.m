@@ -16,6 +16,9 @@
 #import "AFNetworking.h"
 #import "NWLocationViewController.h"
 #import "NWMapViewController.h"
+
+
+#define  manager ((NWManager *)[NWManager sharedInstance])
 @interface SearchViewController ()
 {
     CLPlacemark *placemark;
@@ -24,6 +27,8 @@
     NSDictionary *currentLocation;
     MBProgressHUD *HUD;
     UIBarButtonItem *btnMap;
+    NSDictionary *geoResult;
+    UIButton *btnTitle;
 }
 @end
 
@@ -59,11 +64,26 @@
     
 }
 
+-(void)showAbout
+{
+    [self performSegueWithIdentifier:@"ShowAbout" sender:self];
+}
+
+- (void)setRightButton
+{
+    
+    UIBarButtonItem *btnSearchType = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"05-shuffle.png"] style:UIBarButtonItemStylePlain target:self action:@selector(switchSearch)];
+    self.navigationItem.rightBarButtonItem  = btnSearchType;
+}
 
 - (void)viewDidLoad
 {
     //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatedLocation) name:chLocationMuchUpdated object:nil];
 
+
+    manager.foursquare.sessionDelegate = self;
+    
+    
     
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"bar.png"] forBarMetrics:UIBarMetricsDefault];
     
@@ -73,7 +93,22 @@
     self.navigationItem.leftBarButtonItem = btnLoc;
 
     self.navigationItem.backBarButtonItem = nil;
-        
+    
+    btnTitle =[UIButton buttonWithType:UIButtonTypeCustom];
+    [btnTitle setTitle:@"LookAround" forState:UIControlStateNormal];
+    [btnTitle setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    btnTitle.frame = CGRectMake(0, 0, 200, 44);
+    [btnTitle addTarget:self action:@selector(showAbout) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.navigationItem.titleView = btnTitle;
+    
+    
+    [self setRightButton];
+    
+    self.navigationItem.leftBarButtonItem = btnLoc;
+    
+    
+    _currentSearchType = SearchBy4square;
     
     UIImage *image = [[UIImage imageNamed:@"bar.png"]  resizableImageWithCapInsets:UIEdgeInsetsMake(0, 5, 0, 5)];
     [[UIBarButtonItem appearance] setBackgroundImage:image forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
@@ -91,8 +126,10 @@
 
         }
     }
+    _searchBar.placeholder = @"City and/or address";;
+    
     self.imageDownloadsInProgress = [NSMutableDictionary dictionary];
-    self.navigationItem.title = @"LookAround";
+    //self.navigationItem.title = @"LookAround";
     [super viewDidLoad];
 
 
@@ -101,6 +138,168 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == actionSheet.cancelButtonIndex) {
+        return;
+    }
+    
+        
+    
+    
+    if (![manager.foursquare isSessionValid]) {
+        HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        [manager.foursquare startAuthorization];
+    } else {
+        [manager.foursquare invalidateSession];
+    }
+}
+
+#pragma mark -
+#pragma mark BZFoursquareSessionDelegate
+
+- (void)foursquareDidAuthorize:(BZFoursquare *)foursquare {
+    [NWHelper saveToUserDefaults:foursquare.accessToken key:@"4square"];
+    
+    HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
+    HUD.mode = MBProgressHUDModeCustomView;
+    HUD.labelFont = [UIFont boldSystemFontOfSize:12];
+    HUD.labelText = @"Login Successfully!";
+    
+    [self performSelector:@selector(loginFoursquareSuccess) withObject:nil afterDelay:0];
+}
+
+- (void)foursquareDidNotAuthorize:(BZFoursquare *)foursquare error:(NSDictionary *)errorInfo {
+    [HUD hide:YES];
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Login failed with Foursquare" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    [alert show];
+}
+
+
+
+- (void)request:(BZFoursquareRequest *)request didFailWithError:(NSError *)error {
+    NSLog(@"%s: %@", __PRETTY_FUNCTION__, error);
+    [self hideHUD];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[[error userInfo] objectForKey:@"errorDetail"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+}
+
+- (void)loginFoursquareSuccess
+{
+    [HUD hide:YES];
+    
+    _currentSearchType = SearchBy4squareFull;
+    _searchBar.placeholder = @"City and/or address, any keywords";
+}
+
+
+-(void)searchVenueByString:(NSString *)str
+{
+    NSArray *query = [str componentsSeparatedByString:@","];
+
+    if(query.count >= 2)
+    {
+        [self showHUD];
+
+        NSString *address = query[0];
+        NSString *keywords = query[1];
+        if(query.count > 2)
+        {
+            NSArray *arr = [query objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1, query.count - 1)]];
+            keywords = [arr componentsJoinedByString:@" "];
+        }
+        
+        NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:address, @"near", keywords, @"query", nil];
+        manager.foursquare.accessToken = [NWHelper getSettingsValue:@"4square"];
+        self.request = [manager.foursquare requestWithPath:@"venues/search" HTTPMethod:@"GET" parameters:parameters delegate:self];
+        [_request start];
+    }
+    else
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"Please use correct format for search string: \n City and/or address, keywords." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+    }
+    
+    
+    
+}
+
+
+#pragma mark -
+#pragma mark BZFoursquareRequestDelegate
+
+
+
+- (void)requestDidFinishLoading:(BZFoursquareRequest *)request {
+    NSLog(@"BZFoursquareRequest %@", request.response);
+    
+    _currentPageType = SearchPageBy4square;
+    NSMutableArray *pois = [[NSMutableArray alloc] init];
+    
+    geoResult = [[request.response objectForKey:@"geocode"] objectForKey:@"feature"];
+    
+    //if([[json objectForKey:@"numResults"] integerValue] > 0)
+    //{
+    NSMutableArray *items = [request.response objectForKey:@"venues"];
+    for (NSMutableDictionary *dict in items) {
+        NWItem *item = [[NWItem alloc] initWithDictionary:dict];
+        [pois addObject:item];
+    }
+    
+    if(pois.count > 0)
+    {
+        
+        NSSortDescriptor * sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"itemDistance" ascending:YES];
+        
+        [_searchResult removeAllObjects];
+        
+        _searchResult = [NSMutableArray arrayWithArray:[pois sortedArrayUsingDescriptors:[NSMutableArray arrayWithObjects:sortDescriptor, nil]]];
+    }
+    
+
+    [self.tableView reloadData];
+        
+    [self showOrHideBtnMap:YES];
+
+    [HUD hide:YES];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+}
+
+
+
+
+-(void)switchSearch
+{
+    if(_currentSearchType == SearchBy4square)
+    {
+
+        if([NWHelper getSettingsValue:@"4square"] == nil)
+        {
+            
+            [[[UIActionSheet alloc] initWithTitle:@"To use this feature please sign To Foursquare" delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) destructiveButtonTitle:nil otherButtonTitles:@"Go on", nil] showInView:self.view];
+        }
+        else
+        {
+
+            //[manager.foursquare invalidateSession];
+
+            
+            _currentSearchType = SearchBy4squareFull;
+            _searchBar.placeholder = @"City and/or address, any keywords";
+            [btnTitle setTitle:@"LookAround: keywords" forState:UIControlStateNormal];
+        }
+    }
+    else
+    {
+        [btnTitle setTitle:@"LookAround: address" forState:UIControlStateNormal];
+
+        _currentSearchType = SearchBy4square;
+        _searchBar.placeholder = @"City and/or address";
+    }
 }
 
 -(void)updatedLocation
@@ -142,6 +341,16 @@
     [geo reverseGeocodeLocation:[NWHelper locationManager].location completionHandler:^(NSArray *placemarks, NSError *error) {
         placemark = [placemarks objectAtIndex:0];
         NSLog(@"Placemark: %@", placemark.addressDictionary);
+        
+        NSMutableString *str = [NSMutableString new];
+        for(NSString *line in [placemark.addressDictionary objectForKey:@"FormattedAddressLines"])
+        {
+            [str appendString:line];
+            [str appendString:@","];
+        }
+        _searchBar.text = str;
+        
+        
         [NWHelper poisNearLocation:CLLocationCoordinate2DMake(placemark.location.coordinate.latitude, placemark.location.coordinate.longitude) completionBlock:^(NSArray *result, NSError *error) {
             if(!error)
             {
@@ -194,37 +403,9 @@
 {
     [self.searchBar resignFirstResponder];
     
-    /*if(NSClassFromString(@"MKLocalSearchRequest") != nil)
-    {
-        MKLocalSearchRequest *request = [[MKLocalSearchRequest alloc] init];
-        if([request respondsToSelector:@selector(naturalLanguageQuery)])
-        {
-            request.naturalLanguageQuery = _searchBar.text;
-            MKLocalSearch *localSearch = [[MKLocalSearch alloc] initWithRequest:request];
-            
-            [localSearch startWithCompletionHandler:^(MKLocalSearchResponse *response, NSError *error){
-                
-                NSLog(@"mapsearch results %i", searchResult.count);
 
-                [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-                
-                if(!error)
-                {
-                    searchResult = [NSMutableArray arrayWithArray:response.mapItems];
-                    NSLog(@"mapsearch results %i", searchResult.count);
-                    _currentPageType = SearchNewType;
-                    [self.tableView reloadData];
-                    
-                }
-                else
-                {
-                    NSLog(@"error MKLocalSearch: %@", error.description);
-                }
-            }];
-        }
-    }
-    else
-    {*/
+    
+    
     
     [self showHUD];
         [NWHelper getLocationsForSearchString:str completionBlock:^(NSArray *result, NSError *error) {
@@ -284,10 +465,20 @@
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-
+    placemark = nil;
+    if(_currentSearchType == SearchBy4square)
+    {
         _currentPageType = SearchPageBy4square;
         [NWHelper createSearchRequest:searchBar.text searchType:SearchPageBy4square];
         [self searchByString:searchBar.text];
+    }
+    else
+    {
+        _currentPageType = SearchPageBy4square;
+        [NWHelper createSearchRequest:searchBar.text searchType:SearchNewType];
+        [self searchVenueByString:searchBar.text];
+    }
+    
 
 
 }
@@ -307,6 +498,8 @@
         [searchBar resignFirstResponder];
         
         [self showOrHideBtnMap:NO];
+        
+        [self setRightButton];
     }
     
     //}
@@ -319,7 +512,7 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    
+    NSLog(@"%@", segue.identifier);
     if([segue.identifier isEqualToString:@"ViewLocation"])
     {
         NWLocationViewController *controller = (NWLocationViewController *)segue.destinationViewController;
@@ -336,10 +529,25 @@
     if([segue.identifier isEqualToString:@"ViewLocationAddress"])
     {
         NWLocationViewController *controller = (NWLocationViewController *)segue.destinationViewController;
-        NSDictionary *dict = [NWHelper createDict:_searchBar.text lat:placemark.location.coordinate.latitude lng:placemark.location.coordinate.longitude];
+        if(placemark)
+        {
+            NSDictionary *dict = [NWHelper createDict:_searchBar.text lat:placemark.location.coordinate.latitude lng:placemark.location.coordinate.longitude];
+            
+            controller.nwItem = nil;
+            controller.location = dict;
 
-        controller.nwItem = nil;
-        controller.location = dict;
+        }
+        else
+        {
+            double lat = [[[[geoResult objectForKey:@"geometry"] objectForKey:@"center"] objectForKey:@"lat"] doubleValue];
+            double lng = [[[[geoResult objectForKey:@"geometry"] objectForKey:@"center"] objectForKey:@"lng"] doubleValue];
+            
+            
+            NSDictionary *dict = [NWHelper createDict:_searchBar.text lat:lat lng:lng];
+            
+            controller.nwItem = nil;
+            controller.location = dict;
+        }
     }
     
     if([segue.identifier isEqualToString:@"LocView"])
@@ -466,6 +674,8 @@
 
     if(_currentPageType == SearchPageBy4square)
     {
+        if(_currentSearchType == SearchBy4square || _currentSearchType == SearchBy4squareFull)
+        {
             if(indexPath.section == 0)
             {
                 UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PlaceStartCell"];
@@ -474,6 +684,8 @@
                 {
                     [inside removeFromSuperview];
                 }
+                
+                
                 if(placemark != nil)
                 {
                     latitude = placemark.location.coordinate.latitude;
@@ -500,8 +712,30 @@
                     line.backgroundColor = [UIColor lightGrayColor];
                     [cell.contentView addSubview:line];
                 }
+                else
+                {
+                    latitude = [[[[geoResult objectForKey:@"geometry"] objectForKey:@"center"] objectForKey:@"lat"] doubleValue];
+                    longitude = [[[[geoResult objectForKey:@"geometry"] objectForKey:@"center"] objectForKey:@"lng"] doubleValue];
+                    NSMutableString *str = [NSMutableString new];
+                    
+                    str = [geoResult objectForKey:@"displayName"];
+                    UILabel * lblTitle = [[UILabel alloc] initWithFrame:CGRectMake(35, 20, 280, [self getLabelSize:str fontSize:16])];
+                    lblTitle.backgroundColor = [UIColor clearColor];
+                    lblTitle.text = str;
+                    lblTitle.textColor = [UIColor grayColor];
+                    lblTitle.font = [UIFont fontWithName:@"HelveticaNeue" size:16];
+                    lblTitle.numberOfLines = 0;
+                    lblTitle.lineBreakMode = NSLineBreakByWordWrapping;
+                    
+                    [cell.contentView addSubview:lblTitle];
+                    
+                    
+                    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(10, lblTitle.frame.size.height + 25, 300, 1)];
+                    line.backgroundColor = [UIColor lightGrayColor];
+                    [cell.contentView addSubview:line];
+                }
                 return cell;
-
+                
                 
             }
             if(indexPath.section == 1)
@@ -516,20 +750,20 @@
                 if(_searchResult.count > 0)
                 {
                     
-
-                        NWItem *item = [_searchResult objectAtIndex:indexPath.row];
-                        
-                        
-                        UILabel * lblTitle = [[UILabel alloc] initWithFrame:CGRectMake(35, 10, 280, [self getLabelSize:item.itemName fontSize:16])];
-                        lblTitle.backgroundColor = [UIColor clearColor];
-                        lblTitle.text = item.itemName;
-                        lblTitle.textColor = [UIColor grayColor];
-                        lblTitle.font = [UIFont fontWithName:@"HelveticaNeue" size:16];
-                        lblTitle.numberOfLines = 0;
-                        lblTitle.tag = 1010;
-                        lblTitle.lineBreakMode = NSLineBreakByWordWrapping;
-                        
-                        [cell.contentView addSubview:lblTitle];
+                    
+                    NWItem *item = [_searchResult objectAtIndex:indexPath.row];
+                    
+                    
+                    UILabel * lblTitle = [[UILabel alloc] initWithFrame:CGRectMake(35, 10, 280, [self getLabelSize:item.itemName fontSize:16])];
+                    lblTitle.backgroundColor = [UIColor clearColor];
+                    lblTitle.text = item.itemName;
+                    lblTitle.textColor = [UIColor grayColor];
+                    lblTitle.font = [UIFont fontWithName:@"HelveticaNeue" size:16];
+                    lblTitle.numberOfLines = 0;
+                    lblTitle.tag = 1010;
+                    lblTitle.lineBreakMode = NSLineBreakByWordWrapping;
+                    
+                    [cell.contentView addSubview:lblTitle];
                     
                     
                     UIImage* image = [UIImage imageNamed:@"Placeholder.png"];
@@ -541,13 +775,16 @@
                     iv.tag = 101;
                     [cell.contentView addSubview:iv];
                     
-
-                    }
+                    
+                }
                 cell.tag = indexPath.row;
                 return cell;
-
+                
                 
             }
+        }
+        
+            
             
         //}
         
@@ -705,13 +942,26 @@
             _currentPageType = [search.searchType integerValue];
             _searchBar.text = search.searchStr;
             
-            
-            
-            [self searchByString:search.searchStr];
-            
-            search.dateSearhed = [NSDate date];
+            if([search.searchType integerValue] == SearchPageBy4square)
+            {
+                _currentSearchType = SearchBy4square;
 
-            [[NSManagedObjectContext MR_defaultContext] MR_saveOnlySelfAndWait];
+                [self searchByString:search.searchStr];
+                
+                search.dateSearhed = [NSDate date];
+                [[NSManagedObjectContext MR_defaultContext] MR_saveOnlySelfAndWait];
+            }
+            else
+            {
+                _currentSearchType = SearchBy4squareFull;
+
+                [self searchVenueByString:search.searchStr];
+                search.dateSearhed = [NSDate date];
+                
+                [[NSManagedObjectContext MR_defaultContext] MR_saveOnlySelfAndWait];
+            }
+            
+           
             
         }
     }

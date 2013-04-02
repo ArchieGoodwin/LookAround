@@ -126,7 +126,7 @@
     UILabel *lblMessage = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 280, 40)] ;
     lblMessage.backgroundColor = [UIColor clearColor];
     lblMessage.font = [UIFont fontWithName:@"HelveticaNeue" size:16];
-    lblMessage.text = @"Sorry. There are no Places In Time yet.";
+    lblMessage.text = @"There are no photos for this place yet";
     lblMessage.textColor = [UIColor blackColor];
     lblMessage.textAlignment = NSTextAlignmentCenter;
     lblMessage.alpha = 0;
@@ -207,6 +207,11 @@
     
     [super viewWillAppear:animated];
     
+    if(_chainges.count == 0)
+    {
+        [self showMessageView];
+        //[self hideMessageView];
+    }
     //[self updatedLocation];
     
     

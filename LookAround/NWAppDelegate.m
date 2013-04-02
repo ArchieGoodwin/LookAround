@@ -9,6 +9,8 @@
 #import "NWAppDelegate.h"
 #import "Defines.h"
 #import <Crashlytics/Crashlytics.h>
+#import "BZFoursquare.h"
+#import "SearchViewController.h"
 @implementation NWAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -20,6 +22,14 @@
     [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreNamed:@"Model.sqlite"];
     [NWHelper startUpdateLocation];
     
+    
+    
+    if(![[NWHelper getSettingsValue:@"isItFirstTime"] boolValue])
+    {
+        [NWHelper createPredefinedSearches];
+        [NWHelper saveToUserDefaults:[NSNumber numberWithBool:YES] key:@"isItFirstTime"];
+        
+    }
     
     if ([[UINavigationBar class] respondsToSelector:@selector(appearance)])
     {
@@ -33,7 +43,35 @@
     
     return YES;
 }
-							
+
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    // attempt to extract a token from the url
+    
+    if ([[url scheme] hasPrefix:@"lookaround"]) {
+
+        //UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"MainStoryboard"
+                                                      //           bundle: nil];
+        
+        //NSLog(@"%@", [mainStoryboard instantiateViewControllerWithIdentifier:@"SearchController"]);
+        
+        //SearchViewController *cont = [mainStoryboard instantiateViewControllerWithIdentifier:@"SearchController"];
+        
+        //BZFoursquare *foursquare = cont.foursquare;
+        return [((NWManager *)[NWManager sharedInstance]).foursquare handleOpenURL:url];
+    
+    }
+    
+    
+
+    
+    
+    
+    return NO;
+}
+
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

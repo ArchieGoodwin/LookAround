@@ -32,6 +32,9 @@ typedef enum
     
 } SearchPageListType;
 
+#define kRCFoursquareClientID           @"LZ0C00MK1JPNA2TJAQ22ZZ4HIRC4OB12I5OUGFCFJQOLMR1C"
+#define kRCFoursquareCallbackURL        @"lookaround://foursquare"
+
 
 #define degrees(x) (180.0 * x / M_PI)
 

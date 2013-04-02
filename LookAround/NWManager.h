@@ -10,6 +10,8 @@
 #import <CoreLocation/CoreLocation.h>
 #import "Searches.h"
 #import "Defines.h"
+#import "NWWeather.h"
+#import "BZFoursquare.h"
 typedef void (^ChGetLocationsBySearchString)(NSArray *result, NSError *error);
 typedef void (^WPgetPOIsCompletionBlock)        (NSArray *result, NSError *error);
 typedef void (^WPphotosByVenueIdCompletionBlock)        (NSArray *result, NSError *error);
@@ -17,9 +19,12 @@ typedef void (^WPphotosByVenueIdCompletionBlock)        (NSArray *result, NSErro
 typedef void (^NWisStreetViewCompletionBlock)        (NSString *panoIdOfPlace, NSError *error);
 typedef void (^NWgetTwitterAroundCompletionBlock)        (NSArray *result, NSError *error);
 typedef void (^NWgetInstagramAroundCompletionBlock)        (NSMutableArray *result, NSError *error);
+typedef void (^NWgetWeatherAroundCompletionBlock)        (NWWeather *weather, NSError *error);
+typedef void (^NWgetStreetViewImageCompletionBlock)        (UIImage *imageView, NSError *error);
 
 
 @interface NWManager : NSObject <CLLocationManagerDelegate>
+@property(nonatomic, strong) BZFoursquare *foursquare;
 
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
@@ -39,4 +44,9 @@ typedef void (^NWgetInstagramAroundCompletionBlock)        (NSMutableArray *resu
 -(void)photosByVenueId:(NSString *)venueId completionBlock:(WPphotosByVenueIdCompletionBlock)completionBlock;
 -(void)addLabelWithText:(NSString *)text toView:(UIView *)toView rect:(CGRect)rect font:(UIFont *)font color:(UIColor *)color;
 -(void)addLabelMultiLineWithText:(NSString *)text toView:(UIView *)toView rect:(CGRect)rect font:(UIFont *)font;
+-(void)getWeatherAround:(double)lat lng:(double)lng completionBlock:(NWgetWeatherAroundCompletionBlock)completionBlock;
+-(void)getStreetViewImageByLastAndLng:(double)lat lng:(double)lng completionBlock:(NWgetStreetViewImageCompletionBlock)completionBlock;
+-(void)createPredefinedSearches;
+-(id)getSettingsValue:(NSString *)key;
+-(void)saveToUserDefaults:(id)object key:(NSString *)key;
 @end
