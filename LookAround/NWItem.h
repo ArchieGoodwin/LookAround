@@ -41,6 +41,7 @@
 @property (nonatomic, assign) NSInteger checkinsCount;
 @property (nonatomic, assign) NSInteger userCount;
 @property (nonatomic, strong) NSString *venueId;
+@property (nonatomic, strong) NSString *city;
 
 
 

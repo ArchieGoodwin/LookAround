@@ -301,15 +301,12 @@
 
 -(void)createPredefinedSearches
 {
-    
-    
     [self createSearchRequest:@"New York Wall Street" searchType:SearchPageBy4square];
+    [self createSearchRequest:@"New York, Carlo's bakery" searchType:SearchNewType];
     [self createSearchRequest:@"London National Gallery" searchType:SearchPageBy4square];
+    [self createSearchRequest:@"Vienna Austria, Demel" searchType:SearchNewType];
     [self createSearchRequest:@"Paris Eiffel Tower" searchType:SearchPageBy4square];
     [self createSearchRequest:@"Milan Scale the Duomo" searchType:SearchPageBy4square];
-
-
-    
 }
 
 -(Searches *)createSearchRequest:(NSString *)request searchType:(SearchPageListType)searchType
@@ -421,6 +418,49 @@
     
 
 }
+
+-(void)openTableReserveWithName:(NSString *)name zip:(NSString *)zip page:(NSInteger)page completionBlock:(NWOpenTableReservationBlock)completionBlock
+{
+    NWOpenTableReservationBlock completeBlock = [completionBlock copy];
+    
+    
+    NSMutableString *connectionString = [NSMutableString stringWithFormat:OpenTableReserveUrl, zip];
+    if(page > 1)
+    {
+        [connectionString appendFormat:@"&page=%i", page];
+    }
+    NSLog(@"connect to: %@",connectionString);
+    
+    NSURL *url = [NSURL URLWithString:connectionString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    AFJSONRequestOperation *operation;
+    operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+        //NSLog(@"%@", JSON);
+        
+        NSLog(@"%@", JSON);
+        
+                
+        completeBlock(JSON, nil);
+        
+        
+        
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+        
+        NSMutableDictionary* details = [NSMutableDictionary dictionary];
+        [details setValue:[error description] forKey:NSLocalizedDescriptionKey];
+        // populate the error object with the details
+        NSError *err = [NSError errorWithDomain:@"world" code:200 userInfo:details];
+        
+        completeBlock(NO, err);
+    }];
+    
+    [operation start];
+    
+    
+    
+}
+
+
 
 
 -(BOOL)isIphone5
@@ -541,18 +581,26 @@
 
 
 
--(void)getStreetViewImageByLastAndLng:(double)lat lng:(double)lng completionBlock:(NWgetStreetViewImageCompletionBlock)completionBlock
+-(void)getStreetViewImageByLastAndLng:(double)lat lng:(double)lng heading:(NSInteger)heading completionBlock:(NWgetStreetViewImageCompletionBlock)completionBlock
 {
     NWgetStreetViewImageCompletionBlock completeBlock = [completionBlock copy];
+    NSString *connectionString = @"";
+    if(heading == -1)
+    {
+        connectionString = [NSString stringWithFormat:@"http://maps.googleapis.com/maps/api/streetview?size=600x300&location=%f,%f&sensor=true&key=AIzaSyDZ-DVmg3g_aerPo1MQ87Z-Fl39XnEBkN4", lat, lng];
+        
+    }
+    else
+    {
+        connectionString = [NSString stringWithFormat:@"http://maps.googleapis.com/maps/api/streetview?size=600x300&location=%f,%f&sensor=true&heading=%i&key=AIzaSyDZ-DVmg3g_aerPo1MQ87Z-Fl39XnEBkN4", lat, lng, heading];
+    }
     
-    
-    NSString *connectionString = [NSString stringWithFormat:@"http://maps.googleapis.com/maps/api/streetview?size=600x300&location=%f,%f&sensor=true&key=AIzaSyDZ-DVmg3g_aerPo1MQ87Z-Fl39XnEBkN4", lat, lng];
     NSLog(@"getStreetViewImageByLastAndLng: %@", connectionString);
     NSURL *url = [NSURL URLWithString:connectionString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
-     
+    
     AFImageRequestOperation *operation;
-
+    
     
     operation = [AFImageRequestOperation imageRequestOperationWithRequest:request success:^(UIImage *image) {
         completeBlock(image, nil);
@@ -568,15 +616,15 @@
 
     NSMutableArray *result = [NSMutableArray new];
     // Request access to the Twitter accounts
-    //ACAccountStore *accountStore = [[ACAccountStore alloc] init];
-    //ACAccountType *accountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
-    //[accountStore requestAccessToAccountsWithType:accountType options:nil completion:^(BOOL granted, NSError *error){
-        //if (granted) {
-            //NSArray *accounts = [accountStore accountsWithAccountType:accountType];
+    ACAccountStore *accountStore = [[ACAccountStore alloc] init];
+    ACAccountType *accountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
+    [accountStore requestAccessToAccountsWithType:accountType options:nil completion:^(BOOL granted, NSError *error){
+        if (granted) {
+            NSArray *accounts = [accountStore accountsWithAccountType:accountType];
             // Check if the users has setup at least one Twitter account
-            //if (accounts.count > 0)
-            //{
-                //ACAccount *twitterAccount = [accounts objectAtIndex:0];
+            if (accounts.count > 0)
+            {
+                ACAccount *twitterAccount = [accounts objectAtIndex:0];
                 // Creating a request to get the info about a user on Twitter
     
                 //NSDateComponents *componentsToSubtract = [[NSDateComponents alloc] init];
@@ -588,10 +636,12 @@
                 //[dateFormat setDateFormat:@"yyyy-MM-dd"];
                 //NSString *dateString = [dateFormat stringFromDate:[NSDate date]];
     
-                SLRequest *twitterInfoRequest = [SLRequest requestForServiceType:SLServiceTypeTwitter requestMethod:SLRequestMethodGET URL:[NSURL URLWithString:@"https://search.twitter.com/search.json?"] parameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%.6f,%.6f,0.2km", lat, lng], @"geocode", @"100", @"rpp", nil]];
-                //[twitterInfoRequest setAccount:twitterAccount];
+                SLRequest *twitterInfoRequest = [SLRequest requestForServiceType:SLServiceTypeTwitter requestMethod:SLRequestMethodGET URL:[NSURL URLWithString:@"https://api.twitter.com/1.1/search/tweets.json?"] parameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%.6f,%.6f,0.2km", lat, lng], @"geocode", @"100", @"count", nil]];
+                [twitterInfoRequest setAccount:twitterAccount];
                 // Making the request
                 [twitterInfoRequest performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
+                    //NSLog(@"twitter res  %@", [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding]);
+
                     dispatch_async(dispatch_get_main_queue(), ^{
                         // Check if we reached the reate limit
                         if ([urlResponse statusCode] == 429) {
@@ -611,7 +661,7 @@
                             //NSLog(@"%@", TWData);
                             
                             
-                            NSMutableArray *results = [((NSDictionary *)TWData) objectForKey:@"results"];
+                            NSMutableArray *results = [((NSDictionary *)TWData) objectForKey:@"statuses"];
                             for(NSMutableDictionary *dict in results)
                             {
                                 NWtwitter *twi = [[NWtwitter alloc] initWithDictionary:dict];
@@ -623,11 +673,26 @@
                         }
                     });
                 }];
-            //}
-        //} else {
-           // NSLog(@"No access granted");
-        //}
-   // }];
+            }
+            else
+            {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning!" message:@"To use twitter search around place please add twitter account to iOS settings" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                    [alert show];
+                });
+                
+                completeBlock(nil, nil);
+                
+            }
+        } else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning!" message:@"To use twitter search around place please add twitter account to iOS settings" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                [alert show];
+            });
+            
+            completeBlock(nil, nil);
+        }
+    }];
     
 }
 

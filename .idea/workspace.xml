@@ -2,47 +2,37 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="14eeadda-9d56-4edc-a8f7-e51aabcf104e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/icon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/LookAround/icon1024.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/icon@2x.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/LookAround/pin1.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/LookAround/pin1@2x.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/LookAround/pin_blue.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/LookAround/poweredByFoursquare_gray.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/LookAround.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/LookAround/NWAboutViewController.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/LookAround/NWAboutViewController.m" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/LookAround/NWWeather.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/LookAround/NWWeather.m" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/LookAround/Sequencer.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/LookAround/Sequencer.m" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/scopes/scope_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/xcode.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/LookAround/19-circle-check.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/LookAround/19-circle-check@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/LookAround/20-circle-east.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/LookAround/20-circle-east@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/LookAround/211-action.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/LookAround/211-action@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/LookAround/36-circle-west.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/LookAround/36-circle-west@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/LookAround/opentable-icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/LookAround/NWOpenTableViewController.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/LookAround/NWOpenTableViewController.m" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/LookAround/NWShareViewController.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/LookAround/NWShareViewController.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/LookAround.xcworkspace/xcuserdata/sdikarev.xcuserdatad/xcdebugger/Breakpoints.xcbkptlist" afterPath="$PROJECT_DIR$/LookAround.xcworkspace/xcuserdata/sdikarev.xcuserdatad/xcdebugger/Breakpoints.xcbkptlist" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/LookAround.xcworkspace/xcuserdata/sdikarev.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/LookAround.xcworkspace/xcuserdata/sdikarev.xcuserdatad/UserInterfaceState.xcuserstate" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/LookAround/InstagramCollectionViewController.m" afterPath="$PROJECT_DIR$/LookAround/InstagramCollectionViewController.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/LookAround/Defines.h" afterPath="$PROJECT_DIR$/LookAround/Defines.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/LookAround/LookAround-Info.plist" afterPath="$PROJECT_DIR$/LookAround/LookAround-Info.plist" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/LookAround/en.lproj/MainStoryboard.storyboard" afterPath="$PROJECT_DIR$/LookAround/en.lproj/MainStoryboard.storyboard" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/LookAround/MapAnnotation.m" afterPath="$PROJECT_DIR$/LookAround/MapAnnotation.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/LookAround/NWAppDelegate.m" afterPath="$PROJECT_DIR$/LookAround/NWAppDelegate.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/LookAround/NWFourSquareViewController.m" afterPath="$PROJECT_DIR$/LookAround/NWFourSquareViewController.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/LookAround/NWItem.h" afterPath="$PROJECT_DIR$/LookAround/NWItem.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/LookAround/NWItem.m" afterPath="$PROJECT_DIR$/LookAround/NWItem.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/LookAround/NWLocationViewController.h" afterPath="$PROJECT_DIR$/LookAround/NWLocationViewController.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/LookAround/NWLocationViewController.m" afterPath="$PROJECT_DIR$/LookAround/NWLocationViewController.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/LookAround/NWManager.h" afterPath="$PROJECT_DIR$/LookAround/NWManager.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/LookAround/NWManager.m" afterPath="$PROJECT_DIR$/LookAround/NWManager.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/LookAround/NWTwitterViewController.m" afterPath="$PROJECT_DIR$/LookAround/NWTwitterViewController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/LookAround/STImageAnnotationView.m" afterPath="$PROJECT_DIR$/LookAround/STImageAnnotationView.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/LookAround/SearchViewController.h" afterPath="$PROJECT_DIR$/LookAround/SearchViewController.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/LookAround/SearchViewController.m" afterPath="$PROJECT_DIR$/LookAround/SearchViewController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/LookAround/TwitterCell.xib" afterPath="$PROJECT_DIR$/LookAround/TwitterCell.xib" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/LookAround.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/LookAround.xcodeproj/project.pbxproj" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/project.pbxproj" />
     </list>
     <ignored path="LookAround.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="14eeadda-9d56-4edc-a8f7-e51aabcf104e" time="1363948518047" ignored="false" />
+    <file path="/Dummy.txt" changelist="14eeadda-9d56-4edc-a8f7-e51aabcf104e" time="1367563632309" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,37 +52,46 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="NWTwitterCell.h" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/LookAround/NWTwitterCell.h">
+      <file leaf-file-name="NWManager.m" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/LookAround/NWManager.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="41" selection-start="82" selection-end="82" vertical-scroll-proportion="0.0">
+            <state line="568" column="33" selection-start="20504" selection-end="20504" vertical-scroll-proportion="0.42345276">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NWAppDelegate.h" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/LookAround/NWAppDelegate.h">
+      <file leaf-file-name="NWLabel.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/LookAround/NWLabel.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="59" selection-start="141" selection-end="141" vertical-scroll-proportion="0.0">
+            <state line="35" column="34" selection-start="656" selection-end="656" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NWtwitter.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/LookAround/NWtwitter.m">
+      <file leaf-file-name="Defines.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/LookAround/Defines.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="7" selection-start="199" selection-end="199" vertical-scroll-proportion="0.0">
+            <state line="40" column="0" selection-start="1202" selection-end="1299" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NWManager.h" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/LookAround/NWManager.h">
+      <file leaf-file-name="SearchViewController.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/LookAround/SearchViewController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+            <state line="347" column="7" selection-start="11134" selection-end="11134" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NWLocationViewController.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/LookAround/NWLocationViewController.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="257" column="1" selection-start="8856" selection-end="8856" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -107,51 +106,38 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NWLocationViewController.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/LookAround/NWLocationViewController.m">
+      <file leaf-file-name="NWManager.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/LookAround/NWManager.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="257" column="8" selection-start="8311" selection-end="8311" vertical-scroll-proportion="0.0">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SearchViewController.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/LookAround/SearchViewController.m">
+      <file leaf-file-name="NWtwitter.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/LookAround/NWtwitter.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="347" column="7" selection-start="10435" selection-end="10435" vertical-scroll-proportion="0.0">
+            <state line="11" column="7" selection-start="199" selection-end="199" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Defines.h" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/LookAround/Defines.h">
+      <file leaf-file-name="NWAppDelegate.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/LookAround/NWAppDelegate.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="0" selection-start="1202" selection-end="1299" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#0#25#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NWLabel.m" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/LookAround/NWLabel.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="34" selection-start="656" selection-end="656" vertical-scroll-proportion="0.30793992">
+            <state line="5" column="59" selection-start="141" selection-end="141" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NWManager.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/LookAround/NWManager.m">
+      <file leaf-file-name="NWTwitterCell.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/LookAround/NWTwitterCell.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="91" column="54" selection-start="2620" selection-end="2620" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#142#163#0" expanded="true" />
-              </folding>
+            <state line="4" column="41" selection-start="82" selection-end="82" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -209,6 +195,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="DirectoryView.Xcode" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -347,16 +334,15 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="DirectoryView.Xcode" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="recentsLimit" value="5" />
     <property name="options.lastSelected" value="settings.github" />
+    <property name="recentsLimit" value="5" />
     <property name="OBJC.PRESERVED_TARGET_SELECTION" value="LookAround" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="RunManager" selected="Application.LookAround">
     <configuration default="true" type="AppleRunConfiguration" factoryName="Application" PROJECT_NAME="Pods" TARGET_NAME="Pods" CONFIG_NAME="Debug" PASS_PARENT_ENVS="FALSE" MAKE_ACTIVE="TRUE" WAIT_FOR="FALSE">
@@ -406,13 +392,12 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1920" height="1054" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1950448" sideWeight="0.41354167" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1950448" sideWeight="0.5854167" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1950448" sideWeight="0.4137214" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1950448" sideWeight="0.5852391" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -422,6 +407,7 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="REST Client" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.44282743" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -568,14 +554,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/LookAround/NWLocationViewController.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="257" column="8" selection-start="8311" selection-end="8311" vertical-scroll-proportion="0.0">
+        <state line="257" column="1" selection-start="8856" selection-end="8856" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/LookAround/SearchViewController.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="347" column="7" selection-start="10435" selection-end="10435" vertical-scroll-proportion="0.0">
+        <state line="347" column="7" selection-start="11134" selection-end="11134" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -583,24 +569,20 @@
     <entry file="file://$PROJECT_DIR$/LookAround/Defines.h">
       <provider selected="true" editor-type-id="text-editor">
         <state line="40" column="0" selection-start="1202" selection-end="1299" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/LookAround/NWManager.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="91" column="54" selection-start="2620" selection-end="2620" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#142#163#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/LookAround/NWLabel.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="34" selection-start="656" selection-end="656" vertical-scroll-proportion="0.30793992">
+        <state line="35" column="34" selection-start="656" selection-end="656" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LookAround/NWManager.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="568" column="33" selection-start="20504" selection-end="20504" vertical-scroll-proportion="0.42345276">
           <folding />
         </state>
       </provider>

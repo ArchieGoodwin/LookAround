@@ -253,6 +253,21 @@ All Instagram™ logos and trademarks displayed on this app are property of Inst
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="jXS-Hp-SzS">
+                                                <rect key="frame" x="222" y="-1" width="50" height="51"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                <state key="normal" image="211-action.png">
+                                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="highlighted">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <segue destination="XtM-2H-9u1" kind="modal" identifier="PushShare" id="l7b-de-CFS"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
@@ -310,7 +325,36 @@ All Instagram™ logos and trademarks displayed on this app are property of Inst
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T98-oC-Qc0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="670" y="-268"/>
+            <point key="canvasLocation" x="681" y="-238"/>
+        </scene>
+        <!--Open Table View Controller-->
+        <scene sceneID="qYF-Xw-8MI">
+            <objects>
+                <tableViewController id="rBH-Qy-YSZ" customClass="NWOpenTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Ekm-I6-RjT">
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="h95-hG-jh5">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="rBH-Qy-YSZ" id="pgJ-gb-bAC"/>
+                            <outlet property="delegate" destination="rBH-Qy-YSZ" id="oRD-sE-6uE"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nGy-Gz-Mbd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="757" y="492"/>
         </scene>
         <!--Twitter View Controller-->
         <scene sceneID="c8V-wf-mI8">
@@ -425,13 +469,102 @@ All Instagram™ logos and trademarks displayed on this app are property of Inst
             </objects>
             <point key="canvasLocation" x="165" y="220"/>
         </scene>
+        <!--Share View Controller-->
+        <scene sceneID="6ah-2b-CMU">
+            <objects>
+                <viewController id="XtM-2H-9u1" customClass="NWShareViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="de3-sZ-hNB">
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" id="6Z7-fO-KZl">
+                                <rect key="frame" x="0.0" y="41" width="320" height="160"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="bar.png" id="7xR-VJ-R2U">
+                                <rect key="frame" x="-1" y="199" width="321" height="374"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="1mE-Bw-34Z">
+                                <rect key="frame" x="0.0" y="208" width="40" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" image="36-circle-west.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="goLeft:" destination="XtM-2H-9u1" eventType="touchUpInside" id="kEP-pc-gDg"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="FMe-bF-9pi">
+                                <rect key="frame" x="280" y="209" width="40" height="41"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" image="20-circle-east.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="goRight:" destination="XtM-2H-9u1" eventType="touchUpInside" id="nWu-Qs-R2C"/>
+                                </connections>
+                            </button>
+                            <navigationBar contentMode="scaleToFill" id="DWG-4G-r2m">
+                                <rect key="frame" x="0.0" y="-3" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Share" id="KY4-Vq-Idu">
+                                        <barButtonItem key="leftBarButtonItem" image="09-arrow-west.png" id="DhJ-V1-XKc">
+                                            <connections>
+                                                <action selector="back:" destination="XtM-2H-9u1" id="2RD-nx-G9h"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" image="19-circle-check.png" style="plain" id="7Ff-CK-Mav">
+                                            <connections>
+                                                <action selector="shareImage" destination="XtM-2H-9u1" id="uOz-9q-yu6"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cf8-Rp-8eF">
+                                <rect key="frame" x="41" y="203" width="239" height="54"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <attributedString key="attributedText"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="lblName" destination="cf8-Rp-8eF" id="0Wk-by-KZm"/>
+                        <outlet property="streetView" destination="6Z7-fO-KZl" id="KsJ-Hw-J13"/>
+                        <outlet property="toolbar" destination="DWG-4G-r2m" id="cSE-CV-wBH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3Kh-7k-xDx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="337" y="932"/>
+        </scene>
     </scenes>
     <resources>
         <image name="03-arrow-north.png" width="16" height="19"/>
         <image name="09-arrow-west.png" width="19" height="16"/>
         <image name="103-map.png" width="26" height="21"/>
         <image name="13-target.png" width="28" height="28"/>
+        <image name="19-circle-check.png" width="28" height="28"/>
+        <image name="20-circle-east.png" width="28" height="28"/>
+        <image name="211-action.png" width="28" height="22"/>
+        <image name="36-circle-west.png" width="28" height="28"/>
         <image name="Instagram_Icon_Small.png" width="72" height="72"/>
+        <image name="bar.png" width="320" height="44"/>
         <image name="downbar.png" width="320" height="50"/>
         <image name="poweredByFoursquare_gray.png" width="482" height="121"/>
     </resources>

@@ -18,6 +18,7 @@
 #define LIMIT @"50"
 #define RADIUS @"500"
 
+#define OpenTableReserveUrl @"http://opentable.heroku.com/api/restaurants?zip=%@"
 
 static inline double radians (double degrees) { return degrees * M_PI/180; }
 

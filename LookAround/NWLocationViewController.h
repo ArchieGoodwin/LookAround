@@ -12,6 +12,7 @@
 #import "InstagramCollectionViewController.h"
 #import "NWFourSquareViewController.h"
 #import "NWItem.h"
+#import "NWOpenTableViewController.h"
 @interface NWLocationViewController : UIViewController <MKMapViewDelegate, UIWebViewDelegate, UIActionSheetDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *weatherIcon;
 @property (weak, nonatomic) IBOutlet UILabel *lblTemperature;
@@ -26,12 +27,13 @@
 @property (strong, nonatomic) NWTwitterViewController *twitterController;
 @property (strong, nonatomic) InstagramCollectionViewController *instaController;
 @property (strong, nonatomic) NWFourSquareViewController *fourController;
-
+@property (strong, nonatomic) NWOpenTableViewController *openTableController;
 @property (weak, nonatomic) IBOutlet UIButton *btnSwitch;
 
 @property (weak, nonatomic)  UIButton *btnTwitter;
 @property (weak, nonatomic) UIButton *btnInstagram;
 @property (weak, nonatomic) UIButton *btn4s;
+@property (weak, nonatomic) UIButton *btnOpenTable;
 
 @property (nonatomic, retain) NSDictionary *location;
 @property (nonatomic, strong) NWItem *nwItem;

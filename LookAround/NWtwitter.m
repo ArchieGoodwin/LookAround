@@ -16,21 +16,22 @@
     
     
     
-    //NSLog(@"%@", dict);
+   // NSLog(@"%@", dict);
     if(dict != nil)
     {
         
         @try {
+            NSDictionary *user = [dict objectForKey:@"user"];
             
             NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
             [dateFormatter setTimeStyle:NSDateFormatterFullStyle];
             [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
-            [dateFormatter setDateFormat:@"EEE, dd MMM yyyy HH:mm:ss z"];
+            [dateFormatter setDateFormat:@"EEE MMM dd HH:mm:ss z yyyy"];
             self.dateCreated = [dateFormatter dateFromString:[dict objectForKey:@"created_at"]];
             
-            self.author = [dict  objectForKey:@"from_user"];
+            self.author = [user  objectForKey:@"screen_name"];
             self.message = [dict objectForKey:@"text"];
-            NSString *url = [dict objectForKey:@"profile_image_url"];
+            NSString *url = [user objectForKey:@"profile_image_url"];
             //self.itemDistance = [[[dict objectForKey:@"location"] objectForKey:@"distance"] integerValue];
             self.iconUrl = url;
             

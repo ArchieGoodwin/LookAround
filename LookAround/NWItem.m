@@ -69,6 +69,8 @@
                 _checkinsCount = [[[dict objectForKey:@"stats"] objectForKey:@"checkinsCount"] integerValue];
                 _userCount = [[[dict objectForKey:@"stats"] objectForKey:@"usersCount"] integerValue];
                 _venueId = [[dict objectForKey:@"venuePage"] objectForKey:@"id"];
+                _city = [[dict objectForKey:@"location"] objectForKey:@"city"];
+
                 return self;
             }
             @catch (NSException *exception) {

@@ -19,6 +19,8 @@
 #import "AFNetworking.h"
 #import "NWFourSquarePhoto.h"
 #import "Sequencer.h"
+#import "NWOpenTableViewController.h"
+#import "NWShareViewController.h"
 
 #define RECTVISIBLE CGRectMake(0, 0, 320, 300)
 #define RECTHIDDEN CGRectMake(0, -300, 320, 300)
@@ -34,6 +36,8 @@
     ALScrollViewPaging *scrollView;
     BOOL infoShown;
     UIImageView *placeImage;
+    NSMutableArray *openTabels;
+    NSDictionary *openTableDict;
 }
 @end
 
@@ -145,6 +149,25 @@
     
 }
 
+-(void)startOTAnimate
+{
+    _btnOpenTable.alpha = 0.2;
+    
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    [UIView beginAnimations:@"_btnOpenTable" context:context];
+    [UIView setAnimationCurve:UIViewAnimationCurveLinear];
+    [UIView setAnimationDuration:0.3];
+    [UIView setAnimationRepeatCount:1000];
+    [UIView setAnimationRepeatAutoreverses:YES];
+    [UIView setAnimationDelegate:self];
+    
+    _btnOpenTable.alpha = 1;
+    
+    [UIView commitAnimations];
+    
+}
+
 -(void)stopTwitterAnimate
 {
     [_btnTwitter.layer removeAllAnimations];
@@ -153,6 +176,11 @@
 -(void)stopInstaAnimate
 {
     [_btnInstagram.layer removeAllAnimations];
+}
+
+-(void)stopOTAnimate
+{
+    [_btnOpenTable.layer removeAllAnimations];
 }
 
 
@@ -190,10 +218,43 @@
     [infoView addSubview: link];
     
     
+    
+    CLLocation *loc1 = [[CLLocation alloc] initWithLatitude:_nwItem.itemLat longitude:_nwItem.itemLng];
+    CLLocation *loc2 = [[CLLocation alloc] initWithLatitude:[[[NWHelper locationManager] location] coordinate].latitude longitude:[[[NWHelper locationManager] location] coordinate].longitude];
+    
+    double distance = [loc1 distanceFromLocation:loc2];
+    
+    
+    if(distance < 10000)
+    {
+
+        UIButton *linkDir = [NWHelper createButtonWithImageAndText:@"25-circle-northeast.png" text:@"Directions" action:@selector(showDirections) tag:1008 frame:CGRectMake(170, 250, 140, 30) target:self];
+        [infoView addSubview: linkDir];
+
+    }
+    
+
+    
+    
     [NWHelper addLabelMultiLineWithText:[NSString stringWithFormat:@"%@, %@", [_nwItem.location objectForKey:@"address"], [_nwItem.location objectForKey:@"city"]] toView:infoView rect:CGRectMake(170, 160, 140, 30) font:[UIFont systemFontOfSize:12]];
 
     
     [self.view addSubview:infoView];
+}
+
+
+-(void)showDirections
+{
+
+    
+    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(_nwItem.itemLat,_nwItem.itemLng);
+    
+    //create MKMapItem out of coordinates
+    MKPlacemark* placeMark = [[MKPlacemark alloc] initWithCoordinate:coordinate addressDictionary:nil];
+    MKMapItem* destination =  [[MKMapItem alloc] initWithPlacemark:placeMark];
+    
+   [destination openInMapsWithLaunchOptions:@{MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeWalking}];
+
 }
 
 -(void)showLink
@@ -304,6 +365,9 @@
     _btn4s = [NWHelper createButtonWithImageAndText:@"4s.png" text:nil action:@selector(show4square) tag:1003 frame:CGRectMake(90, 10, 30, 30) target:self];
 
     
+    _btnOpenTable = [NWHelper createButtonWithImageAndText:@"opentable-icon.png" text:nil action:@selector(showOpenTable) tag:1004 frame:CGRectMake(130, 10, 30, 30) target:self];
+
+    
     //[self setTwitterButtonGlow];
     
     [self startInstaAnimate];
@@ -312,9 +376,12 @@
     
     [self start4sAnimate];
     
+    [self startOTAnimate];
+    
     [_statusView addSubview:_btnTwitter];
     [_statusView addSubview:_btnInstagram];
     [_statusView addSubview:_btn4s];
+    [_statusView addSubview:_btnOpenTable];
 
     mapView.layer.cornerRadius = 3;
     
@@ -358,7 +425,7 @@
                 }
                 else
                 {
-                    [NWHelper getStreetViewImageByLastAndLng:[[_location objectForKey:@"latitude"] doubleValue] lng:[[_location objectForKey:@"longitude"] doubleValue] completionBlock:^(UIImage *imageView, NSError *error) {
+                    [NWHelper getStreetViewImageByLastAndLng:[[_location objectForKey:@"latitude"] doubleValue] lng:[[_location objectForKey:@"longitude"] doubleValue]  heading:-1 completionBlock:^(UIImage *imageView, NSError *error) {
                         placeImage.image = imageView;
                     }];
                 }
@@ -368,7 +435,7 @@
         else
         {
             
-            [NWHelper getStreetViewImageByLastAndLng:[[_location objectForKey:@"latitude"] doubleValue] lng:[[_location objectForKey:@"longitude"] doubleValue] completionBlock:^(UIImage *imageView, NSError *error) {
+            [NWHelper getStreetViewImageByLastAndLng:[[_location objectForKey:@"latitude"] doubleValue] lng:[[_location objectForKey:@"longitude"] doubleValue] heading:-1  completionBlock:^(UIImage *imageView, NSError *error) {
                 placeImage.image = imageView;
             }];
             
@@ -403,27 +470,30 @@
         NSLog(@"step twitter");
         
         [NWHelper getTwitterAround:[[_location objectForKey:@"latitude"] doubleValue] lng:[[_location objectForKey:@"longitude"] doubleValue] completionBlock:^(NSArray *result, NSError *error) {
+            if(result != nil)
+            {
+                tweets = result;
+                if(!_btnTwitter)
+                {
+                    _btnTwitter = [NWHelper createButtonWithImageAndText:@"210-twitterbird.png" text:[NSString stringWithFormat:@"Tweets:%@", result.count >= 100 ? @">100" : [NSString stringWithFormat:@"%i", result.count]] action:@selector(showTwitter) tag:1001 frame:CGRectMake(10, 10, 30, 30) target:self];
+                    
+                    //[self setTwitterButtonGlow];
+                    
+                    [_statusView addSubview:_btnTwitter];
+                }
+                else
+                {
+                    [_btnTwitter removeFromSuperview];
+                    
+                    _btnTwitter = [NWHelper createButtonWithImageAndText:@"210-twitterbird.png" text:[NSString stringWithFormat:@"Tweets:%@", result.count >= 100 ? @">100" : [NSString stringWithFormat:@"%i", result.count]] action:@selector(showTwitter) tag:1001 frame:CGRectMake(10, 10, 30, 30) target: self];
+                    
+                    //[self setTwitterButtonGlow];
+                    
+                    [_statusView addSubview:_btnTwitter];
+                    
+                }
+            }
             
-            tweets = result;
-            if(!_btnTwitter)
-            {
-                _btnTwitter = [NWHelper createButtonWithImageAndText:@"210-twitterbird.png" text:[NSString stringWithFormat:@"Tweets:%@", result.count >= 100 ? @">100" : [NSString stringWithFormat:@"%i", result.count]] action:@selector(showTwitter) tag:1001 frame:CGRectMake(10, 10, 30, 30) target:self];
-                
-                //[self setTwitterButtonGlow];
-                
-                [_statusView addSubview:_btnTwitter];
-            }
-            else
-            {
-                [_btnTwitter removeFromSuperview];
-                
-                _btnTwitter = [NWHelper createButtonWithImageAndText:@"210-twitterbird.png" text:[NSString stringWithFormat:@"Tweets:%@", result.count >= 100 ? @">100" : [NSString stringWithFormat:@"%i", result.count]] action:@selector(showTwitter) tag:1001 frame:CGRectMake(10, 10, 30, 30) target: self];
-                
-                //[self setTwitterButtonGlow];
-                
-                [_statusView addSubview:_btnTwitter];
-                
-            }
             
             [self stopTwitterAnimate];
             
@@ -451,6 +521,33 @@
         completion(nil);
     }];
     
+    [sequencer enqueueStep:^(id result, SequencerCompletion completion) {
+        NSLog(@"step check open table");
+        NSLog(@"%@", _nwItem);
+        [NWHelper openTableReserveWithName:_nwItem.itemName zip:[_nwItem.location objectForKey:@"postalCode"] page:1 completionBlock:^(NSDictionary *result, NSError *error) {
+            NSLog(@"here open table: %@", result);
+            
+            
+            if(((NSArray *)[result objectForKey:@"restaurants"]).count > 0)
+            {
+                openTableDict = result;
+                openTabels = [[result objectForKey:@"restaurants"] mutableCopy];
+                
+                [self stopOTAnimate];
+                
+                [self showScrollView];
+
+            }
+            else
+            {
+                openTableDict = nil;
+                [_btnOpenTable removeFromSuperview];
+            }
+            
+        }];
+
+        completion(nil);
+    }];
     [sequencer run];
 
     
@@ -512,6 +609,15 @@
         controller.tweets = tweets;
     }
     
+    if([segue.identifier isEqualToString:@"PushShare"])
+    {
+        NWShareViewController *controller = (NWShareViewController *)segue.destinationViewController;
+        
+        
+        
+        controller.location = _location;
+    }
+    
 }
 
 -(void)showScrollView
@@ -534,6 +640,12 @@
     {
         UIView *view2 = [self createFourSquareView];
         [views addObject:view2];
+    }
+
+    if(openTableDict)
+    {
+        UIView *view4 = [self createOTView];
+        [views addObject:view4];
     }
 
 
@@ -591,6 +703,22 @@
     
 }
 
+-(UIView *)createOTView
+{
+    _openTableController = [[NWOpenTableViewController alloc] initMe:CGRectMake(0, 0, 320, [NWHelper isIphone5] ? 456 : 366)];
+    
+    _openTableController.results = openTabels;
+    _openTableController.dict = openTableDict;
+    _openTableController.parentView = self.view;
+    _openTableController.zip = [_nwItem.location objectForKey:@"postalCode"];
+    _openTableController.view.tag = 123455;
+
+    [_openTableController realInit];
+    
+    return _openTableController.view;
+    
+}
+
 -(UIView *)createInstagramView
 {
     _instaController = [[InstagramCollectionViewController alloc] init];
@@ -644,6 +772,46 @@
     
     
 }
+
+-(void)showOpenTable
+{
+    /*[NWHelper photosByVenueId:@"43695300f964a5208c291fe3" completionBlock:^(NSArray *result, NSError *error) {
+     NSLog(@"here");
+     }];*/
+    
+    if(!downViewShown)
+    {
+        
+        //[self showScrollView];
+        
+        CGRect frame;
+        frame.origin.x = scrollView.frame.size.width * 3;
+        frame.origin.y = 0;
+        frame.size = scrollView.frame.size;
+        [scrollView scrollRectToVisible:frame animated:YES];
+        scrollView.pageControlBeingUsed = YES;
+        
+        
+        [self switchView:nil];
+        
+    }
+    else
+    {
+        //[self showScrollView];
+        
+        
+        CGRect frame;
+        frame.origin.x = scrollView.frame.size.width * 3;
+        frame.origin.y = 0;
+        frame.size = scrollView.frame.size;
+        [scrollView scrollRectToVisible:frame animated:YES];
+        scrollView.pageControlBeingUsed = YES;
+        
+    }
+    
+    
+}
+
 
 -(void)showTwitter
 {

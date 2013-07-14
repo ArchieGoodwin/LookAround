@@ -89,6 +89,8 @@
 		DC5EA5441708589800579FED /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC5EA5431708589800579FED /* MobileCoreServices.framework */; };
 		DC5EA5471709BB2C00579FED /* 05-shuffle.png in Resources */ = {isa = PBXBuildFile; fileRef = DC5EA5451709BB2C00579FED /* 05-shuffle.png */; };
 		DC5EA5481709BB2C00579FED /* 05-shuffle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC5EA5461709BB2C00579FED /* 05-shuffle@2x.png */; };
+		DC5EA54A170AD87700579FED /* opentable-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = DC5EA549170AD87700579FED /* opentable-icon.png */; };
+		DC5EA54E170ADA2200579FED /* NWOpenTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5EA54D170ADA2200579FED /* NWOpenTableViewController.m */; };
 		DC98307E16C8C1CC004CB060 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC98307D16C8C1CC004CB060 /* Social.framework */; };
 		DC98308016C8C25A004CB060 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC98307F16C8C25A004CB060 /* Accounts.framework */; };
 		DC98308316C90BB0004CB060 /* NWtwitter.m in Sources */ = {isa = PBXBuildFile; fileRef = DC98308216C90BB0004CB060 /* NWtwitter.m */; };
@@ -112,6 +114,15 @@
 		DCFB478B16DCCF3C0098744A /* ASMediaFocusController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCFB478816DCCF3C0098744A /* ASMediaFocusController.xib */; };
 		DCFB478E16DCDC2C0098744A /* NWFourSquareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCFB478D16DCDC2C0098744A /* NWFourSquareViewController.m */; };
 		DCFB479116DCDFCC0098744A /* 4s.png in Resources */ = {isa = PBXBuildFile; fileRef = DCFB479016DCDFCC0098744A /* 4s.png */; };
+		DCFDA4A4170D90280061F219 /* NWShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCFDA4A3170D90280061F219 /* NWShareViewController.m */; };
+		DCFDA4A7170D92190061F219 /* 211-action.png in Resources */ = {isa = PBXBuildFile; fileRef = DCFDA4A5170D92190061F219 /* 211-action.png */; };
+		DCFDA4A8170D92190061F219 /* 211-action@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCFDA4A6170D92190061F219 /* 211-action@2x.png */; };
+		DCFDA4AB170DB4300061F219 /* 20-circle-east.png in Resources */ = {isa = PBXBuildFile; fileRef = DCFDA4A9170DB4300061F219 /* 20-circle-east.png */; };
+		DCFDA4AC170DB4300061F219 /* 20-circle-east@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCFDA4AA170DB4300061F219 /* 20-circle-east@2x.png */; };
+		DCFDA4AF170DB4410061F219 /* 36-circle-west.png in Resources */ = {isa = PBXBuildFile; fileRef = DCFDA4AD170DB4410061F219 /* 36-circle-west.png */; };
+		DCFDA4B0170DB4410061F219 /* 36-circle-west@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCFDA4AE170DB4410061F219 /* 36-circle-west@2x.png */; };
+		DCFDA4B3170DB5080061F219 /* 19-circle-check.png in Resources */ = {isa = PBXBuildFile; fileRef = DCFDA4B1170DB5080061F219 /* 19-circle-check.png */; };
+		DCFDA4B4170DB5080061F219 /* 19-circle-check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCFDA4B2170DB5080061F219 /* 19-circle-check@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -224,6 +235,9 @@
 		DC5EA5431708589800579FED /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		DC5EA5451709BB2C00579FED /* 05-shuffle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "05-shuffle.png"; sourceTree = "<group>"; };
 		DC5EA5461709BB2C00579FED /* 05-shuffle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "05-shuffle@2x.png"; sourceTree = "<group>"; };
+		DC5EA549170AD87700579FED /* opentable-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "opentable-icon.png"; sourceTree = "<group>"; };
+		DC5EA54C170ADA2200579FED /* NWOpenTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWOpenTableViewController.h; sourceTree = "<group>"; };
+		DC5EA54D170ADA2200579FED /* NWOpenTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWOpenTableViewController.m; sourceTree = "<group>"; };
 		DC98307D16C8C1CC004CB060 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		DC98307F16C8C25A004CB060 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		DC98308116C90BB0004CB060 /* NWtwitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWtwitter.h; sourceTree = "<group>"; };
@@ -266,6 +280,16 @@
 		DCFB478C16DCDC2B0098744A /* NWFourSquareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWFourSquareViewController.h; sourceTree = "<group>"; };
 		DCFB478D16DCDC2C0098744A /* NWFourSquareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWFourSquareViewController.m; sourceTree = "<group>"; };
 		DCFB479016DCDFCC0098744A /* 4s.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4s.png; sourceTree = "<group>"; };
+		DCFDA4A2170D90280061F219 /* NWShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWShareViewController.h; sourceTree = "<group>"; };
+		DCFDA4A3170D90280061F219 /* NWShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWShareViewController.m; sourceTree = "<group>"; };
+		DCFDA4A5170D92190061F219 /* 211-action.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "211-action.png"; sourceTree = "<group>"; };
+		DCFDA4A6170D92190061F219 /* 211-action@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "211-action@2x.png"; sourceTree = "<group>"; };
+		DCFDA4A9170DB4300061F219 /* 20-circle-east.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "20-circle-east.png"; sourceTree = "<group>"; };
+		DCFDA4AA170DB4300061F219 /* 20-circle-east@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "20-circle-east@2x.png"; sourceTree = "<group>"; };
+		DCFDA4AD170DB4410061F219 /* 36-circle-west.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "36-circle-west.png"; sourceTree = "<group>"; };
+		DCFDA4AE170DB4410061F219 /* 36-circle-west@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "36-circle-west@2x.png"; sourceTree = "<group>"; };
+		DCFDA4B1170DB5080061F219 /* 19-circle-check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "19-circle-check.png"; sourceTree = "<group>"; };
+		DCFDA4B2170DB5080061F219 /* 19-circle-check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "19-circle-check@2x.png"; sourceTree = "<group>"; };
 		F094AD8EC777414D9360F9D6 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -321,6 +345,8 @@
 				DC4B24F316C6855E00976283 /* STImageAnnotationView.m */,
 				DC4B24F416C6855E00976283 /* MapAnnotation.h */,
 				DC4B24F516C6855E00976283 /* MapAnnotation.m */,
+				DCFDA4A2170D90280061F219 /* NWShareViewController.h */,
+				DCFDA4A3170D90280061F219 /* NWShareViewController.m */,
 			);
 			name = LocationView;
 			sourceTree = "<group>";
@@ -385,6 +411,8 @@
 		DC4B245516C4D27500976283 /* LookAround */ = {
 			isa = PBXGroup;
 			children = (
+				DC5EA54B170AD9FD00579FED /* OpenTableView */,
+				D54CA2A19FB4F624F24A50E5 /* TwitterView */,
 				DC4C5D2816F82B3B006F37ED /* About */,
 				DC9F220D16F1DFE8009E3FBB /* MapView */,
 				DCFB478F16DCDC330098744A /* FourSquare */,
@@ -397,7 +425,6 @@
 				DC4B245F16C4D27500976283 /* NWAppDelegate.m */,
 				DC4B246716C4D27500976283 /* MainStoryboard.storyboard */,
 				DC4B245616C4D27500976283 /* Supporting Files */,
-				D54CA2A19FB4F624F24A50E5 /* TwitterView */,
 			);
 			path = LookAround;
 			sourceTree = "<group>";
@@ -482,12 +509,30 @@
 			path = BZFoursquare;
 			sourceTree = "<group>";
 		};
+		DC5EA54B170AD9FD00579FED /* OpenTableView */ = {
+			isa = PBXGroup;
+			children = (
+				DC5EA54C170ADA2200579FED /* NWOpenTableViewController.h */,
+				DC5EA54D170ADA2200579FED /* NWOpenTableViewController.m */,
+			);
+			name = OpenTableView;
+			sourceTree = "<group>";
+		};
 		DC98308416CA4A0E004CB060 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				DCFDA4AD170DB4410061F219 /* 36-circle-west.png */,
+				DCFDA4AE170DB4410061F219 /* 36-circle-west@2x.png */,
+				DCFDA4B1170DB5080061F219 /* 19-circle-check.png */,
+				DCFDA4B2170DB5080061F219 /* 19-circle-check@2x.png */,
+				DCFDA4A9170DB4300061F219 /* 20-circle-east.png */,
+				DCFDA4AA170DB4300061F219 /* 20-circle-east@2x.png */,
+				DCFDA4A5170D92190061F219 /* 211-action.png */,
+				DC4C5D3916F86A3D006F37ED /* pin1.png */,
+				DCFDA4A6170D92190061F219 /* 211-action@2x.png */,
+				DC5EA549170AD87700579FED /* opentable-icon.png */,
 				DC5EA5451709BB2C00579FED /* 05-shuffle.png */,
 				DC5EA5461709BB2C00579FED /* 05-shuffle@2x.png */,
-				DC4C5D3916F86A3D006F37ED /* pin1.png */,
 				DC4C5D3A16F86A3D006F37ED /* pin1@2x.png */,
 				DC4C5D3716F8690E006F37ED /* pin_blue.png */,
 				DC4C5D3516F86353006F37ED /* icon1024.png */,
@@ -690,6 +735,15 @@
 				D54CA26D15EF15911C84926B /* TwitterCell.xib in Resources */,
 				DC5EA5471709BB2C00579FED /* 05-shuffle.png in Resources */,
 				DC5EA5481709BB2C00579FED /* 05-shuffle@2x.png in Resources */,
+				DC5EA54A170AD87700579FED /* opentable-icon.png in Resources */,
+				DCFDA4A7170D92190061F219 /* 211-action.png in Resources */,
+				DCFDA4A8170D92190061F219 /* 211-action@2x.png in Resources */,
+				DCFDA4AB170DB4300061F219 /* 20-circle-east.png in Resources */,
+				DCFDA4AC170DB4300061F219 /* 20-circle-east@2x.png in Resources */,
+				DCFDA4AF170DB4410061F219 /* 36-circle-west.png in Resources */,
+				DCFDA4B0170DB4410061F219 /* 36-circle-west@2x.png in Resources */,
+				DCFDA4B3170DB5080061F219 /* 19-circle-check.png in Resources */,
+				DCFDA4B4170DB5080061F219 /* 19-circle-check@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -773,6 +827,8 @@
 				D54CA7915581992D0A654191 /* NWTwitterViewController.m in Sources */,
 				DC5EA5411708546400579FED /* BZFoursquare.m in Sources */,
 				DC5EA5421708546400579FED /* BZFoursquareRequest.m in Sources */,
+				DC5EA54E170ADA2200579FED /* NWOpenTableViewController.m in Sources */,
+				DCFDA4A4170D90280061F219 /* NWShareViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -858,8 +914,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F094AD8EC777414D9360F9D6 /* Pods.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Sergey Dikarev";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Sergey Dikarev";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Sergey Dikarev (A2KE4XLMNK)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Sergey Dikarev (A2KE4XLMNK)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -869,8 +925,8 @@
 				INFOPLIST_FILE = "LookAround/LookAround-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5CEA96B7-40AA-460C-9400-653C80CFC356";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5CEA96B7-40AA-460C-9400-653C80CFC356";
+				PROVISIONING_PROFILE = "FF3B5870-C09E-49CF-9411-EDED0040C819";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "FF3B5870-C09E-49CF-9411-EDED0040C819";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -879,8 +935,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F094AD8EC777414D9360F9D6 /* Pods.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Sergey Dikarev";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Sergey Dikarev";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Sergey Dikarev (A2KE4XLMNK)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Sergey Dikarev (A2KE4XLMNK)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -890,8 +946,8 @@
 				INFOPLIST_FILE = "LookAround/LookAround-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5CEA96B7-40AA-460C-9400-653C80CFC356";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5CEA96B7-40AA-460C-9400-653C80CFC356";
+				PROVISIONING_PROFILE = "FF3B5870-C09E-49CF-9411-EDED0040C819";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "FF3B5870-C09E-49CF-9411-EDED0040C819";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

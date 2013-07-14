@@ -27,7 +27,7 @@ typedef enum
 @property (strong, nonatomic)     NSMutableArray *searchResult;
 @property (nonatomic, assign) SearchType currentSearchType;
 @property(nonatomic,strong) BZFoursquareRequest *request;
-
+@property (nonatomic, strong)NSString  *currentCity;
 - (void)showHUD;
 
 - (void)hideHUD;

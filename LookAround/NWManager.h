@@ -21,11 +21,12 @@ typedef void (^NWgetTwitterAroundCompletionBlock)        (NSArray *result, NSErr
 typedef void (^NWgetInstagramAroundCompletionBlock)        (NSMutableArray *result, NSError *error);
 typedef void (^NWgetWeatherAroundCompletionBlock)        (NWWeather *weather, NSError *error);
 typedef void (^NWgetStreetViewImageCompletionBlock)        (UIImage *imageView, NSError *error);
+typedef void (^NWOpenTableReservationBlock)        (NSDictionary *result, NSError *error);
 
 
 @interface NWManager : NSObject <CLLocationManagerDelegate>
 @property(nonatomic, strong) BZFoursquare *foursquare;
-
+@property (nonatomic, strong) CLPlacemark *place;
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
 
@@ -45,8 +46,9 @@ typedef void (^NWgetStreetViewImageCompletionBlock)        (UIImage *imageView, 
 -(void)addLabelWithText:(NSString *)text toView:(UIView *)toView rect:(CGRect)rect font:(UIFont *)font color:(UIColor *)color;
 -(void)addLabelMultiLineWithText:(NSString *)text toView:(UIView *)toView rect:(CGRect)rect font:(UIFont *)font;
 -(void)getWeatherAround:(double)lat lng:(double)lng completionBlock:(NWgetWeatherAroundCompletionBlock)completionBlock;
--(void)getStreetViewImageByLastAndLng:(double)lat lng:(double)lng completionBlock:(NWgetStreetViewImageCompletionBlock)completionBlock;
+-(void)getStreetViewImageByLastAndLng:(double)lat lng:(double)lng heading:(NSInteger)heading completionBlock:(NWgetStreetViewImageCompletionBlock)completionBlock;
 -(void)createPredefinedSearches;
 -(id)getSettingsValue:(NSString *)key;
 -(void)saveToUserDefaults:(id)object key:(NSString *)key;
+-(void)openTableReserveWithName:(NSString *)name zip:(NSString *)zip page:(NSInteger)page completionBlock:(NWOpenTableReservationBlock)completionBlock;
 @end

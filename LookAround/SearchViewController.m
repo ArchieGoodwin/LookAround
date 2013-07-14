@@ -133,6 +133,10 @@
     [super viewDidLoad];
 
 
+    
+    
+    
+
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -140,6 +144,28 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+    [geocoder reverseGeocodeLocation:[[NWHelper locationManager] location] completionHandler:^(NSArray *placemarks, NSError *error) {
+        if (error == nil) {
+            //            [RCDataHolder setCurrentCity:[NSString stringWithFormat:@"%@,%@", [[placemarks objectAtIndex:0] locality], [[placemarks objectAtIndex:0] country]]];
+            CLPlacemark *place = [placemarks objectAtIndex:0];
+            //NSLog(@"%@", placemark.addressDictionary);
+            [NWHelper setPlace:place];
+            //self.location.country = [placemark.addressDictionary objectForKey:@"Country"];
+            _currentCity = [place.addressDictionary objectForKey:@"City"];
+            //self.location.state = [placemark.addressDictionary objectForKey:@"State"];
+            
+            //self.location.address = ABCreateStringWithAddressDictionary([[placemarks objectAtIndex:0] addressDictionary], NO);
+            
+            //self.location.zipCode = [placemark.addressDictionary objectForKey:@"ZIP"];
+        }
+    }];
+}
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == actionSheet.cancelButtonIndex) {
@@ -304,6 +330,11 @@
 
 -(void)updatedLocation
 {
+    
+
+    
+    
+    
     [[NSNotificationCenter defaultCenter] removeObserver:self name:chLocationMuchUpdated object:nil];
 
     [NWHelper poisNearLocation:CLLocationCoordinate2DMake([NWHelper locationManager].location.coordinate.latitude, [NWHelper locationManager].location.coordinate.longitude) completionBlock:^(NSArray *result, NSError *error) {
@@ -479,7 +510,6 @@
         [self searchVenueByString:searchBar.text];
     }
     
-
 
 }
 
@@ -697,7 +727,7 @@
                         [str appendString:@","];
                     }
                     
-                    UILabel * lblTitle = [[UILabel alloc] initWithFrame:CGRectMake(35, 10, 280, [self getLabelSize:str fontSize:16])];
+                    UILabel * lblTitle = [[UILabel alloc] initWithFrame:CGRectMake(35, 10, 260, [self getLabelSize:str fontSize:16])];
                     lblTitle.backgroundColor = [UIColor clearColor];
                     lblTitle.text = str;
                     lblTitle.textColor = [UIColor grayColor];
@@ -719,7 +749,7 @@
                     NSMutableString *str = [NSMutableString new];
                     
                     str = [geoResult objectForKey:@"displayName"];
-                    UILabel * lblTitle = [[UILabel alloc] initWithFrame:CGRectMake(35, 20, 280, [self getLabelSize:str fontSize:16])];
+                    UILabel * lblTitle = [[UILabel alloc] initWithFrame:CGRectMake(35, 20, 260, [self getLabelSize:str fontSize:16])];
                     lblTitle.backgroundColor = [UIColor clearColor];
                     lblTitle.text = str;
                     lblTitle.textColor = [UIColor grayColor];
@@ -754,7 +784,7 @@
                     NWItem *item = [_searchResult objectAtIndex:indexPath.row];
                     
                     
-                    UILabel * lblTitle = [[UILabel alloc] initWithFrame:CGRectMake(35, 10, 280, [self getLabelSize:item.itemName fontSize:16])];
+                    UILabel * lblTitle = [[UILabel alloc] initWithFrame:CGRectMake(35, 10, 260, [self getLabelSize:item.itemName fontSize:16])];
                     lblTitle.backgroundColor = [UIColor clearColor];
                     lblTitle.text = item.itemName;
                     lblTitle.textColor = [UIColor grayColor];
@@ -824,7 +854,7 @@
             MKMapItem *item = [_searchResult objectAtIndex:indexPath.row];
            // NSLog(@"MKMapItem: %@", item.);
             
-            UILabel * lblTitle = [[UILabel alloc] initWithFrame:CGRectMake(35, 10, 280, [self getLabelSize:item.name fontSize:16])];
+            UILabel * lblTitle = [[UILabel alloc] initWithFrame:CGRectMake(35, 10, 260, [self getLabelSize:item.name fontSize:16])];
             lblTitle.backgroundColor = [UIColor clearColor];
             lblTitle.text = item.name;
             lblTitle.textColor = [UIColor grayColor];
@@ -855,7 +885,7 @@
 -(CGFloat)getLabelSize:(NSString *)text fontSize:(NSInteger)fontSize
 {
     UIFont *cellFont = [UIFont fontWithName:@"HelveticaNeue" size:16];
-	CGSize constraintSize = CGSizeMake(280, MAXFLOAT);
+	CGSize constraintSize = CGSizeMake(260, MAXFLOAT);
 	CGSize labelSize = [text sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
     
     return labelSize.height;
@@ -953,12 +983,25 @@
             }
             else
             {
-                _currentSearchType = SearchBy4squareFull;
-
-                [self searchVenueByString:search.searchStr];
-                search.dateSearhed = [NSDate date];
                 
-                [[NSManagedObjectContext MR_defaultContext] MR_saveOnlySelfAndWait];
+                if([NWHelper getSettingsValue:@"4square"] == nil)
+                {
+                    
+                    [[[UIActionSheet alloc] initWithTitle:@"To use this feature please sign To Foursquare" delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) destructiveButtonTitle:nil otherButtonTitles:@"Go on", nil] showInView:self.view];
+                }
+                else
+                {
+                    
+                    _currentSearchType = SearchBy4squareFull;
+                    
+                    [self searchVenueByString:search.searchStr];
+                    search.dateSearhed = [NSDate date];
+                    
+                    [[NSManagedObjectContext MR_defaultContext] MR_saveOnlySelfAndWait];
+                }
+                
+                
+               
             }
             
            
